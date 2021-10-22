@@ -1,6 +1,10 @@
 .mat-sidenav-container {
   background-color: white !important;
-  height: 100vh;
+  height: calc(100vh - 64px);
+
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+    height: calc(100vh - 56px);
+  }
 
   .mat-sidenav-content {
     display: flex;
