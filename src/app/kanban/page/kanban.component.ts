@@ -29,27 +29,27 @@ export class KanbanComponent implements OnInit, OnDestroy {
   }
 
   getKanbanData() {
-    this.subs.sink = this.kanbanService.todo.subscribe((resp) => {
+    this.subs.sink = this.kanbanService.getTodo().subscribe((resp) => {
       if (!resp) {
         return;
       }
       console.log('todo', resp);
       this.todo = resp;
     });
-    this.subs.sink = this.kanbanService.inProgress.subscribe((resp) => {
+    this.subs.sink = this.kanbanService.getInProgress().subscribe((resp) => {
       if (!resp) {
         return;
       }
       console.log('inProgress', resp);
       this.inProgress = resp;
-    })
-    this.subs.sink = this.kanbanService.done.subscribe((resp) => {
+    });
+    this.subs.sink = this.kanbanService.getDone().subscribe((resp) => {
       if (!resp) {
         return;
       }
       console.log('done', resp);
       this.done = resp;
-    })
+    });
   }
 
   editTask(list: 'done' | 'todo' | 'inProgress', task: Task): void {
