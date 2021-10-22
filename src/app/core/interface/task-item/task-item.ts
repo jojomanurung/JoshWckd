@@ -7,6 +7,7 @@ export interface Task {
 export interface TaskDialogData {
 	task: Partial<Task>;
 	enableDelete: boolean;
+	edit?: boolean;
 }
 
 export interface TaskDialogResult {

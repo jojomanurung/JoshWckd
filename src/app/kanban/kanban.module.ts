@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { KanbanRoutingModule } from './kanban-routing.module';
 import { KanbanComponent } from './page/kanban.component';
@@ -28,6 +28,7 @@ import { TaskDialogComponent } from './components/task-dialog/task-dialog.compon
 		MatDialogModule,
 		MatInputModule,
 		FormsModule,
+		ReactiveFormsModule,
 	],
 })
 export class KanbanModule {}

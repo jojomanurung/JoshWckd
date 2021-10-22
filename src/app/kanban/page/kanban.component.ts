@@ -64,6 +64,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
 			data: {
 				task,
 				enableDelete: true,
+				edit: true,
 			},
 		});
 		dialogRef.afterClosed().subscribe((result: TaskDialogResult | undefined) => {
@@ -71,9 +72,9 @@ export class KanbanComponent implements OnInit, OnDestroy {
 				return;
 			}
 			if (result.delete) {
-				this.kanbanService.deleteItem(list, task);
+				this.kanbanService.deleteItem(list, result.task);
 			} else {
-				this.kanbanService.updateItem(list, task);
+				this.kanbanService.updateItem(list, result.task);
 			}
 		});
 	}
@@ -96,18 +97,18 @@ export class KanbanComponent implements OnInit, OnDestroy {
 	}
 
 	newTask(): void {
-		const dialogRef = this.dialog.open(TaskDialogComponent, {
-			width: '270px',
-			data: {
-				task: {},
-			},
-		});
-		dialogRef.afterClosed().subscribe((result: TaskDialogResult | undefined) => {
-			if (!result) {
+		this.subs.sink = this.dialog
+			.open(TaskDialogComponent, {
+				width: '270px',
+				data: {
+					task: {},
+					edit: false,
+				},
+			})
+			.afterClosed()
+			.subscribe((result: TaskDialogResult | undefined) => {
 				return;
-			}
-			this.kanbanService.createItem(result.task);
-		});
+			});
 	}
 
 	ngOnDestroy(): void {
