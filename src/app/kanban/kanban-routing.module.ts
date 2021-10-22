@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { KanbanComponent } from './page/kanban.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: KanbanComponent
-  }
+	{
+		path: '',
+		component: KanbanComponent,
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class KanbanRoutingModule { }
+export class KanbanRoutingModule {}

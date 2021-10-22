@@ -19,24 +19,20 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TopNavbarComponent,
-    MenuListItemComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
-  ],
-  providers: [NavService],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent, TopNavbarComponent, MenuListItemComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		MatToolbarModule,
+		MatIconModule,
+		MatSidenavModule,
+		MatListModule,
+		MatButtonModule,
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFirestoreModule,
+	],
+	providers: [NavService],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

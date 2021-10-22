@@ -4,33 +4,33 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class NavService {
-  public appDrawer: any;
-  public currentUrl = new BehaviorSubject<string>('');
-  public pageTitle = new BehaviorSubject<string>('');
+	public appDrawer: any;
+	public currentUrl = new BehaviorSubject<string>('');
+	public pageTitle = new BehaviorSubject<string>('');
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        this.currentUrl.next(event.urlAfterRedirects);
-      }
-    });
-  }
+	constructor(private router: Router) {
+		this.router.events.subscribe((event: Event) => {
+			if (event instanceof NavigationEnd) {
+				this.currentUrl.next(event.urlAfterRedirects);
+			}
+		});
+	}
 
-  public closeNav() {
-    this.appDrawer.close();
-  }
+	public closeNav() {
+		this.appDrawer.close();
+	}
 
-  public openNav() {
-    this.appDrawer.open();
-  }
+	public openNav() {
+		this.appDrawer.open();
+	}
 
-  public toggleNav() {
-    this.appDrawer.toggle();
-  }
+	public toggleNav() {
+		this.appDrawer.toggle();
+	}
 
-  setPageTitle(value: string) {
-    if (value) {
-      this.pageTitle.next(value);
-    }
-  }
+	setPageTitle(value: string) {
+		if (value) {
+			this.pageTitle.next(value);
+		}
+	}
 }

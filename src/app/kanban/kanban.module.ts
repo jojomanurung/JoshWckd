@@ -15,24 +15,19 @@ import { KanbanComponent } from './page/kanban.component';
 import { TaskComponent } from './components/task/task.component';
 import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
 
-
 @NgModule({
-  declarations: [
-    KanbanComponent,
-    TaskComponent,
-    TaskDialogComponent
-  ],
-  imports: [
-    CommonModule,
-    KanbanRoutingModule,
-    MatCardModule,
-    DragDropModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatDialogModule,
-    MatInputModule,
-    FormsModule
-  ],
+	declarations: [KanbanComponent, TaskComponent, TaskDialogComponent],
+	imports: [
+		CommonModule,
+		KanbanRoutingModule,
+		MatCardModule,
+		DragDropModule,
+		MatButtonModule,
+		MatIconModule,
+		MatTooltipModule,
+		MatDialogModule,
+		MatInputModule,
+		FormsModule,
+	],
 })
-export class KanbanModule { }
+export class KanbanModule {}

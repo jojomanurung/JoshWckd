@@ -11,20 +11,19 @@ import { DashboardMainComponent } from './page/dashboard-main.component';
 import { DashboardCardItemComponent } from './components/dashboard-card-item/dashboard-card-item.component';
 import { DashboardProfileCardComponent } from './components/dashboard-profile-card/dashboard-profile-card.component';
 
-
 @NgModule({
-  declarations: [
-    DashboardMainComponent,
-    DashboardCardItemComponent,
-    DashboardProfileCardComponent,
-  ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule
-  ]
+	declarations: [
+		DashboardMainComponent,
+		DashboardCardItemComponent,
+		DashboardProfileCardComponent,
+	],
+	imports: [
+		CommonModule,
+		DashboardRoutingModule,
+		MatCardModule,
+		MatButtonModule,
+		MatIconModule,
+		MatTooltipModule,
+	],
 })
-export class DashboardModule { }
+export class DashboardModule {}
