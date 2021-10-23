@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { Task } from 'src/app/core/interface/task-item/task-item';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class KanbanService {
 	constructor(private store: AngularFirestore) {}
 
 	getTodo(): Observable<Task[]> {
-		const data = this.kanbanCollection
+		return this.kanbanCollection
 			.collection('todo')
 			.snapshotChanges()
 			.pipe(
@@ -25,11 +25,10 @@ export class KanbanService {
 					})
 				)
 			);
-		return data;
 	}
 
 	getInProgress(): Observable<Task[]> {
-		const data = this.kanbanCollection
+		return this.kanbanCollection
 			.collection('inProgress')
 			.snapshotChanges()
 			.pipe(
@@ -41,11 +40,10 @@ export class KanbanService {
 					})
 				)
 			);
-		return data;
 	}
 
 	getDone(): Observable<Task[]> {
-		const data = this.kanbanCollection
+		return this.kanbanCollection
 			.collection('done')
 			.snapshotChanges()
 			.pipe(
@@ -57,7 +55,6 @@ export class KanbanService {
 					})
 				)
 			);
-		return data;
 	}
 
 	dropItem(previousContainer: any, currentContainer: any, item: any) {

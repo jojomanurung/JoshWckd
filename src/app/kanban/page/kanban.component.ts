@@ -9,6 +9,8 @@ import { KanbanService } from 'src/app/service/kanban/kanban.service';
 import { NavService } from 'src/app/service/nav/nav.service';
 import { SubSink } from 'subsink';
 import { TaskDialogComponent } from '../components/task-dialog/task-dialog.component';
+import * as _ from 'lodash';
+import { LoadingService } from 'src/app/service/loading/loading.service';
 
 @Component({
 	selector: 'app-kanban',
@@ -25,7 +27,8 @@ export class KanbanComponent implements OnInit, OnDestroy {
 	constructor(
 		private navService: NavService,
 		private dialog: MatDialog,
-		private kanbanService: KanbanService
+		private kanbanService: KanbanService,
+		private loadingService: LoadingService
 	) {
 		this.navService.setPageTitle('Kanban');
 	}
@@ -35,26 +38,39 @@ export class KanbanComponent implements OnInit, OnDestroy {
 	}
 
 	getKanbanData() {
+		this.loadingService.loadingOn();
 		this.subs.sink = this.kanbanService.getTodo().subscribe((resp) => {
-			if (!resp) {
+			if (!resp.length) {
+				this.todo = [];
+				this.loadingService.loadingOff();
 				return;
+			} else {
+				console.log('todo', resp);
+				this.todo = _.cloneDeep(resp);
+				this.loadingService.loadingOff();
 			}
-			console.log('todo', resp);
-			this.todo = resp;
 		});
 		this.subs.sink = this.kanbanService.getInProgress().subscribe((resp) => {
-			if (!resp) {
+			if (!resp.length) {
+				this.inProgress = [];
+				this.loadingService.loadingOff();
 				return;
+			} else {
+				console.log('inProgress', resp);
+				this.inProgress = resp;
+				this.loadingService.loadingOff();
 			}
-			console.log('inProgress', resp);
-			this.inProgress = resp;
 		});
 		this.subs.sink = this.kanbanService.getDone().subscribe((resp) => {
-			if (!resp) {
+			if (!resp.length) {
+				this.done = [];
+				this.loadingService.loadingOff();
 				return;
+			} else {
+				console.log('done', resp);
+				this.done = resp;
+				this.loadingService.loadingOff();
 			}
-			console.log('done', resp);
-			this.done = resp;
 		});
 	}
 
@@ -68,7 +84,9 @@ export class KanbanComponent implements OnInit, OnDestroy {
 			},
 		});
 		dialogRef.afterClosed().subscribe((result: TaskDialogResult | undefined) => {
+			this.loadingService.loadingOn();
 			if (!result) {
+				this.loadingService.loadingOff();
 				return;
 			}
 			if (result.delete) {
@@ -107,7 +125,13 @@ export class KanbanComponent implements OnInit, OnDestroy {
 			})
 			.afterClosed()
 			.subscribe((result: TaskDialogResult | undefined) => {
-				return;
+				this.loadingService.loadingOn();
+				if (!result) {
+					this.loadingService.loadingOff();
+					return;
+				} else {
+					this.kanbanService.createItem(result.task);
+				}
 			});
 	}
 

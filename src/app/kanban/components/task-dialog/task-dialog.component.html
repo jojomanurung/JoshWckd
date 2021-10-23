@@ -31,7 +31,7 @@
 		color="primary"
 		aria-label="Delete"
 		class="text-sm"
-		[mat-dialog-close]="{ task: data.task, delete: true }"
+		(click)="delete()"
 	>
 		<mat-icon>delete</mat-icon>
 	</button>

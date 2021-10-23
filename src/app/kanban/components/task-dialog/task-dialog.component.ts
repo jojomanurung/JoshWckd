@@ -56,15 +56,25 @@ export class TaskDialogComponent implements OnInit {
 	}
 
 	createTask() {
-		const payload = this.form.getRawValue();
-		delete payload.id;
-		this.kanbanService.createItem(payload);
-		this.dialogRef.close();
+		const form = this.form.getRawValue();
+		delete form.id;
+		const payload: TaskDialogResult = {
+			task: form,
+		};
+		this.dialogRef.close(payload);
 	}
 
 	updateTask() {
 		const payload: TaskDialogResult = {
 			task: this.form.getRawValue(),
+		};
+		this.dialogRef.close(payload);
+	}
+
+	delete() {
+		const payload: TaskDialogResult = {
+			task: this.form.getRawValue(),
+			delete: true,
 		};
 		this.dialogRef.close(payload);
 	}
