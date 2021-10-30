@@ -1,10 +1,11 @@
 .mat-sidenav-container {
   background-color: white !important;
-  height: 100vh;
+  height: calc(100vh - 64px);
+  margin-top: 64px;
 
-  .mat-sidenav-content {
-    display: flex;
-    flex-direction: column;
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+    height: calc(100vh - 56px);
+    margin-top: 56px;
   }
 }
 
@@ -26,14 +27,14 @@
   width: 100% !important;
 }
 
-.mat-drawer-container,
-.mat-drawer {
-  padding-top: 64px;
+// .mat-drawer-container,
+// .mat-drawer {
+//   top: 64px;
 
-  @media screen and (min-width: 320px) and (max-width: 599px) {
-    padding-top: 56px;
-  }
-}
+//   @media screen and (min-width: 320px) and (max-width: 599px) {
+//     top: 56px;
+//   }
+// }
 
 .menu-list-item.mat-list-item {
   .mat-list-item-content {
