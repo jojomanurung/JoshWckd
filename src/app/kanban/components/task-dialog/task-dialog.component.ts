@@ -1,11 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-	Task,
-	TaskDialogData,
-	TaskDialogResult,
-} from 'src/app/core/interface/task-item/task-item';
+import { TaskDialogData, TaskDialogResult } from 'src/app/shared/interface/task-item/task-item';
 import { KanbanService } from 'src/app/service/kanban/kanban.service';
 
 @Component({

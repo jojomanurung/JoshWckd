@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { concatMap, finalize, tap } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root',

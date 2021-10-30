@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { Task } from 'src/app/core/interface/task-item/task-item';
+import { map } from 'rxjs/operators';
+import { Task } from 'src/app/shared/interface/task-item/task-item';
 
 @Injectable({
 	providedIn: 'root',

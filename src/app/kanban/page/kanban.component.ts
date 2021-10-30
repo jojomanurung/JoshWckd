@@ -1,10 +1,7 @@
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {
-	Task,
-	TaskDialogResult,
-} from 'src/app/core/interface/task-item/task-item';
+import { Task, TaskDialogResult } from 'src/app/shared/interface/task-item/task-item';
 import { KanbanService } from 'src/app/service/kanban/kanban.service';
 import { NavService } from 'src/app/service/nav/nav.service';
 import { SubSink } from 'subsink';

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { filter, tap } from 'rxjs/operators';
-import { MenuItem } from './core/interface/nav-item/nav-item';
+import { MenuItem } from './shared/interface/nav-item/nav-item';
 import { NavService } from './service/nav/nav.service';
 
 @Component({
