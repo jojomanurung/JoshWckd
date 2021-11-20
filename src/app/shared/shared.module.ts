@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoadingComponent } from './components/loading/loading.component';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -35,6 +35,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+
+import { LoadingComponent } from './components/loading/loading.component';
 
 const Material: any = [
   MatAutocompleteModule,
