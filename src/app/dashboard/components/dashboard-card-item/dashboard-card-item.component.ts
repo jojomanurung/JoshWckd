@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./dashboard-card-item.component.scss'],
 })
 export class DashboardCardItemComponent implements OnInit {
+  image = 'src/assets/kanban.PNG';
 	constructor() {}
 
 	ngOnInit(): void {}
