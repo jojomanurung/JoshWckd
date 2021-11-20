@@ -1,11 +1,11 @@
 .mat-sidenav-container {
   background-color: white !important;
   height: calc(100vh - 64px);
-  margin-top: 64px;
+  top: 64px;
 
   @media screen and (min-width: 320px) and (max-width: 599px) {
     height: calc(100vh - 56px);
-    margin-top: 56px;
+    top: 56px;
   }
 }
 
@@ -13,7 +13,6 @@
   height: 64px;
   display: flex;
   flex-direction: row;
-
 }
 .mat-nav-list {
   padding-top: 0;
