@@ -25,3 +25,7 @@
     font-size: 1.25rem;
   }
 }
+
+:host::ng-deep .mat-list-item .mat-list-item-content {
+  width: 100%;
+}
