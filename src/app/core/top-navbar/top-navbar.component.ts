@@ -4,49 +4,60 @@ import { SubSink } from 'subsink';
 import { MenuItem } from 'src/app/shared/interface/nav-item/nav-item';
 
 @Component({
-	selector: 'app-top-navbar',
-	templateUrl: './top-navbar.component.html',
-	styleUrls: ['./top-navbar.component.scss'],
+  selector: 'app-top-navbar',
+  templateUrl: './top-navbar.component.html',
+  styleUrls: ['./top-navbar.component.scss'],
 })
 export class TopNavbarComponent implements OnInit, OnDestroy {
-	public pageTitle = '';
-	private subs = new SubSink();
-	menuItems = MenuItem;
+  public pageTitle = '';
+  private subs = new SubSink();
+  menuItems = MenuItem;
 
-	constructor(public navService: NavService) {}
+  constructor(public navService: NavService) {}
 
-	ngOnInit(): void {
-		this.currentPageTitle();
-	}
+  ngOnInit(): void {
+    this.currentPageTitle();
+  }
 
-	currentPageTitle() {
-		this.subs.sink = this.navService.currentUrl.subscribe((url: string) => {
-			if (url) {
-				const found = this.menuItems.find(
-					(menu) => menu.route === url.replace('/', '')
-				);
-				if (found) {
-					this.pageTitle = found.title;
-				} else {
-					this.pageTitle = '';
-					this.pageTitleService();
-				}
-			}
-		});
-	}
+  currentPageTitle() {
+    this.subs.sink = this.navService.currentUrl.subscribe((url: string) => {
+      if (url) {
+        let childs: any;
+        const found = this.menuItems.find((menu: any) => {
+          if (!menu.children) {
+            return menu.route === url.replace('/', '');
+          } else {
+            const child = menu.children.find((child: any) => {
+              return child.route === url.replace('/', '');
+            });
+            childs = child;
+            return child;
+          }
+        });
+        if (found && found.children) {
+          this.pageTitle = childs.title;
+        } else if (found && !found.children) {
+          this.pageTitle = found.title;
+        } else {
+          this.pageTitle = '';
+          this.pageTitleService();
+        }
+      }
+    });
+  }
 
-	pageTitleService() {
-		this.subs.sink = this.navService.pageTitle.subscribe((val) => {
-			console.log(val);
-			if (val) {
-				this.pageTitle = val;
-			} else {
-				return;
-			}
-		});
-	}
+  pageTitleService() {
+    this.subs.sink = this.navService.pageTitle.subscribe((val) => {
+      console.log(val);
+      if (val) {
+        this.pageTitle = val;
+      } else {
+        return;
+      }
+    });
+  }
 
-	ngOnDestroy(): void {
-		this.subs.unsubscribe();
-	}
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
 }
