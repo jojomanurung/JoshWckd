@@ -14,9 +14,16 @@ export const MenuItem: NavItem[] = [
     route: 'dashboard',
   },
   {
-    title: 'Management',
+    title: 'Settings',
     disabled: false,
-    icon: 'article',
-    route: 'management',
+    icon: 'settings',
+    children: [
+      {
+        title: 'Management',
+        disabled: false,
+        icon: 'article',
+        route: 'management',
+      },
+    ],
   },
 ];
