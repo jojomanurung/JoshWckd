@@ -1,1 +1,12 @@
-<p>project-management works!</p>
+<app-project-table
+  *ngIf="showTable"
+  [project]="tablesData"
+  (add)="addProject()"
+  (edit)="editProject($event)"
+  (delete)="deleteProject($event)"
+></app-project-table>
+<app-add-project
+  *ngIf="!showTable"
+  [project]="projectEdit"
+  (action)="formAction($event)"
+></app-add-project>
