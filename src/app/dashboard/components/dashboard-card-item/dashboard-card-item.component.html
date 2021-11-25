@@ -1,14 +1,27 @@
-<div class="lg:px-8 pt-4">
+<div class="">
   <mat-card>
     <mat-card-title>
-      <h4>First Project</h4>
+      <div class="grid grid-nogutter">
+        <div class="col-6">
+          <h2>{{ project.name }}</h2>
+        </div>
+        <div class="col-6 text-right">
+          <button mat-icon-button (click)="openProject(project.link)">
+            <mat-icon>launch</mat-icon>
+          </button>
+        </div>
+      </div>
     </mat-card-title>
-    <img mat-card-image src="../../../../assets/kanban.PNG" alt="Project Image">
+    <!-- <img
+      mat-card-image
+      src="../../../../assets/kanban.PNG"
+      alt="Project Image"
+    /> -->
     <mat-card-content>
       <div class="grid grid-nogutter">
         <div class="col-12">
           <p>
-            This is project is about duplicating a simple kanban or we can say as a todo list
+            {{ project.description }}
           </p>
         </div>
       </div>
