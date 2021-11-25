@@ -4,11 +4,12 @@
       <div class="col-12">
         <h1 class="text-center m-0">My personal project</h1>
       </div>
-      <div class="col-12 mb-4 lg:m-0">
-        <div class="lg:py-2">
-          <app-dashboard-card-item></app-dashboard-card-item>
+      <div class="col-12 mb-4 lg:m-0 lg:px-8 pt-4">
+        <div class="py-2" *ngFor="let item of project">
+          <ng-container *ngIf="item.active">
+            <app-dashboard-card-item [project]="item"></app-dashboard-card-item>
+          </ng-container>
         </div>
-        <app-dashboard-card-item></app-dashboard-card-item>
       </div>
     </div>
   </div>
