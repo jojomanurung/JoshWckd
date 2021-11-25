@@ -35,6 +35,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoadingComponent } from './components/loading/loading.component';
 
@@ -77,7 +78,7 @@ const Material: any = [
 
 @NgModule({
   declarations: [LoadingComponent],
-  imports: [CommonModule, ...Material],
-  exports: [LoadingComponent, ...Material],
+  imports: [CommonModule, ...Material, FormsModule, ReactiveFormsModule],
+  exports: [LoadingComponent, ...Material, FormsModule, ReactiveFormsModule],
 })
 export class SharedModule {}
