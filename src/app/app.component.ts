@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { filter, tap } from 'rxjs/operators';
 import { MenuItem } from './shared/interface/nav-item/nav-item';
 import { NavService } from './service/nav/nav.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { NavService } from './service/nav/nav.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('appDrawer') appDrawer!: ElementRef;
+  @ViewChild(MatSidenav) appDrawer!: MatSidenav;
   @ViewChild(NgScrollbar) scrollRef!: NgScrollbar;
   navItems = MenuItem;
   isMobile!: boolean;

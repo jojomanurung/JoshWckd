@@ -6,9 +6,15 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class NavService {
   public appDrawer: any;
-  public currentUrl = new BehaviorSubject<string>('');
-  public pageTitle = new BehaviorSubject<string>('');
-  public isMobile = new BehaviorSubject<boolean>(false);
+
+  private currentUrlSubject = new BehaviorSubject<string>('');
+  public currentUrl = this.currentUrlSubject.asObservable();
+
+  private pageTitleSubject = new BehaviorSubject<string>('');
+  public pageTitle = this.pageTitleSubject.asObservable();
+
+  private isMobileSubject = new BehaviorSubject<boolean>(false);
+  public isMobile = this.isMobileSubject.asObservable();
 
   constructor(
     private router: Router,
@@ -16,7 +22,7 @@ export class NavService {
   ) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        this.currentUrl.next(event.urlAfterRedirects);
+        this.currentUrlSubject.next(event.urlAfterRedirects);
       }
     });
     this.layoutObserver
@@ -27,7 +33,7 @@ export class NavService {
         Breakpoints.TabletLandscape,
       ])
       .subscribe((result) => {
-        this.isMobile.next(result.matches);
+        this.isMobileSubject.next(result.matches);
       });
   }
 
@@ -45,7 +51,7 @@ export class NavService {
 
   setPageTitle(value: string) {
     if (value) {
-      this.pageTitle.next(value);
+      this.pageTitleSubject.next(value);
     }
   }
 }

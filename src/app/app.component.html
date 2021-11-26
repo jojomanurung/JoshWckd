@@ -1,9 +1,8 @@
-<app-top-navbar class="fixed-topnav"></app-top-navbar>
-<mat-sidenav-container>
+<mat-sidenav-container autosize="true">
   <mat-sidenav
-    #appDrawer
     [mode]="isMobile ? 'over' : 'side'"
     [opened]="!isMobile"
+    position="start"
   >
     <mat-nav-list>
       <app-menu-list-item
@@ -14,8 +13,11 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <loading></loading>
-    <ng-scrollbar>
-      <router-outlet></router-outlet>
-    </ng-scrollbar>
+    <app-top-navbar></app-top-navbar>
+    <main>
+      <ng-scrollbar>
+        <router-outlet></router-outlet>
+      </ng-scrollbar>
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>
