@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TopNavbarComponent } from './core/top-navbar/top-navbar.component';
 import { MenuListItemComponent } from './core/menu-list-item/menu-list-item.component';
 
+import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -21,6 +22,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    LayoutModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
