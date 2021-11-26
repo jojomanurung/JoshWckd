@@ -1,13 +1,13 @@
-<mat-toolbar color="primary" class="mat-elevation-z1 word-wrp">
-	<button
-		mat-icon-button
-		[disableRipple]="true"
-		id="menu"
-		(click)="navService.toggleNav()"
-	>
-		<mat-icon>menu</mat-icon>
-	</button>
-	<span class="pl-3" style="cursor: default;">
-		{{ pageTitle }}
-	</span>
+<mat-toolbar color="primary" class="word-wrp">
+  <button
+    mat-icon-button
+    [disableRipple]="true"
+    id="menu"
+    (click)="navService.toggleNav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="pl-3" style="cursor: default">
+    {{ pageTitle }}
+  </span>
 </mat-toolbar>
