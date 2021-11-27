@@ -16,8 +16,9 @@ export class AppComponent implements AfterViewInit {
   @ViewChild(NgScrollbar) scrollRef!: NgScrollbar;
   navItems = MenuItem;
   isMobile!: boolean;
+  logo = '../assets/images/logo.png';
 
-  constructor(private navService: NavService, private router: Router) {
+  constructor(public navService: NavService, private router: Router) {
     this.router.events
       .pipe(
         filter((e): e is NavigationEnd => e instanceof NavigationEnd),
