@@ -56,7 +56,20 @@ export class MenuListItemComponent implements OnInit {
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length) {
+    if (item.route && item.children && item.children.length) {
+      this.router.navigate([item.route ? item.route : '']);
+      this.navService.isMobile.subscribe((isMobile) => {
+        if (isMobile) {
+          this.navService.closeNav();
+        }
+      });
+      if (this.expanded) {
+        this.expanded = false;
+      } else {
+        this.expanded = true;
+      }
+    }
+    if (item.route && (!item.children || !item.children.length)) {
       this.router.navigate([item.route ? item.route : '']);
       this.navService.isMobile.subscribe((isMobile) => {
         if (isMobile) {
@@ -64,7 +77,7 @@ export class MenuListItemComponent implements OnInit {
         }
       });
     }
-    if (item.children && item.children.length) {
+    if (!item.route && item.children && item.children.length) {
       if (this.expanded) {
         this.expanded = false;
       } else {
