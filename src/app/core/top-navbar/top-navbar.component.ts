@@ -40,7 +40,6 @@ export class TopNavbarComponent implements OnInit, OnDestroy {
           this.pageTitle = found.title;
         } else {
           this.pageTitle = '';
-          this.pageTitleService();
         }
       }
     });
@@ -48,7 +47,6 @@ export class TopNavbarComponent implements OnInit, OnDestroy {
 
   pageTitleService() {
     this.subs.sink = this.navService.pageTitle.subscribe((val) => {
-      console.log(val);
       if (val) {
         this.pageTitle = val;
       } else {
