@@ -5,6 +5,7 @@ import { filter, tap } from 'rxjs/operators';
 import { MenuItem } from './shared/interface/nav-item/nav-item';
 import { NavService } from './service/nav/nav.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent implements AfterViewInit {
   navItems = MenuItem;
   isMobile!: boolean;
   logo = '../assets/images/logo.png';
+  version = environment.appVersion;
 
   constructor(public navService: NavService, private router: Router) {
     this.router.events

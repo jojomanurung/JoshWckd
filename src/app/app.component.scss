@@ -8,7 +8,7 @@
 }
 
 .sidenav_content {
-  min-width: 260px;
+  width: 260px;
   height: 100%;
 }
 
@@ -36,14 +36,24 @@
   text-align: center;
 }
 
-.mat-nav-list {
-  padding-top: 2rem;
+.sidenav_content .menu-list {
+  height: calc(100vh - 5rem - 20px);
 }
 
-.menu-list-item.mat-list-item {
-  .mat-list-item-content {
-    flex: 1 1 100%;
-  }
+.mat-nav-list {
+  padding: 0;
+}
+
+.custom-srollbar {
+  --scrollbar-size: 0;
+}
+
+.version-info {
+  text-align: center;
+}
+.version-info span {
+  font-size: 12px;
+  font-weight: 400;
 }
 
 main {
