@@ -9,7 +9,7 @@ import { KanbanService } from 'src/app/service/kanban/kanban.service';
 import { NavService } from 'src/app/service/nav/nav.service';
 import { SubSink } from 'subsink';
 import { TaskDialogComponent } from '../components/task-dialog/task-dialog.component';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { LoadingService } from 'src/app/service/loading/loading.service';
 
 @Component({

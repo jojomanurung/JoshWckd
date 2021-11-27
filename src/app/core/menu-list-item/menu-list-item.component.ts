@@ -56,12 +56,33 @@ export class MenuListItemComponent implements OnInit {
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length) {
+    if (item.route && item.children && item.children.length) {
       this.router.navigate([item.route ? item.route : '']);
-      this.navService.closeNav();
+      this.navService.isMobile.subscribe((isMobile) => {
+        if (isMobile) {
+          this.navService.closeNav();
+        }
+      });
+      if (this.expanded) {
+        this.expanded = false;
+      } else {
+        this.expanded = true;
+      }
     }
-    if (item.children && item.children.length) {
-      this.expanded = !this.expanded;
+    if (item.route && (!item.children || !item.children.length)) {
+      this.router.navigate([item.route ? item.route : '']);
+      this.navService.isMobile.subscribe((isMobile) => {
+        if (isMobile) {
+          this.navService.closeNav();
+        }
+      });
+    }
+    if (!item.route && item.children && item.children.length) {
+      if (this.expanded) {
+        this.expanded = false;
+      } else {
+        this.expanded = true;
+      }
     }
   }
 }

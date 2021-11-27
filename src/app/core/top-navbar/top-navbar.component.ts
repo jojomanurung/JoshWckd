@@ -16,18 +16,18 @@ export class TopNavbarComponent implements OnInit, OnDestroy {
   constructor(public navService: NavService) {}
 
   ngOnInit(): void {
-    this.currentPageTitle();
+    this.pageTitleService();
   }
 
   currentPageTitle() {
     this.subs.sink = this.navService.currentUrl.subscribe((url: string) => {
       if (url) {
         let childs: any;
-        const found = this.menuItems.find((menu: any) => {
+        const found = this.menuItems.find((menu) => {
           if (!menu.children) {
             return menu.route === url.replace('/', '');
           } else {
-            const child = menu.children.find((child: any) => {
+            const child = menu.children.find((child) => {
               return child.route === url.replace('/', '');
             });
             childs = child;
@@ -52,7 +52,7 @@ export class TopNavbarComponent implements OnInit, OnDestroy {
       if (val) {
         this.pageTitle = val;
       } else {
-        return;
+        this.currentPageTitle();
       }
     });
   }

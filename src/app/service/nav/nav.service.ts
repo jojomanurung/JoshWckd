@@ -1,36 +1,57 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class NavService {
-	public appDrawer: any;
-	public currentUrl = new BehaviorSubject<string>('');
-	public pageTitle = new BehaviorSubject<string>('');
+  public appDrawer: any;
 
-	constructor(private router: Router) {
-		this.router.events.subscribe((event: Event) => {
-			if (event instanceof NavigationEnd) {
-				this.currentUrl.next(event.urlAfterRedirects);
-			}
-		});
-	}
+  private currentUrlSubject = new BehaviorSubject<string>('');
+  public currentUrl = this.currentUrlSubject.asObservable();
 
-	public closeNav() {
-		this.appDrawer.close();
-	}
+  private pageTitleSubject = new BehaviorSubject<string>('');
+  public pageTitle = this.pageTitleSubject.asObservable();
 
-	public openNav() {
-		this.appDrawer.open();
-	}
+  private isMobileSubject = new BehaviorSubject<boolean>(false);
+  public isMobile = this.isMobileSubject.asObservable();
 
-	public toggleNav() {
-		this.appDrawer.toggle();
-	}
+  constructor(
+    private router: Router,
+    private layoutObserver: BreakpointObserver
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrlSubject.next(event.urlAfterRedirects);
+      }
+    });
+    this.layoutObserver
+      .observe([
+        Breakpoints.HandsetPortrait,
+        Breakpoints.HandsetLandscape,
+        Breakpoints.TabletPortrait,
+        Breakpoints.TabletLandscape,
+      ])
+      .subscribe((result) => {
+        this.isMobileSubject.next(result.matches);
+      });
+  }
 
-	setPageTitle(value: string) {
-		if (value) {
-			this.pageTitle.next(value);
-		}
-	}
+  public closeNav() {
+    this.appDrawer.close();
+  }
+
+  public openNav() {
+    this.appDrawer.open();
+  }
+
+  public toggleNav() {
+    this.appDrawer.toggle();
+  }
+
+  setPageTitle(value: string) {
+    if (value) {
+      this.pageTitleSubject.next(value);
+    }
+  }
 }

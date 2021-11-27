@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/service/loading/loading.service';
 import { ProjectManagementService } from 'src/app/service/project-management/project-management.service';
 import { SubSink } from 'subsink';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 
 @Component({
   selector: 'app-dashboard-main',
