@@ -39,18 +39,29 @@ export class MenuListItemComponent implements OnInit {
 
   ngOnInit() {
     this.navService.currentUrl.subscribe((url: string) => {
-      if (this.item.route && url) {
-        // console.log(`Checking '/${this.item.route}' against '${url}'`);
+      if (this.item.route && url && url.indexOf(`/${this.item.route}`) === 0) {
         this.expanded = url.indexOf(`/${this.item.route}`) === 0;
         this.ariaExpanded = this.expanded;
+        // console.log(`Checking '/${this.item.route}' against '${url}'`);
         // console.log(`${this.item.route} is expanded: ${this.expanded}`);
-      } else if (this.item.children && this.item.children.length) {
-        this.item.children.forEach((child) => {
-          // console.log(`Checking '/${child.route}' against '${url}'`);
-          this.expanded = url.indexOf(`/${child.route}`) === 0;
-          this.ariaExpanded = this.expanded;
-          // console.log(`${child.route} is expanded: ${this.expanded}`);
-        });
+      } else {
+        if (this.item.children && this.item.children.length) {
+          this.menuItems(this.item.children, url);
+        }
+      }
+    });
+  }
+
+  // ******* Recursive method to check the child of menu items until route match with url ******* //
+  menuItems(element: any, url: string) {
+    element.forEach((child: any) => {
+      if (child.route && url && url.indexOf(`/${child.route}`) === 0) {
+        this.expanded = url.indexOf(`/${child.route}`) === 0;
+        this.ariaExpanded = this.expanded;
+      } else {
+        if (child.children && child.children.length) {
+          this.menuItems(child.children, url);
+        }
       }
     });
   }
@@ -63,11 +74,7 @@ export class MenuListItemComponent implements OnInit {
           this.navService.closeNav();
         }
       });
-      if (this.expanded) {
-        this.expanded = false;
-      } else {
-        this.expanded = true;
-      }
+      this.expanded = !this.expanded;
     }
     if (item.route && (!item.children || !item.children.length)) {
       this.router.navigate([item.route ? item.route : '']);
@@ -78,11 +85,7 @@ export class MenuListItemComponent implements OnInit {
       });
     }
     if (!item.route && item.children && item.children.length) {
-      if (this.expanded) {
-        this.expanded = false;
-      } else {
-        this.expanded = true;
-      }
+      this.expanded = !this.expanded;
     }
   }
 }
