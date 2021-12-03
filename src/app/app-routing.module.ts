@@ -8,16 +8,21 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: 'kanban',
-    loadChildren: () =>
-      import('./kanban/kanban.module').then((m) => m.KanbanModule),
-  },
-  {
     path: 'management',
     loadChildren: () =>
       import('./project-management/project-management.module').then(
         (m) => m.ProjectManagementModule
       ),
+  },
+  {
+    path: 'kanban',
+    loadChildren: () =>
+      import('./kanban/kanban.module').then((m) => m.KanbanModule),
+  },
+  {
+    path: 'quick-quiz',
+    loadChildren: () =>
+      import('./quick-quiz/quick-quiz.module').then((m) => m.QuickQuizModule),
   },
   {
     path: '**',
