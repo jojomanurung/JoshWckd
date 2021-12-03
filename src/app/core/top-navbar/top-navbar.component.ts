@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavService } from 'src/app/service/nav/nav.service';
 import { SubSink } from 'subsink';
 import { MenuItem } from 'src/app/shared/interface/nav-item/nav-item';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-top-navbar',
@@ -9,7 +10,7 @@ import { MenuItem } from 'src/app/shared/interface/nav-item/nav-item';
   styleUrls: ['./top-navbar.component.scss'],
 })
 export class TopNavbarComponent implements OnInit, OnDestroy {
-  public pageTitle = '';
+  public pageTitle = new BehaviorSubject<string>('');
   private subs = new SubSink();
   menuItems = MenuItem;
 
@@ -17,40 +18,42 @@ export class TopNavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.pageTitleService();
-  }
-
-  currentPageTitle() {
-    this.subs.sink = this.navService.currentUrl.subscribe((url: string) => {
-      if (url) {
-        let childs: any;
-        const found = this.menuItems.find((menu) => {
-          if (!menu.children) {
-            return menu.route === url.replace('/', '');
-          } else {
-            const child = menu.children.find((child) => {
-              return child.route === url.replace('/', '');
-            });
-            childs = child;
-            return child;
-          }
-        });
-        if (found && found.children) {
-          this.pageTitle = childs.title;
-        } else if (found && !found.children) {
-          this.pageTitle = found.title;
-        } else {
-          this.pageTitle = '';
-        }
-      }
-    });
+    this.currentPageTitle();
   }
 
   pageTitleService() {
     this.subs.sink = this.navService.pageTitle.subscribe((val) => {
       if (val) {
-        this.pageTitle = val;
+        this.pageTitle.next(val);
+      }
+    });
+  }
+
+  currentPageTitle() {
+    this.subs.sink = this.navService.currentUrl.subscribe((url: string) => {
+      if (url) {
+        this.menuItems.forEach((menu) => {
+          if (menu.title && url.indexOf(`/${menu.route}`) === 0) {
+            this.pageTitle.next(menu.title);
+          } else {
+            if (menu.children && menu.children.length) {
+              this.menuTitle(menu.children, url);
+            }
+          }
+        });
+      }
+    });
+  }
+
+  // ******* Recursive method to check the child of menu items until route match with url ******* //
+  menuTitle(element: any, url: string) {
+    element.forEach((child: any) => {
+      if (child.title && url.indexOf(`/${child.route}`) === 0) {
+        this.pageTitle.next(child.title);
       } else {
-        this.currentPageTitle();
+        if (child.children && child.children.length) {
+          this.menuTitle(child.children, url);
+        }
       }
     });
   }
