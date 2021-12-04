@@ -15,9 +15,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MainComponent } from './core/main/main.component';
 
 @NgModule({
-  declarations: [AppComponent, TopNavbarComponent, MenuListItemComponent],
+  declarations: [AppComponent, TopNavbarComponent, MenuListItemComponent, MainComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
