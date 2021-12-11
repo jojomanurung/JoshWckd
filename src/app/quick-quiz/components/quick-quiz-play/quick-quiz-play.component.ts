@@ -5,6 +5,8 @@ import { NavService } from 'src/app/service/nav/nav.service';
 import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service';
 import { SubSink } from 'subsink';
 import * as _ from 'lodash';
+import { MatDialog } from '@angular/material/dialog';
+import { QuickQuizEndDialog } from '../quick-quiz-end-dialog/quick-quiz-end-dialog.component';
 
 @Component({
   selector: 'app-quick-quiz-play',
@@ -35,7 +37,8 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
     public loadingService: LoadingService,
     private quickQuizService: QuickQuizService,
     private router: Router,
-    private render: Renderer2
+    private render: Renderer2,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -97,8 +100,9 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
       this.availableQuestions.length === 0 ||
       this.questionCounter >= this.MAX_QUESTIONS
     ) {
-      // pergi ke halaman terahir
-      this.router.navigate(['quick-quiz']);
+      // open end dialog
+      this.openEndDialog();
+      return;
     }
     this.questionCounter++;
 
@@ -148,6 +152,21 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
 
   incrementScore(correct: number) {
     this.score += correct;
+  }
+
+  openEndDialog() {
+    const dialog = this.dialog.open(QuickQuizEndDialog, {
+      autoFocus: false,
+      disableClose: true,
+      data: this.score,
+    });
+
+    this.subs.sink = dialog.afterClosed().subscribe((resp) => {
+      if (resp) {
+        console.log('resp', resp);
+        this.router.navigate(['quick-quiz']);
+      }
+    });
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,25 @@
+<h2 mat-dialog-title class="m-0">{{ greetingText }}</h2>
+<h4 mat-dialog-title class="m-0">You finished the quiz with score :</h4>
+<div mat-dialog-content>
+  <div class="score">
+    <p class="m-0">{{ data }}</p>
+  </div>
+  <div>
+    <p class="m-0">Do you want to save your score ?</p>
+  </div>
+  <mat-form-field style="width: 95%">
+    <mat-label>Enter your name</mat-label>
+    <input matInput type="text" [formControl]="nameCtrl" />
+    <mat-error
+      *ngIf="
+        nameCtrl?.hasError('required') && (nameCtrl?.dirty || nameCtrl?.touched)
+      "
+    >
+      What's your name?
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="justify-content-end">
+  <button mat-flat-button color="primary" (click)="saveScore()">Save</button>
+  <button mat-flat-button color="warn" [mat-dialog-close]="true">Close</button>
+</div>
