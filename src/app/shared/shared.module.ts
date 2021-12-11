@@ -38,6 +38,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoadingComponent } from './components/loading/loading.component';
+import { DecodeHtmlPipe } from './pipe/decode-html.pipe';
 
 const Material: any = [
   MatAutocompleteModule,
@@ -77,8 +78,14 @@ const Material: any = [
 ];
 
 @NgModule({
-  declarations: [LoadingComponent],
+  declarations: [LoadingComponent, DecodeHtmlPipe],
   imports: [CommonModule, ...Material, FormsModule, ReactiveFormsModule],
-  exports: [LoadingComponent, ...Material, FormsModule, ReactiveFormsModule],
+  exports: [
+    LoadingComponent,
+    ...Material,
+    FormsModule,
+    ReactiveFormsModule,
+    DecodeHtmlPipe,
+  ],
 })
 export class SharedModule {}

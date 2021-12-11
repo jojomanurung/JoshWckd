@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from './core/main/main.component';
 
-const routes: Routes = [
+const main: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -23,6 +24,19 @@ const routes: Routes = [
     path: 'quick-quiz',
     loadChildren: () =>
       import('./quick-quiz/quick-quiz.module').then((m) => m.QuickQuizModule),
+  },
+];
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: MainComponent,
+    children: [...main],
   },
   {
     path: '**',
