@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,9 +19,15 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MainComponent } from './core/main/main.component';
 
 @NgModule({
-  declarations: [AppComponent, TopNavbarComponent, MenuListItemComponent, MainComponent],
+  declarations: [
+    AppComponent,
+    TopNavbarComponent,
+    MenuListItemComponent,
+    MainComponent,
+  ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,

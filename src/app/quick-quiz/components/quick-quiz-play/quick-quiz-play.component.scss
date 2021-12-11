@@ -1,0 +1,60 @@
+.wrapper {
+  height: calc(100vh - 64px);
+
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+    height: calc(100vh - 56px);
+  }
+}
+
+.card-1 {
+  border-radius: 15px;
+}
+
+.card-2 {
+  border-radius: 8px;
+  border-style: groove;
+}
+
+.score {
+  color: #4051b5;
+  font-size: 1.6rem;
+}
+
+.sub-score {
+  color: grey;
+  font-size: 0.8rem;
+}
+
+.question {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 1.23rem;
+}
+
+.choice {
+  border: 3px outset #c2c6d96b;
+  border-radius: 8px;
+  min-height: 50px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 24px;
+  font-size: 18px;
+  transition: cubic-bezier(0.48, 0.01, 0.74, 1.1);
+  animation-duration: 200ms;
+  cursor: pointer;
+}
+
+.choice:hover {
+  transform: translateY(-2px);
+  transition: ease-in;
+}
+
+.correct {
+  background-color: #32c9329e;
+}
+
+.incorrect {
+  background-color: #ff000085;
+}
