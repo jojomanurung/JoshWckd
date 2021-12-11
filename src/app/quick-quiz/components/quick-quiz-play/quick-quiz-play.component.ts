@@ -4,7 +4,7 @@ import { LoadingService } from 'src/app/service/loading/loading.service';
 import { NavService } from 'src/app/service/nav/nav.service';
 import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service';
 import { SubSink } from 'subsink';
-import * as _ from 'lodash';
+import * as _ from 'lodash-es';
 import { MatDialog } from '@angular/material/dialog';
 import { QuickQuizEndDialog } from '../quick-quiz-end-dialog/quick-quiz-end-dialog.component';
 
