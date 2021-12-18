@@ -1,3 +1,11 @@
+<div class="progress" *ngIf="isUploading">
+  <mat-progress-bar
+    *ngIf="percentage | async as perc"
+    [value]="perc"
+    color="accent"
+    mode="determinate"
+  ></mat-progress-bar>
+</div>
 <div class="grid grid-nogutter">
   <div class="col-12 pt-4 px-4">
     <h1>{{ editMode ? "Edit Project" : "Add Project" }}</h1>
@@ -48,36 +56,89 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="grid grid-nogutter">
-            <mat-checkbox formControlName="active">{{
+          <div
+            class="
+              grid grid-nogutter
+              pt-2
+              justify-content-center
+              align-items-center
+            "
+          >
+            <mat-checkbox class="col-4" formControlName="active">{{
               form.controls["active"].value ? "Active" : "Disabled"
             }}</mat-checkbox>
+            <input
+              #fileUpload
+              type="file"
+              style="display: none"
+              accept=".jpg, .jpeg, .png, .svg"
+              (change)="handleUpload($event)"
+            />
+            <div class="col-8 upload-image">
+              <button
+                mat-mini-fab
+                color="accent"
+                class="upload-btn"
+                disableRipple="true"
+                (click)="fileUpload.click()"
+              >
+                <mat-icon class="upload-icon">attach_file</mat-icon>
+              </button>
+              <p class="m-0 file-name" (click)="fileUpload.click()">
+                {{
+                  form.get("screenShot")?.get("name")?.value
+                    ? form.get("screenShot")?.get("name")?.value
+                    : "No Screenshot Uploaded"
+                }}
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-nogutter py-3">
+            <button
+              mat-flat-button
+              color="warn"
+              class="mr-2"
+              (click)="action.emit('cancel')"
+            >
+              Cancel
+            </button>
+            <button
+              mat-flat-button
+              color="primary"
+              class="mr-2"
+              [disabled]="form?.invalid || compare() || isUploading"
+              (click)="save()"
+            >
+              Save
+            </button>
           </div>
         </div>
-        <div class="col-12 lg:col-6 p-0 pb-2">
-          <div class="grid grid-nogutter">
-            <div class="col-12"></div>
+        <div
+          class="
+            col-12
+            lg:col-6 lg:px-2
+            pb-2
+            flex
+            justify-content-center
+            align-items-center
+          "
+        >
+          <div
+            class="img-container"
+            *ngIf="form.get('screenShot')?.get('link')?.value"
+          >
+            <img
+              class="img-placeholder"
+              [src]="form.get('screenShot')?.get('link')?.value"
+            />
+            <div class="img-overlay">
+              <button mat-flat-button color="warn" (click)="deleteImg()">
+                Delete
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="grid grid-nogutter py-2 px-4">
-        <button
-          mat-flat-button
-          color="warn"
-          class="mr-2"
-          (click)="action.emit('cancel')"
-        >
-          Cancel
-        </button>
-        <button
-          mat-flat-button
-          color="primary"
-          class="mr-2"
-          [disabled]="form?.invalid || compare()"
-          (click)="save()"
-        >
-          Save
-        </button>
       </div>
     </form>
   </div>
