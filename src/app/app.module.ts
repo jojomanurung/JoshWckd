@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainComponent } from './core/main/main.component';
 import { TopNavbarComponent } from './core/top-navbar/top-navbar.component';
 import { MenuListItemComponent } from './core/menu-list-item/menu-list-item.component';
 
@@ -14,18 +15,17 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
-import { NgScrollbarModule } from 'ngx-scrollbar';
-import { MainComponent } from './core/main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainComponent,
     TopNavbarComponent,
     MenuListItemComponent,
-    MainComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,25 @@
 table {
   width: 100%;
 }
+
+.mat-column-name {
+  width: 25%;
+  max-width: 70px;
+}
+.mat-column-description {
+  width: 40%;
+  max-width: 200px;
+}
+.mat-column-status {
+  width: 10%;
+  max-width: 110px;
+}
+.mat-column-link {
+  width: 15%;
+  max-width: 150px;
+}
+.mat-column-action {
+  width: 10%;
+  max-width: 50px;
+  text-align: center;
+}
