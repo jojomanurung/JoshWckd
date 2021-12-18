@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/service/loading/loading.service';
-import { ProjectManagementService } from 'src/app/service/project-management/project-management.service';
+import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
 import * as _ from 'lodash-es';
 
@@ -14,7 +14,7 @@ export class DashboardMainComponent implements OnInit, OnDestroy {
   project!: any[];
 
   constructor(
-    private projectService: ProjectManagementService,
+    private projectService: ManagementService,
     private loadingService: LoadingService
   ) {}
 

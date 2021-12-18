@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectManagementService } from 'src/app/service/project-management/project-management.service';
+import { ManagementService } from 'src/app/service/management/management.service';
 
 @Component({
   selector: 'app-add-project',
@@ -24,7 +24,7 @@ export class AddProjectComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private managementService: ProjectManagementService
+    private managementService: ManagementService
   ) {}
 
   ngOnInit(): void {}

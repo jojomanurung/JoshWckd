@@ -7,7 +7,7 @@ import { Project } from 'src/app/shared/interface/project-item/project-item';
 @Injectable({
   providedIn: 'root',
 })
-export class ProjectManagementService {
+export class ManagementService {
   managementCollection = this.store.collection('management');
 
   constructor(private store: AngularFirestore) {}

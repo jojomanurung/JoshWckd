@@ -1,22 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/service/loading/loading.service';
-import { ProjectManagementService } from 'src/app/service/project-management/project-management.service';
+import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
 import * as _ from 'lodash-es';
 
 @Component({
-  selector: 'app-project-management',
-  templateUrl: './project-management.component.html',
-  styleUrls: ['./project-management.component.scss'],
+  selector: 'app-management',
+  templateUrl: './management.component.html',
+  styleUrls: ['./management.component.scss'],
 })
-export class ProjectManagementComponent implements OnInit, OnDestroy {
+export class ManagementComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   showTable = true;
   tablesData: any;
   projectEdit: any;
 
   constructor(
-    private managementService: ProjectManagementService,
+    private managementService: ManagementService,
     private loadingService: LoadingService
   ) {}
 

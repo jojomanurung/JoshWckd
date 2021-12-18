@@ -11,9 +11,7 @@ const main: Routes = [
   {
     path: 'management',
     loadChildren: () =>
-      import('./project-management/project-management.module').then(
-        (m) => m.ProjectManagementModule
-      ),
+      import('./management/management.module').then((m) => m.ManagementModule),
   },
   {
     path: 'kanban',
