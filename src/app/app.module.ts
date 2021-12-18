@@ -12,6 +12,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
@@ -34,6 +36,8 @@ import { MainComponent } from './core/main/main.component';
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
     NgScrollbarModule,
   ],
   providers: [NavService],
