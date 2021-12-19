@@ -1,25 +1,39 @@
-table {
-  width: 100%;
+.table {
+  overflow: auto;
 }
 
 .mat-column-name {
   width: 25%;
-  max-width: 70px;
+  min-width: 110px;
 }
 .mat-column-description {
   width: 40%;
-  max-width: 200px;
+  min-width: 200px;
 }
 .mat-column-status {
   width: 10%;
-  max-width: 110px;
+  min-width: 70px;
 }
 .mat-column-link {
   width: 15%;
-  max-width: 150px;
+  min-width: 90px;
 }
 .mat-column-action {
   width: 10%;
-  max-width: 50px;
+  min-width: 105px;
   text-align: center;
+  padding-right: 0 !important;
+}
+
+td.mat-column-name {
+  padding-right: 10px;
+}
+td.mat-column-description {
+  padding-right: 20px;
+}
+td.mat-column-status {
+  padding-right: 10px;
+}
+td.mat-column-link {
+  padding-right: 10px;
 }

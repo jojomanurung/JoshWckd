@@ -3,15 +3,15 @@
     <h1>List of project</h1>
   </div>
   <div class="col-12">
-    <div class="grid grid-nogutter">
-      <div class="col-12 px-4">
+    <div class="grid grid-nogutter max-w-screen px-4">
+      <div class="col-12">
         <button mat-flat-button color="primary" (click)="add.emit()">
           <mat-icon>add</mat-icon>
           Add project
         </button>
       </div>
-      <div class="col-12 py-2 px-4 overflow-auto">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+      <div class="col-12 my-2 table mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource">
           <!-- Name Column -->
           <ng-container matColumnDef="name" sticky>
             <th mat-header-cell *matHeaderCellDef>Name</th>
