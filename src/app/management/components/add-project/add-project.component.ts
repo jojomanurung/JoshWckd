@@ -142,11 +142,17 @@ export class AddProjectComponent implements OnInit, OnChanges, OnDestroy {
   save() {
     if (!this.editMode) {
       const payload = this.form.value;
+      if (!payload.screenShot.link) {
+        delete payload.screenShot;
+      }
       // console.log('payloadnya', payload);
       this.managementService.saveProject(payload);
       this.action.emit('save');
     } else {
       const payload = this.form.value;
+      if (!payload.screenShot.link) {
+        delete payload.screenShot;
+      }
       payload.id = this.project.id;
       // console.log('payloadnya', payload);
       this.managementService.editProject(payload);
