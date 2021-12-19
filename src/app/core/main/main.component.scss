@@ -1,5 +1,5 @@
 .mat-sidenav-container {
-  height: 100vh;
+  height: 100%;
 }
 
 .mat-drawer.mat-drawer-side {
@@ -28,7 +28,7 @@
 .sidenav_content .logo_header .logo_detail .logo_icon {
   width: 100%;
   height: 35px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .sidenav_content .logo_header .logo_detail .logo_name {
@@ -37,15 +37,22 @@
 }
 
 .sidenav_content .menu-list {
-  height: calc(100vh - 5rem - 21px);
+  height: calc(100% - 5rem - 21px);
 }
 
 .mat-nav-list {
   padding: 0;
 }
 
-.custom-srollbar {
+.menu {
+  height: calc(100% - 5rem - 21px);
   --scrollbar-size: 0;
+  --scrollbar-size: 4px;
+  --scrollbar-hover-size: 6px;
+
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+    --scrollbar-size: 0;
+  }
 }
 
 .version-info {
@@ -56,12 +63,13 @@
   font-weight: 400;
 }
 
-main {
-  height: calc(100vh - 64px);
-  top: 64px;
+.main {
+  height: calc(100% - 64px);
+  --scrollbar-size: 4px;
+  --scrollbar-hover-size: 6px;
 
   @media screen and (min-width: 320px) and (max-width: 599px) {
-    height: calc(100vh - 56px);
-    top: 56px;
+    height: calc(100% - 56px);
+    --scrollbar-size: 0;
   }
 }
