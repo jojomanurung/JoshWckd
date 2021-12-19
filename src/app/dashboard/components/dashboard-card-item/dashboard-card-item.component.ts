@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class DashboardCardItemComponent implements OnInit {
   @Input() project: any;
-  image = 'src/assets/kanban.PNG';
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
