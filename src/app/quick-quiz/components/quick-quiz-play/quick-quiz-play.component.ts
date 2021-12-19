@@ -14,6 +14,8 @@ import { QuickQuizEndDialog } from '../quick-quiz-end-dialog/quick-quiz-end-dial
   styleUrls: ['./quick-quiz-play.component.scss'],
 })
 export class QuickQuizPlayComponent implements OnInit, OnDestroy {
+  myInnerHeight: any;
+  isMobile!: boolean;
   private subs = new SubSink();
   isAcceptingAnswer = false;
   quizOption: any;
@@ -39,12 +41,22 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
     private router: Router,
     private render: Renderer2,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.subs.sink = this.navService.isMobile.subscribe(
+      (e: boolean) => (this.isMobile = e)
+    );
+  }
 
   ngOnInit(): void {
     this.quizOption = this.quickQuizService.getQuizSettings();
     this.token = this.quickQuizService.sessionToken?.token;
     this.getQuiz();
+  }
+
+  getAutomaticHeight() {
+    const navHeight = this.isMobile ? 56 : 64;
+    this.myInnerHeight = window.innerHeight - navHeight;
+    return this.myInnerHeight;
   }
 
   getQuiz() {
