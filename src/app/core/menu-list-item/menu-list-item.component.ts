@@ -58,8 +58,8 @@ export class MenuListItemComponent implements OnInit {
   }
 
   // ******* Recursive method to check the child of menu items until route match with url ******* //
-  menuItems(element: any, url: string) {
-    element.forEach((child: any) => {
+  menuItems(element: NavItem[], url: string) {
+    element.forEach((child: NavItem) => {
       if (child.route && url && url.indexOf(`/${child.route}`) === 0) {
         this.expanded = url.indexOf(`/${child.route}`) === 0;
         this.ariaExpanded = this.expanded;
