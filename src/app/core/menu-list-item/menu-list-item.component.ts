@@ -27,6 +27,7 @@ import { NavService } from 'src/app/service/nav/nav.service';
 })
 export class MenuListItemComponent implements OnInit {
   expanded = false;
+  isMobile = false;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item!: NavItem;
   @Input() depth!: number;
@@ -35,6 +36,10 @@ export class MenuListItemComponent implements OnInit {
     if (this.depth === undefined) {
       this.depth = 0;
     }
+
+    this.navService.isMobile.subscribe(
+      (isMobile) => (this.isMobile = isMobile)
+    );
   }
 
   ngOnInit() {
@@ -69,20 +74,16 @@ export class MenuListItemComponent implements OnInit {
   onItemSelected(item: NavItem) {
     if (item.route && item.children && item.children.length) {
       this.router.navigate([item.route ? item.route : '']);
-      this.navService.isMobile.subscribe((isMobile) => {
-        if (isMobile) {
-          this.navService.closeNav();
-        }
-      });
+      if (this.isMobile) {
+        this.navService.closeNav();
+      }
       this.expanded = !this.expanded;
     }
     if (item.route && (!item.children || !item.children.length)) {
       this.router.navigate([item.route ? item.route : '']);
-      this.navService.isMobile.subscribe((isMobile) => {
-        if (isMobile) {
-          this.navService.closeNav();
-        }
-      });
+      if (this.isMobile) {
+        this.navService.closeNav();
+      }
     }
     if (!item.route && item.children && item.children.length) {
       this.expanded = !this.expanded;

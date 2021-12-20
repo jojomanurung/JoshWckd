@@ -101,7 +101,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
         edit: true,
       },
     });
-    dialogRef
+    this.subs.sink = dialogRef
       .afterClosed()
       .subscribe((result: TaskDialogResult | undefined) => {
         this.loadingService.loadingOn();
