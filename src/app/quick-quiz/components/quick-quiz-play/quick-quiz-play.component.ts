@@ -6,7 +6,7 @@ import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service'
 import { SubSink } from 'subsink';
 import * as _ from 'lodash-es';
 import { MatDialog } from '@angular/material/dialog';
-import { QuickQuizEndDialog } from '../quick-quiz-end-dialog/quick-quiz-end-dialog.component';
+import { QuickQuizEndDialogComponent } from '../quick-quiz-end-dialog/quick-quiz-end-dialog.component';
 
 @Component({
   selector: 'app-quick-quiz-play',
@@ -167,7 +167,7 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
   }
 
   openEndDialog() {
-    const dialog = this.dialog.open(QuickQuizEndDialog, {
+    const dialog = this.dialog.open(QuickQuizEndDialogComponent, {
       autoFocus: false,
       disableClose: true,
       data: this.score,

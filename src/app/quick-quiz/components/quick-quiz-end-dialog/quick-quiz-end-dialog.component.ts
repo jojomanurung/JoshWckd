@@ -8,12 +8,12 @@ import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service'
   templateUrl: './quick-quiz-end-dialog.component.html',
   styleUrls: ['./quick-quiz-end-dialog.component.scss'],
 })
-export class QuickQuizEndDialog implements OnInit {
+export class QuickQuizEndDialogComponent implements OnInit {
   greetingText!: string;
   nameCtrl = new FormControl('');
 
   constructor(
-    public dialogRef: MatDialogRef<QuickQuizEndDialog>,
+    public dialogRef: MatDialogRef<QuickQuizEndDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number,
     private quickQuizService: QuickQuizService
   ) {}

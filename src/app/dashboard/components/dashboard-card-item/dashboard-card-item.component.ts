@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard-card-item.component.html',
   styleUrls: ['./dashboard-card-item.component.scss'],
 })
-export class DashboardCardItemComponent implements OnInit {
+export class DashboardCardItemComponent {
   @Input() project: any;
   constructor(private router: Router) {}
-
-  ngOnInit(): void {}
 
   openProject(link: any) {
     if (link.includes('/')) {

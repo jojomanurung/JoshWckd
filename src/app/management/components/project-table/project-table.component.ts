@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -14,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './project-table.component.html',
   styleUrls: ['./project-table.component.scss'],
 })
-export class ProjectTableComponent implements OnInit, OnChanges {
+export class ProjectTableComponent implements OnChanges {
   @Input() project!: any[];
   @Output() add = new EventEmitter();
   @Output() edit = new EventEmitter();
@@ -23,8 +22,6 @@ export class ProjectTableComponent implements OnInit, OnChanges {
   dataSource = new MatTableDataSource();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     // this is to detect every changes emitted from parent component

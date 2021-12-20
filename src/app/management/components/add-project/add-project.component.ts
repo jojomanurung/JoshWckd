@@ -4,7 +4,6 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -21,7 +20,7 @@ import { SubSink } from 'subsink';
   templateUrl: './add-project.component.html',
   styleUrls: ['./add-project.component.scss'],
 })
-export class AddProjectComponent implements OnInit, OnChanges, OnDestroy {
+export class AddProjectComponent implements OnChanges, OnDestroy {
   @Input() project: any;
   @Output() action = new EventEmitter();
   private subs = new SubSink();
@@ -37,8 +36,6 @@ export class AddProjectComponent implements OnInit, OnChanges, OnDestroy {
     private managementService: ManagementService,
     private uploadService: UploadService
   ) {}
-
-  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.initForm();
