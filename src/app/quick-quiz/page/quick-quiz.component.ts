@@ -50,7 +50,6 @@ export class QuickQuizComponent implements OnInit, OnDestroy {
     this.checkToken();
     this.initForm();
     this.getCategory();
-    this.getHighScore();
   }
 
   getAutomaticHeight() {
@@ -102,12 +101,6 @@ export class QuickQuizComponent implements OnInit, OnDestroy {
         this.category = resp;
       }
     });
-  }
-
-  getHighScore() {
-    this.subs.sink = this.quickQuizService
-      .getHighScore()
-      .subscribe((resp) => console.log(resp));
   }
 
   onSubmit() {
