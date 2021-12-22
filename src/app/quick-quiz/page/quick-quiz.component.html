@@ -1,58 +1,67 @@
 <div class="wrapper" [style.min-height.px]="getAutomaticHeight()">
-  <div class="grid grid-nogutter header pl-4">
-    <div class="col-12 flex align-items-center h-5rem">
-      <h2 class="title">Welcome</h2>
+  <div class="grid grid-nogutter">
+    <div class="col-12 lg:col-6">
+      <div class="grid grid-nogutter header px-4">
+        <div class="col-12 flex align-items-center h-5rem">
+          <h2 class="title">Welcome</h2>
+        </div>
+        <div class="col-12">
+          <p>You can select a category and difficulty bellow</p>
+        </div>
+      </div>
+      <form
+        [formGroup]="quizOption"
+        (ngSubmit)="onSubmit()"
+        class="grid grid-nogutter content px-4"
+      >
+        <div class="col-12 lg:flex lg:align-items-center lg:h-5rem">
+          <mat-form-field class="pr-2" appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <!-- <mat-option [value]="'any'">Any Category</mat-option> -->
+              <mat-option *ngFor="let item of category" [value]="item?.id">{{
+                item?.name
+              }}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                quizOption.controls['category']?.hasError('required') &&
+                (quizOption.controls['category']?.dirty ||
+                  quizOption.controls['category']?.touched)
+              "
+              >You must make a selection</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Difficulty</mat-label>
+            <mat-select formControlName="difficulty">
+              <!-- <mat-option [value]="'any'">Any Difficulty</mat-option> -->
+              <mat-option
+                *ngFor="let item of difficulty"
+                [value]="item?.value"
+                >{{ item?.key }}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="
+                quizOption.controls['difficulty']?.hasError('required') &&
+                (quizOption.controls['difficulty']?.dirty ||
+                  quizOption.controls['difficulty']?.touched)
+              "
+              >You must make a selection</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-12">
+          <button type="submit" mat-raised-button color="primary">
+            <span style="font-size: 1.2rem">Let's Play</span>
+          </button>
+        </div>
+      </form>
     </div>
-    <div class="col-12">
-      <p>You can select a category and difficulty bellow</p>
+    <div class="col-12 lg:col-6">
+      <app-quick-quiz-highscore></app-quick-quiz-highscore>
     </div>
   </div>
-  <form
-    [formGroup]="quizOption"
-    (ngSubmit)="onSubmit()"
-    class="grid grid-nogutter content pl-4"
-  >
-    <div class="col-12 lg:flex lg:align-items-center lg:h-5rem">
-      <mat-form-field class="pr-2 md:w-3" appearance="outline">
-        <mat-label>Category</mat-label>
-        <mat-select formControlName="category">
-          <!-- <mat-option [value]="'any'">Any Category</mat-option> -->
-          <mat-option *ngFor="let item of category" [value]="item?.id">{{
-            item?.name
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            quizOption.controls['category']?.hasError('required') &&
-            (quizOption.controls['category']?.dirty ||
-              quizOption.controls['category']?.touched)
-          "
-          >You must make a selection</mat-error
-        >
-      </mat-form-field>
-
-      <mat-form-field class="md:w-3" appearance="outline">
-        <mat-label>Difficulty</mat-label>
-        <mat-select formControlName="difficulty">
-          <!-- <mat-option [value]="'any'">Any Difficulty</mat-option> -->
-          <mat-option *ngFor="let item of difficulty" [value]="item?.value">{{
-            item?.key
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            quizOption.controls['difficulty']?.hasError('required') &&
-            (quizOption.controls['difficulty']?.dirty ||
-              quizOption.controls['difficulty']?.touched)
-          "
-          >You must make a selection</mat-error
-        >
-      </mat-form-field>
-    </div>
-    <div class="col-12">
-      <button type="submit" mat-raised-button color="primary">
-        <span style="font-size: 1.2rem">Let's Play</span>
-      </button>
-    </div>
-  </form>
 </div>
