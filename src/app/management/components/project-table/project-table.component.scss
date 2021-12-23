@@ -2,20 +2,24 @@
   overflow: auto;
 }
 
+table {
+  width: 100%;
+}
+
 .mat-column-name {
   width: 25%;
   min-width: 110px;
 }
 .mat-column-description {
-  width: 40%;
-  min-width: 200px;
+  width: 50%;
+  min-width: 300px;
 }
 .mat-column-status {
   width: 10%;
   min-width: 70px;
 }
 .mat-column-link {
-  width: 15%;
+  width: 5%;
   min-width: 90px;
 }
 .mat-column-action {
