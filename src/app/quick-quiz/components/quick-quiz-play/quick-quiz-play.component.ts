@@ -126,7 +126,9 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
 
     this.availableQuestions.splice(questionIndex, 1);
 
-    this.isAcceptingAnswer = true;
+    setTimeout(() => {
+      this.isAcceptingAnswer = true;
+    }, 500);
   }
 
   chooseAnswer(data: number) {
@@ -153,7 +155,7 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
       this.render.removeClass(target, classs);
       this.choiceSelected = false;
       this.getNewQuestion();
-    }, 2000);
+    }, 950);
   }
 
   incrementScore(correct: number) {
