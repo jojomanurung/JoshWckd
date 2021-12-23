@@ -8,12 +8,12 @@
     background-color: #3f51b5;
     color: whitesmoke;
   }
-  &:hover,
-  &:focus {
-    > .mat-list-item:not(.expanded) {
-      background-color: lightblue !important;
-    }
-  }
+  // &:hover,
+  // &:focus {
+  //   > .mat-list-item:not(.expanded) {
+  //     background-color: lightblue !important;
+  //   }
+  // }
 }
 
 .mat-list-item {
