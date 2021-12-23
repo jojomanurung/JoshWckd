@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/service/loading/loading.service';
-import { NavService } from 'src/app/service/nav/nav.service';
 import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service';
 import { SubSink } from 'subsink';
 import * as _ from 'lodash-es';
@@ -15,7 +14,6 @@ import { QuickQuizEndDialogComponent } from '../quick-quiz-end-dialog/quick-quiz
 })
 export class QuickQuizPlayComponent implements OnInit, OnDestroy {
   myInnerHeight: any;
-  isMobile!: boolean;
   private subs = new SubSink();
   isAcceptingAnswer = false;
   quizOption: any;
@@ -35,17 +33,12 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
   choiceSelected = false;
 
   constructor(
-    private navService: NavService,
     public loadingService: LoadingService,
     private quickQuizService: QuickQuizService,
     private router: Router,
     private render: Renderer2,
     private dialog: MatDialog
-  ) {
-    this.subs.sink = this.navService.isMobile.subscribe(
-      (e: boolean) => (this.isMobile = e)
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.quizOption = this.quickQuizService.getQuizSettings();
@@ -54,7 +47,8 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
   }
 
   getAutomaticHeight() {
-    const navHeight = this.isMobile ? 56 : 64;
+    const innerWidth = window.innerWidth;
+    const navHeight = innerWidth <= 599 ? 56 : 64;
     this.myInnerHeight = window.innerHeight - navHeight;
     return this.myInnerHeight;
   }
@@ -132,7 +126,9 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
 
     this.availableQuestions.splice(questionIndex, 1);
 
-    this.isAcceptingAnswer = true;
+    setTimeout(() => {
+      this.isAcceptingAnswer = true;
+    }, 500);
   }
 
   chooseAnswer(data: number) {
@@ -159,7 +155,7 @@ export class QuickQuizPlayComponent implements OnInit, OnDestroy {
       this.render.removeClass(target, classs);
       this.choiceSelected = false;
       this.getNewQuestion();
-    }, 2000);
+    }, 950);
   }
 
   incrementScore(correct: number) {

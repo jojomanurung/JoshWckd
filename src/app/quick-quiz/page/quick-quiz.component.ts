@@ -14,7 +14,6 @@ import { SubSink } from 'subsink';
 })
 export class QuickQuizComponent implements OnInit, OnDestroy {
   myInnerHeight: any;
-  isMobile!: boolean;
   private subs = new SubSink();
   quizOption!: FormGroup;
   category!: any[];
@@ -39,11 +38,7 @@ export class QuickQuizComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private quickQuizService: QuickQuizService,
     private router: Router
-  ) {
-    this.subs.sink = this.navService.isMobile.subscribe(
-      (e: boolean) => (this.isMobile = e)
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.navService.setPageTitle('Quick Quiz');
@@ -53,7 +48,8 @@ export class QuickQuizComponent implements OnInit, OnDestroy {
   }
 
   getAutomaticHeight() {
-    const navHeight = this.isMobile ? 56 : 64;
+    const innerWidth = window.innerWidth;
+    const navHeight = innerWidth <= 599 ? 56 : 64;
     this.myInnerHeight = window.innerHeight - navHeight;
     return this.myInnerHeight;
   }
