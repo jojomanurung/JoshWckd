@@ -47,7 +47,7 @@
 .menu {
   height: calc(100% - 5rem - 21px);
   --scrollbar-size: 0;
-  --scrollbar-size: 4px;
+  --scrollbar-size: 5px;
   --scrollbar-hover-size: 6px;
 
   @media screen and (min-width: 320px) and (max-width: 599px) {
@@ -65,8 +65,8 @@
 
 .main {
   height: calc(100% - 64px);
-  --scrollbar-size: 4px;
-  --scrollbar-hover-size: 6px;
+  --scrollbar-size: 7px;
+  --scrollbar-hover-size: 9px;
 
   @media screen and (min-width: 320px) and (max-width: 599px) {
     height: calc(100% - 56px);
