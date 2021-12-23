@@ -24,18 +24,22 @@ import { SubSink } from 'subsink';
           [
             style({ opacity: 0 }),
             stagger(
-              '60ms',
+              '800ms',
               animate(
-                '600ms cubic-bezier(.34,.02,.81,1)',
+                '500ms cubic-bezier(.34,.02,.81,1)',
                 style({ opacity: 1 })
               )
             ),
           ],
           { optional: true }
         ),
-        query(':leave', animate('200ms', style({ opacity: 0 })), {
-          optional: true,
-        }),
+        query(
+          ':leave',
+          [stagger('500ms', animate('200ms', style({ opacity: 0 })))],
+          {
+            optional: true,
+          }
+        ),
       ]),
     ]),
   ],
