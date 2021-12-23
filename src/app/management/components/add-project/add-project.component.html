@@ -1,145 +1,128 @@
-<div class="progress" *ngIf="isUploading">
-  <mat-progress-bar
-    *ngIf="percentage | async as perc"
-    [value]="perc"
-    color="accent"
-    mode="determinate"
-  ></mat-progress-bar>
+<div class="grid grid-nogutter pt-4 px-4">
+  <h1>{{ editMode ? "Edit Project" : "Add Project" }}</h1>
 </div>
-<div class="grid grid-nogutter">
-  <div class="col-12 pt-4 px-4">
-    <h1>{{ editMode ? "Edit Project" : "Add Project" }}</h1>
-  </div>
-  <div class="col-12">
-    <form [formGroup]="form">
-      <div class="grid grid-nogutter py-2 px-4">
-        <div class="col-12 lg:col-6 p-0 pb-2">
-          <div class="grid grid-nogutter">
-            <mat-form-field>
-              <input
-                matInput
-                type="text"
-                placeholder="Name"
-                formControlName="name"
-                required
-              />
-              <mat-error *ngIf="form.controls['name']?.invalid">
-                Name can't be empty!
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="grid grid-nogutter">
-            <mat-form-field>
-              <textarea
-                matInput
-                type="text"
-                placeholder="Description"
-                formControlName="description"
-                required
-              ></textarea>
-              <mat-error *ngIf="form.controls['description']?.invalid">
-                Description can't be empty!
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="grid grid-nogutter">
-            <mat-form-field>
-              <input
-                matInput
-                type="text"
-                placeholder="Link"
-                formControlName="link"
-                required
-              />
-              <mat-error *ngIf="form.controls['link']?.invalid">
-                Link can't be empty!
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div
-            class="
-              grid grid-nogutter
-              pt-2
-              justify-content-center
-              align-items-center
-            "
-          >
-            <mat-checkbox class="col-4" formControlName="active">{{
-              form.controls["active"].value ? "Active" : "Disabled"
-            }}</mat-checkbox>
-            <input
-              #fileUpload
-              type="file"
-              style="display: none"
-              accept=".jpg, .jpeg, .png, .svg"
-              (change)="handleUpload($event)"
-            />
-            <div class="col-8 upload-image">
-              <button
-                mat-mini-fab
-                color="accent"
-                class="upload-btn"
-                disableRipple="true"
-                (click)="fileUpload.click()"
-              >
-                <mat-icon class="upload-icon">attach_file</mat-icon>
-              </button>
-              <p class="m-0 file-name" (click)="fileUpload.click()">
-                {{
-                  form.get("screenShot")?.get("name")?.value
-                    ? form.get("screenShot")?.get("name")?.value
-                    : "No Screenshot Uploaded"
-                }}
-              </p>
-            </div>
-          </div>
-          <div class="grid grid-nogutter py-3">
-            <button
-              mat-flat-button
-              color="warn"
-              class="mr-2"
-              (click)="action.emit('cancel')"
-            >
-              Cancel
-            </button>
-            <button
-              mat-flat-button
-              color="primary"
-              class="mr-2"
-              [disabled]="form?.invalid || compare() || isUploading"
-              (click)="save()"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-        <div
-          class="
-            col-12
-            lg:col-6 lg:px-2
-            pb-2
-            flex
-            justify-content-center
-            align-items-center
-          "
+<form class="grid grid-nogutter py-2 px-4" [formGroup]="form">
+  <div class="col-12 lg:col-6 p-0 pr-4 pb-2">
+    <div class="grid grid-nogutter pb-2">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+          required
+        />
+        <mat-error *ngIf="form.controls['name']?.invalid">
+          Name can't be empty!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="grid grid-nogutter pb-2">
+      <mat-form-field>
+        <textarea
+          matInput
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+          required
+        ></textarea>
+        <mat-error *ngIf="form.controls['description']?.invalid">
+          Description can't be empty!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="grid grid-nogutter pb-2">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Link"
+          formControlName="link"
+          required
+        />
+        <mat-error *ngIf="form.controls['link']?.invalid">
+          Link can't be empty!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      class="grid grid-nogutter pt-2 justify-content-center align-items-center"
+    >
+      <mat-checkbox class="col-4" formControlName="active">{{
+        form.controls["active"].value ? "Active" : "Disabled"
+      }}</mat-checkbox>
+      <input
+        #fileUpload
+        type="file"
+        style="display: none"
+        accept=".jpg, .jpeg, .png, .svg"
+        (change)="handleUpload($event)"
+      />
+      <div class="col-8 upload-image">
+        <button
+          mat-mini-fab
+          color="accent"
+          class="upload-btn"
+          disableRipple="true"
+          (click)="fileUpload.click()"
         >
-          <div
-            class="img-container"
-            *ngIf="form.get('screenShot')?.get('link')?.value"
-          >
-            <img
-              class="img-placeholder"
-              [src]="form.get('screenShot')?.get('link')?.value"
-            />
-            <div class="img-overlay">
-              <button mat-flat-button color="warn" (click)="deleteImg()">
-                Delete
-                <mat-icon>clear</mat-icon>
-              </button>
-            </div>
-          </div>
-        </div>
+          <mat-icon class="upload-icon">attach_file</mat-icon>
+        </button>
+        <p class="m-0 file-name" (click)="fileUpload.click()">
+          {{
+            form.get("screenShot")?.get("name")?.value
+              ? form.get("screenShot")?.get("name")?.value
+              : "No Screenshot Uploaded"
+          }}
+        </p>
       </div>
-    </form>
+    </div>
+    <div class="grid grid-nogutter py-3">
+      <button
+        mat-flat-button
+        color="warn"
+        class="mr-2"
+        (click)="action.emit('cancel')"
+      >
+        Cancel
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="mr-2"
+        [disabled]="form?.invalid || compare() || isUploading"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
   </div>
-</div>
+  <div
+    class="col-12 lg:col-6 lg:px-2 pt-2 pb-2"
+    [ngClass]="form.get('screenShot')?.get('link')?.value ? 'border' : ''"
+  >
+    <div class="img-container h-full lg:h-20rem">
+      <div class="progress" *ngIf="isUploading">
+        <mat-progress-bar
+          *ngIf="percentage | async as perc"
+          [value]="perc"
+          color="accent"
+          mode="determinate"
+        ></mat-progress-bar>
+      </div>
+      <img
+        *ngIf="!isUploading && form.get('screenShot')?.get('link')?.value"
+        class="img-placeholder h-full lg:h-20rem"
+        [src]="form.get('screenShot')?.get('link')?.value"
+      />
+      <div
+        class="img-button"
+        *ngIf="form.get('screenShot')?.get('link')?.value"
+      >
+        <button mat-mini-fab color="warn" (click)="deleteImg()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

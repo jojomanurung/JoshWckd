@@ -35,21 +35,48 @@ form {
   word-break: break-word;
 }
 
-.upload-progress {
-  margin-left: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.progress {
+  width: 100%;
 }
 
-.progress {
-  z-index: 1;
-  position: fixed;
+.border {
+  border: 3px solid #3f51b5;
+}
+
+.img-container {
   width: 100%;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-placeholder {
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
   width: 100%;
-  height: 20rem;
   object-fit: contain;
+}
+
+.img-button {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: relative;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.img-container:hover .img-placeholder {
+  opacity: 0.7;
+}
+
+.img-container:hover .img-button {
+  opacity: 1;
 }
