@@ -25,7 +25,9 @@
 }
 
 .choice {
-  border: 3px outset #c2c6d96b;
+  border: 2px solid #c2c6d96b;
+  align-items: center;
+  display: flex;
   border-radius: 8px;
   min-height: 50px;
   padding-left: 20px;
