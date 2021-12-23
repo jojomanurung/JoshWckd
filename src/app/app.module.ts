@@ -19,6 +19,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -43,4 +44,8 @@ import { environment } from 'src/environments/environment';
   providers: [NavService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(overlayContainer: OverlayContainer) {
+    overlayContainer.getContainerElement().classList.add('wckd-dark');
+  }
+}
