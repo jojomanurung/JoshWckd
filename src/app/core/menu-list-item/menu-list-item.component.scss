@@ -5,8 +5,7 @@
   width: 100%;
 
   .mat-list-item.active {
-    background-color: #3f51b5;
-    color: whitesmoke;
+    background-color: var(--primary-color);
   }
   // &:hover,
   // &:focus {
