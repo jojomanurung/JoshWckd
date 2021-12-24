@@ -3,7 +3,7 @@
 @include mat-core();
 
 $dark-primary: mat-palette($mat-indigo);
-$dark-accent: mat-palette($mat-pink);
+$dark-accent: mat-palette($mat-green, 600, 400, 700);
 $dark-theme: mat-dark-theme(
   (
     color: (
@@ -13,6 +13,19 @@ $dark-theme: mat-dark-theme(
   )
 );
 
+@mixin color-palette($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  --primary-color: #{mat-color($primary)};
+  --accent-color: #{mat-color($accent)};
+  --foreground-color: #{mat-color($foreground, base)};
+  --background-color: #{mat-color($background, background)};
+}
+
 .wckd-dark {
   @include angular-material-color($dark-theme);
+  @include color-palette($dark-theme);
 }
