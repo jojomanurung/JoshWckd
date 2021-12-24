@@ -24,7 +24,7 @@ import { SubSink } from 'subsink';
           [
             style({ opacity: 0 }),
             stagger(
-              '800ms',
+              '600ms',
               animate(
                 '500ms cubic-bezier(.34,.02,.81,1)',
                 style({ opacity: 1 })
@@ -35,7 +35,7 @@ import { SubSink } from 'subsink';
         ),
         query(
           ':leave',
-          [stagger('500ms', animate('200ms', style({ opacity: 0 })))],
+          [stagger('0ms', animate('0ms', style({ opacity: 0 })))],
           {
             optional: true,
           }
@@ -56,8 +56,11 @@ export class QuickQuizHighscoreComponent implements OnInit, OnDestroy {
 
   getHighScore() {
     this.subs.sink = this.quickQuizService.getHighScore().subscribe((x) => {
+      this.highscore = [];
       if (x && x.length) {
-        this.highscore = x;
+        setTimeout(() => {
+          this.highscore = _.cloneDeep(x);
+        }, 1000);
       }
     });
   }
