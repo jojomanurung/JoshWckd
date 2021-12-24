@@ -1,6 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  DocumentData,
+  DocumentReference,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Score } from 'src/app/shared/interface/quick-quiz/quick-quiz';
@@ -80,7 +84,7 @@ export class QuickQuizService {
       );
   }
 
-  saveScore(payload: any) {
-    this.quickQuizCollection.collection('highscore').add(payload);
+  saveScore(payload: any): Promise<DocumentReference<DocumentData>> {
+    return this.quickQuizCollection.collection('highscore').add(payload);
   }
 }

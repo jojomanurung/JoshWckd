@@ -41,7 +41,8 @@ export class QuickQuizEndDialogComponent implements OnInit {
       time: moment().utc().format('DD/MM/YYYY HH:mm'),
     };
 
-    this.quickQuizService.saveScore(payload);
-    this.dialogRef.close(true);
+    this.quickQuizService.saveScore(payload).finally(() => {
+      this.dialogRef.close(true);
+    });
   }
 }
