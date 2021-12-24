@@ -17,19 +17,19 @@ export class QuickQuizGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): true | any {
+  ): true | UrlTree {
     const sessionToken = this.quickQuizService.sessionToken;
     const token = sessionToken?.token;
     const quizOption = this.quickQuizService.getQuizSettings();
     return this.checkToken(token, quizOption);
   }
 
-  checkToken(token: any, quizOption: any): true | any {
+  checkToken(token: any, quizOption: any): true | UrlTree {
     if (token && quizOption) {
       return true;
     } else {
       console.log(`token: ${token}, option ${quizOption}`);
-      return this.router.navigate(['quick-quiz']);
+      return this.router.createUrlTree(['quick-quiz']);
     }
   }
 }
