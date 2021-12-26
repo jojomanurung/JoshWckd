@@ -4,11 +4,6 @@ import { MainComponent } from './core/main/main.component';
 
 const main: Routes = [
   {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-  },
-  {
     path: 'management',
     loadChildren: () =>
       import('./management/management.module').then((m) => m.ManagementModule),
@@ -28,8 +23,8 @@ const main: Routes = [
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
     path: '',
@@ -38,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
+    redirectTo: '',
     pathMatch: 'full',
   },
 ];
