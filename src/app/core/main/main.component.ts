@@ -20,7 +20,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   isMobile!: boolean;
   logo = '../../assets/images/logo.png';
   version = environment.appVersion;
-  subs = new SubSink();
+  private subs = new SubSink();
 
   constructor(public navService: NavService, private router: Router) {
     this.subs.sink = this.router.events
