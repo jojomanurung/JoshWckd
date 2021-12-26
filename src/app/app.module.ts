@@ -16,7 +16,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
 
 import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
@@ -41,7 +40,6 @@ import { OverlayContainer } from '@angular/cdk/overlay';
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgScrollbarModule,
-    SmoothScrollModule,
   ],
   providers: [NavService],
   bootstrap: [AppComponent],
