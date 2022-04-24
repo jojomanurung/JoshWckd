@@ -1,1 +1,21 @@
-<p>cnn-cancer works!</p>
+<div class="cont d-flex justify-content-center align-items-center flex-column">
+
+  <div class="custom-file">
+      <input type="file" class="custom-file-input" (change)="fileChange($event)">
+      <label class="custom-file-label">Select File</label>
+  </div>
+
+  <img
+    #image
+    class="img-placeholder h-full lg:h-20rem"
+    [src]="imageInput?.value"
+  />
+
+  <div class="list-group">
+    <div class="list-group-item" *ngFor="let item of prediction">
+        {{item.class_name}} - {{item.probability | percent}}
+    </div>
+</div>
+
+
+</div>
