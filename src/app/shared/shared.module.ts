@@ -39,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoadingComponent } from './components/loading/loading.component';
 import { DecodeHtmlPipe } from './pipe/decode-html.pipe';
+import { VisibilityObserverDirective } from './directives/visibility-observer.directive';
 
 const Material: any = [
   MatAutocompleteModule,
@@ -78,7 +79,7 @@ const Material: any = [
 ];
 
 @NgModule({
-  declarations: [LoadingComponent, DecodeHtmlPipe],
+  declarations: [LoadingComponent, DecodeHtmlPipe, VisibilityObserverDirective],
   imports: [CommonModule, ...Material, FormsModule, ReactiveFormsModule],
   exports: [
     LoadingComponent,
@@ -86,6 +87,7 @@ const Material: any = [
     FormsModule,
     ReactiveFormsModule,
     DecodeHtmlPipe,
+    VisibilityObserverDirective,
   ],
 })
 export class SharedModule {}

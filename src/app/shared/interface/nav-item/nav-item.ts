@@ -8,10 +8,16 @@ export interface NavItem {
 
 export const MenuItem: NavItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Kanban',
     disabled: false,
-    icon: 'dashboard',
-    route: 'dashboard',
+    icon: 'view_kanban',
+    route: 'kanban',
+  },
+  {
+    title: 'Quick Quiz',
+    disabled: false,
+    icon: 'emoji_events',
+    route: 'quick-quiz',
   },
   {
     title: 'Settings',
