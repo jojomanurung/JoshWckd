@@ -1,16 +1,19 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import * as tf from '@tensorflow/tfjs';
 import { LoadingService } from 'src/app/service/loading/loading.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-cnn-cancer',
   templateUrl: './cnn-cancer.component.html',
   styleUrls: ['./cnn-cancer.component.scss']
 })
-export class CnnCancerComponent implements OnInit {
+export class CnnCancerComponent implements OnInit, OnDestroy {
   @ViewChild('image', {static: false}) img!: ElementRef;
+  private subs = new SubSink();
   model!: tf.LayersModel;
+  imageName = new FormControl('');
   imageInput = new FormControl('');
   prediction!: any[];
 
@@ -25,9 +28,11 @@ export class CnnCancerComponent implements OnInit {
   async loadModel() {
     this.loadingService.loadingOn();
     const modelUrl = '../../../assets/models/cnn-cancer/model.json';
-    console.log('modelUrl', modelUrl)
     this.model = await tf.loadLayersModel(modelUrl);
-    console.log('model', this.model);
+    // Warm up the model
+    const result = await this.model.predict(tf.zeros([1, 224, 224, 3])) as any;
+    result.dataSync();
+    result.dispose();
     this.loadingService.loadingOff();
   }
 
@@ -40,8 +45,10 @@ export class CnnCancerComponent implements OnInit {
 
       reader.onload = (res: any) => {
         this.imageInput.patchValue(res.target.result);
+        this.imageName.patchValue(file.name);
+        // Set timeout to wait image loaded in the DOM
         setTimeout( async () => {
-          this.predictFrames();
+          await this.predictFrames();
         });
       };
     }
@@ -64,7 +71,10 @@ export class CnnCancerComponent implements OnInit {
         probability: prob,
         class_name: this.CLASS_NAME[index]
       }
-    })
-    console.log('prediction', this.prediction);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

@@ -1,21 +1,42 @@
-<div class="cont d-flex justify-content-center align-items-center flex-column">
+<div class="grid grid-nogutter pt-2 px-4 justify-content-center align-items-center">
 
-  <div class="custom-file">
-      <input type="file" class="custom-file-input" (change)="fileChange($event)">
-      <label class="custom-file-label">Select File</label>
+  <div class="col-12 py-2">
+    <div class="grid grid-nogutter justify-content-center align-items-center">
+      <mat-form-field class="input-field">
+        <input matInput placeholder="File Name" type="text" readonly [formControl]="imageName">
+        <input
+          #fileUpload
+          type="file"
+          style="display: none"
+          (change)="fileChange($event)"
+          accept=".png"
+        >
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="accent"
+        class="upload-btn"
+        disableRipple="true"
+        (click)="fileUpload.click()"
+      >
+        <span>Upload</span>
+      </button>
+    </div>
   </div>
 
-  <img
-    #image
-    class="img-placeholder h-full lg:h-20rem"
-    [src]="imageInput?.value"
-  />
+  <div class="col-12 py-2">
+    <div class="grid grid-nogutter justify-content-center">
+      <img
+        #image
+        class="img-placeholder h-full lg:h-20rem"
+        [src]="imageInput?.value"
+      />
+    </div>
+  </div>
 
-  <div class="list-group">
-    <div class="list-group-item" *ngFor="let item of prediction">
+  <div class="col-12">
+    <div class="grid grid-nogutter justify-content-center" *ngFor="let item of prediction">
         {{item.class_name}} - {{item.probability | percent}}
     </div>
-</div>
-
-
+  </div>
 </div>
