@@ -1,31 +1,15 @@
-<div class="">
-  <mat-card>
-    <mat-card-title>
-      <div class="grid grid-nogutter">
-        <div class="col-6">
-          <h2>{{ project?.name }}</h2>
-        </div>
-        <div class="col-6 text-right">
-          <button mat-icon-button (click)="openProject(project?.link)">
-            <mat-icon>launch</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-card-title>
-    <img
-      *ngIf="project?.screenShot && project?.screenShot?.link"
-      mat-card-image
-      [src]="project?.screenShot?.link"
-      [alt]="project?.name"
-    />
-    <mat-card-content>
-      <div class="grid grid-nogutter">
-        <div class="col-12">
-          <p>
-            {{ project?.description }}
-          </p>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<div class="single_image">
+  <img
+    *ngIf="project?.screenShot && project?.screenShot?.link else defImage"
+    [src]="project?.screenShot?.link"
+    [alt]="project?.name"
+  />
+  <ng-template #defImage>
+    <img src="../../../assets/images/w1.jpg" [alt]="project?.name"/>
+  </ng-template>
+  <div class="image_overlay">
+    <a [routerLink]="project?.link">View Full Project</a>
+    <h2>{{ project?.name }}</h2>
+    <h4>{{ project?.description }}</h4>
+  </div>
 </div>

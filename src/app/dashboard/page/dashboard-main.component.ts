@@ -3,6 +3,7 @@ import { LoadingService } from 'src/app/service/loading/loading.service';
 import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
 import * as _ from 'lodash-es';
+import { NavService } from 'src/app/service/nav/nav.service';
 
 @Component({
   selector: 'app-dashboard-main',
@@ -11,32 +12,34 @@ import * as _ from 'lodash-es';
 })
 export class DashboardMainComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
+  isMobile = false;
   project!: any[];
+  isLoading = false;
 
   constructor(
-    private projectService: ManagementService,
-    private loadingService: LoadingService
+    private navService: NavService,
+    private projectService: ManagementService
   ) {}
 
   ngOnInit(): void {
+    this.layoutObserver();
     this.getProject();
   }
 
+  layoutObserver() {
+    this.subs.sink = this.navService.isMobile.subscribe((resp) => this.isMobile = resp);
+  }
+
   getProject() {
-    this.loadingService.loadingOn();
+    this.isLoading = true;
     this.subs.sink = this.projectService.getProject().subscribe(
       (resp) => {
-        if (!resp.length) {
-          this.project = [];
-          this.loadingService.loadingOff();
-        } else {
-          this.project = _.cloneDeep(resp);
-          this.loadingService.loadingOff();
-        }
+        this.project = _.cloneDeep(resp);
+        this.isLoading = false;
       },
       (err) => {
         console.log('Something wrong : ', err);
-        this.loadingService.loadingOff();
+        this.isLoading = false;
       }
     );
   }
