@@ -28,10 +28,7 @@ export class AppComponent implements OnInit {
     });
     this.layoutObserver
       .observe([
-        Breakpoints.HandsetPortrait,
-        Breakpoints.HandsetLandscape,
-        Breakpoints.TabletPortrait,
-        Breakpoints.TabletLandscape,
+        Breakpoints.HandsetPortrait
       ])
       .subscribe((result) => {
         this.navService.setIsMobile(result.matches);
