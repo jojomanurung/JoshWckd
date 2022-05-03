@@ -1,21 +1,73 @@
 
 /*Header*/
-.navbar-default {
-  z-index: 999;
+.home-active {
+  background-color: #f6f6f6;
+  transition: all 1s;
 }
-.navbar-default .navbar-nav {
+.about-active {
+  background-color: coral;
+  transition: all 1s;
+}
+.resume-active {
+  background-color: bisque;
+  transition: all 1s;
+}
+.work-active {
+  background-color: cadetblue;
+  transition: all 1s;
+}
+.main {
+  --scrollbar-size: 7px;
+  --scrollbar-hover-size: 9px;
+
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+    --scrollbar-size: 0;
+  }
+}
+.navbar-default {
+  width: 100%;
+  z-index: 1;
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+
+    z-index: 2;
+  }
+}
+.navbar-header {
+  padding: 8px 0;
+}
+.navbar-mobile.navbar-collapse {
+  display: none;
+  transition: all 1s;
+}
+.navbar-mobile.navbar-open {
+  display: block;
+  position: fixed;
+  width: 100%;
+  top: 56px;
+  z-index: 2;
+  background-color: var(--background-color);
+}
+.navbar-right {
   display: flex;
   justify-content: right;
   align-items: center;
   list-style: none;
 }
-.navbar-default .navbar-nav > li > a {
+.navbar-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.navbar-nav > li > a {
   color: #777;
   cursor: pointer;
   text-transform: uppercase;
   text-decoration: none;
+  transition: all 1s;
 }
-.navbar-default .navbar-nav > li > a:hover {
+.navbar-nav > li > a:hover {
   color: #f74d65;
 }
 header {
@@ -23,7 +75,7 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 71%;
-  height: calc(100vh - 52px);
+  height: 100vh;
 }
 .section_overlay {
   height: 100%;
@@ -228,11 +280,6 @@ header {
     margin-left: -10px !important;
   }
 }
-@media screen and (max-width: 992px) {
-  .timeline > li > .timeline-badge {
-    margin-left: -10px !important;
-  }
-}
 .timeline > li > .timeline-badge i {
   display: table-cell;
   vertical-align: middle;
@@ -284,7 +331,7 @@ header {
   margin-top: 5px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   ul.timeline:before {
     left: 90px;
   }
