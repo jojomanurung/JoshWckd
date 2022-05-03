@@ -40,7 +40,10 @@ import { MatIconRegistry } from '@angular/material/icon';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    NgScrollbarModule,
+    NgScrollbarModule.withConfig({
+      track: 'all',
+      pointerEventsMethod: 'scrollbar',
+    }),
   ],
   providers: [NavService],
   bootstrap: [AppComponent],
