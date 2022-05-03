@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LoadingService } from 'src/app/service/loading/loading.service';
 import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
@@ -12,7 +12,7 @@ import { map, tap } from 'rxjs/operators';
   templateUrl: './dashboard-main.component.html',
   styleUrls: ['./dashboard-main.component.scss'],
 })
-export class DashboardMainComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DashboardMainComponent implements OnInit, OnDestroy {
   @ViewChild(NgScrollbar) scrollbarRef!: NgScrollbar;
   private subs = new SubSink();
   isMobile = false;
@@ -27,13 +27,6 @@ export class DashboardMainComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit(): void {
     this.layoutObserver();
     this.getProject();
-  }
-
-  ngAfterViewInit(): void {
-    this.subs.sink = this.scrollbarRef.verticalScrolled
-    .subscribe((resp) => {
-      console.log(resp);
-    })
   }
 
   layoutObserver() {
@@ -56,10 +49,10 @@ export class DashboardMainComponent implements OnInit, AfterViewInit, OnDestroy 
 
   smoothScroll(elem: string) {
     if (elem === '#home') {
-      this.scrollbarRef.scrollTo({top: 0, duration: 2500, easing: {x1: .4, y1: .75, x2: .75, y2: .75}});
+      this.scrollbarRef.scrollTo({top: 0, duration: 1700, easing: {x1: .42, y1: 0, x2: .58, y2: 1}});
       return;
     }
-    this.scrollbarRef.scrollToElement(elem, {duration: 2500, easing: {x1: .4, y1: .75, x2: .75, y2: .75}});
+    this.scrollbarRef.scrollToElement(elem, {duration: 1700, easing: {x1: .42, y1: 0, x2: .58, y2: 1}});
   }
 
   ngOnDestroy(): void {

@@ -47,6 +47,9 @@ header {
 .scroll_down {
   padding: 30px 5px;
 }
+.scroll_down > a {
+  cursor: pointer;
+}
 .scroll_down h4 {
   font-size: 12px;
   color: #000;
