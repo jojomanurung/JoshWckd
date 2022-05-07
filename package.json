@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~11.2.13",
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
+    "@mdi/angular-material": "^6.6.96",
     "@tensorflow/tfjs": "^3.16.0",
     "firebase": "^7.0 || ^8.0",
     "lodash-es": "^4.17.21",
