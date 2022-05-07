@@ -1,6 +1,6 @@
 <nav class="navbar-default fixed top-0" [ngClass]="visibility">
   <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header" *ngIf="isMobile">
+  <div class="navbar-header-button navbar-right mr-3" *ngIf="isMobile">
     <button
       mat-icon-button
       color="primary"
@@ -13,7 +13,7 @@
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div *ngIf="!isMobile" class="navbar-normal">
-    <ul class="nav navbar-nav navbar-right sm:py-3 sm:mr-5">
+    <ul class="nav navbar-nav navbar-right py-3 mr-5">
       <li>
         <a
           class="px-3"
@@ -52,40 +52,47 @@
   <!-- /.container -->
 </nav>
 <nav
-  *ngIf="isMobile"
   class="navbar-mobile"
   [ngClass]="navbarOpen && isMobile ? 'navbar-open' : 'navbar-collapse'"
 >
-  <ul class="nav navbar-nav navbar-column">
-    <li class="my-4">
+  <ul class="navbar-nav navbar-column">
+    <li
+      class="col-12 text-center cursor-pointer py-5"
+      (click)="smoothScroll(home)"
+    >
       <a
         class="px-3"
         [style.color]="visibility === 'home-active' ? '#f74d65' : null"
-        (click)="smoothScroll(home)"
         >Home</a
       >
     </li>
-    <li class="my-4">
+    <li
+      class="col-12 text-center cursor-pointer py-5"
+      (click)="smoothScroll(about)"
+    >
       <a
         class="px-3"
         [style.color]="visibility === 'about-active' ? '#f74d65' : null"
-        (click)="smoothScroll(about)"
         >About</a
       >
     </li>
-    <li class="my-4">
+    <li
+      class="col-12 text-center cursor-pointer py-5"
+      (click)="smoothScroll(resume)"
+    >
       <a
         class="px-3"
         [style.color]="visibility === 'resume-active' ? '#f74d65' : null"
-        (click)="smoothScroll(resume)"
         >My Resume</a
       >
     </li>
-    <li class="my-4">
+    <li
+      class="col-12 text-center cursor-pointer py-5"
+      (click)="smoothScroll(work)"
+    >
       <a
         class="px-3"
         [style.color]="visibility === 'work-active' ? '#f74d65' : null"
-        (click)="smoothScroll(work)"
         >Work</a
       >
     </li>
