@@ -6,7 +6,6 @@ import { DashboardMainComponent } from './page/dashboard-main.component';
 import { DashboardCardItemComponent } from './components/dashboard-card-item/dashboard-card-item.component';
 import { DashboardProfileCardComponent } from './components/dashboard-profile-card/dashboard-profile-card.component';
 import { SharedModule } from '../shared/shared.module';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    NgScrollbarModule,
   ],
 })
 export class DashboardModule {}
