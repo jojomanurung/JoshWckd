@@ -4,15 +4,15 @@
   transition: all 1s;
 }
 .about-active {
-  background-color: coral;
+  background-color: var(--background-color);
   transition: all 1s;
 }
 .resume-active {
-  background-color: bisque;
+  background-color: var(--background-color);
   transition: all 1s;
 }
 .work-active {
-  background-color: cadetblue;
+  background-color: var(--background-color);
   transition: all 1s;
 }
 .main {
