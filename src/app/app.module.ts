@@ -15,7 +15,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
@@ -40,10 +39,6 @@ import { MatIconRegistry } from '@angular/material/icon';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    NgScrollbarModule.withConfig({
-      track: 'all',
-      pointerEventsMethod: 'scrollbar',
-    }),
   ],
   providers: [NavService],
   bootstrap: [AppComponent],

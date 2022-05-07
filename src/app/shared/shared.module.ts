@@ -40,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DecodeHtmlPipe } from './pipe/decode-html.pipe';
 import { VisibilityObserverDirective } from './directives/visibility-observer.directive';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 const Material: any = [
   MatAutocompleteModule,
@@ -80,7 +81,7 @@ const Material: any = [
 
 @NgModule({
   declarations: [LoadingComponent, DecodeHtmlPipe, VisibilityObserverDirective],
-  imports: [CommonModule, ...Material, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, ...Material, FormsModule, ReactiveFormsModule, NgScrollbarModule,],
   exports: [
     LoadingComponent,
     ...Material,
@@ -88,6 +89,10 @@ const Material: any = [
     ReactiveFormsModule,
     DecodeHtmlPipe,
     VisibilityObserverDirective,
+    NgScrollbarModule.withConfig({
+      track: 'all',
+      pointerEventsMethod: 'scrollbar',
+    }),
   ],
 })
 export class SharedModule {}
