@@ -1,22 +1,30 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { LoadingService } from 'src/app/service/loading/loading.service';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
 import * as _ from 'lodash-es';
 import { NavService } from 'src/app/service/nav/nav.service';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-main',
   templateUrl: './dashboard-main.component.html',
   styleUrls: ['./dashboard-main.component.scss'],
 })
-export class DashboardMainComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DashboardMainComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   @ViewChild(NgScrollbar) scrollbarRef!: NgScrollbar;
-  @ViewChild('about', {static: false}) about!: ElementRef;
-  @ViewChild('resume', {static: false}) resume!: ElementRef;
-  @ViewChild('work', {static: false}) work!: ElementRef;
+  @ViewChild('about', { static: false }) about!: ElementRef;
+  @ViewChild('resume', { static: false }) resume!: ElementRef;
+  @ViewChild('work', { static: false }) work!: ElementRef;
   private subs = new SubSink();
   visibility = 'home-active';
   isMobile = false;
@@ -41,27 +49,29 @@ export class DashboardMainComponent implements OnInit, AfterViewInit, OnDestroy 
       const { about, resume, work } = {
         about: this.about.nativeElement.offsetTop,
         resume: this.resume.nativeElement.offsetTop,
-        work: this.work.nativeElement.offsetTop
-      }
+        work: this.work.nativeElement.offsetTop,
+      };
 
       let visibility: string;
 
       resp.target.scrollTop < about
-        ? visibility = 'home-active'
+        ? (visibility = 'home-active')
         : resp.target.scrollTop < resume
-          ? visibility = 'about-active'
-          : resp.target.scrollTop < work
-            ? visibility = 'resume-active'
-            : resp.target.scrollTop >= work
-              ? visibility = 'work-active'
-              : visibility = ''
+        ? (visibility = 'about-active')
+        : resp.target.scrollTop < work
+        ? (visibility = 'resume-active')
+        : resp.target.scrollTop >= work
+        ? (visibility = 'work-active')
+        : (visibility = '');
 
-      this.zone.run(() => this.visibility = visibility);
-    })
+      this.zone.run(() => (this.visibility = visibility));
+    });
   }
 
   layoutObserver() {
-    this.subs.sink = this.navService.isMobile.subscribe((isMobile) => this.isMobile = isMobile);
+    this.subs.sink = this.navService.isMobile.subscribe(
+      (isMobile) => (this.isMobile = isMobile)
+    );
   }
 
   getProject() {
@@ -80,7 +90,10 @@ export class DashboardMainComponent implements OnInit, AfterViewInit, OnDestroy 
 
   smoothScroll(elem: HTMLElement) {
     this.navbarOpen = false;
-    this.scrollbarRef.scrollToElement(elem, {duration: 1700, easing: {x1: .42, y1: 0, x2: .58, y2: 1}});
+    this.scrollbarRef.scrollToElement(elem, {
+      duration: 1700,
+      easing: { x1: 0.42, y1: 0, x2: 0.58, y2: 1 },
+    });
   }
 
   ngOnDestroy(): void {

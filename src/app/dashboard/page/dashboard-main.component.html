@@ -19,28 +19,32 @@
           class="px-3"
           [style.color]="visibility === 'home-active' ? '#f74d65' : null"
           (click)="smoothScroll(home)"
-        >Home</a>
+          >Home</a
+        >
       </li>
       <li>
         <a
           class="px-3"
           [style.color]="visibility === 'about-active' ? '#f74d65' : null"
           (click)="smoothScroll(about)"
-        >About</a>
+          >About</a
+        >
       </li>
       <li>
         <a
           class="px-3"
           [style.color]="visibility === 'resume-active' ? '#f74d65' : null"
           (click)="smoothScroll(resume)"
-        >My Resume</a>
+          >My Resume</a
+        >
       </li>
       <li>
         <a
           class="px-3"
           [style.color]="visibility === 'work-active' ? '#f74d65' : null"
           (click)="smoothScroll(work)"
-        >Work</a>
+          >Work</a
+        >
       </li>
     </ul>
   </div>
@@ -49,35 +53,43 @@
   </div> -->
   <!-- /.container -->
 </nav>
-<nav *ngIf="isMobile" class="navbar-mobile" [ngClass]="navbarOpen && isMobile ? 'navbar-open' : 'navbar-collapse'">
+<nav
+  *ngIf="isMobile"
+  class="navbar-mobile"
+  [ngClass]="navbarOpen && isMobile ? 'navbar-open' : 'navbar-collapse'"
+>
   <ul class="nav navbar-nav navbar-column">
     <li class="my-4">
       <a
         class="px-3"
         [style.color]="visibility === 'home-active' ? '#f74d65' : null"
         (click)="smoothScroll(home)"
-      >Home</a>
+        >Home</a
+      >
     </li>
     <li class="my-4">
       <a
         class="px-3"
         [style.color]="visibility === 'about-active' ? '#f74d65' : null"
         (click)="smoothScroll(about)"
-      >About</a>
+        >About</a
+      >
     </li>
     <li class="my-4">
       <a
         class="px-3"
         [style.color]="visibility === 'resume-active' ? '#f74d65' : null"
         (click)="smoothScroll(resume)"
-      >My Resume</a>
+        >My Resume</a
+      >
     </li>
     <li class="my-4">
       <a
         class="px-3"
         [style.color]="visibility === 'work-active' ? '#f74d65' : null"
         (click)="smoothScroll(work)"
-      >Work</a>
+        >Work</a
+      >
     </li>
   </ul>
 </nav>
@@ -85,23 +97,24 @@
   <header #home>
     <section class="section_overlay">
       <div class="grid grid-nogutter h-full">
-
         <div class="col-12 mt-auto">
           <!-- <div class="grid grid-nogutter"> -->
-            <div class="home_text text-center">
-              <h2>it’s joshua melvin</h2>
-              <p>a junior front end web developer</p>
-              <img src="./assets/images/shape.png" alt="" />
-            </div>
+          <div class="home_text text-center">
+            <h2>it’s joshua melvin</h2>
+            <p>a junior front end web developer</p>
+            <img src="./assets/images/shape.png" alt="" />
+          </div>
           <!-- </div> -->
         </div>
 
         <div class="col-12 mt-auto">
           <!-- <div class="grid grid-nogutter"> -->
-            <div class="scroll_down text-center">
-              <a (click)="smoothScroll(about)"><img src="../../../assets/images/scroll.png" alt="" /></a>
-              <h4>Scroll Down</h4>
-            </div>
+          <div class="scroll_down text-center">
+            <a (click)="smoothScroll(about)"
+              ><img src="../../../assets/images/scroll.png" alt=""
+            /></a>
+            <h4>Scroll Down</h4>
+          </div>
           <!-- </div> -->
         </div>
       </div>
@@ -122,16 +135,17 @@
         <div class="story">
           <h3>Story</h3>
           <p class="about_us_story">
-            I'm computer enthusiast and love about technology. Graduate
-            from Institut Teknologi PLN with a bachelor degree of informatics
+            I'm computer enthusiast and love about technology. Graduate from
+            Institut Teknologi PLN with a bachelor degree of informatics
             engineering. I have good quality in organizing, logical thinking,
-            problem solving, and public speaking. Being a front end developer was
-            not my first intention it was just from my curiosity about web coding.
-            When I created my first landing page, and I though this should be easy.
-            But there are tons of things I need to learn as front end web developer,
-            not just learing through pure html, css, and javascript, I found out there
-            are frameworks, REST API, and so much more. Instead being overwhelmn I try
-            to take baby step, one at a time and I looking forward to it.
+            problem solving, and public speaking. Being a front end developer
+            was not my first intention it was just from my curiosity about web
+            coding. When I created my first landing page, and I though this
+            should be easy. But there are tons of things I need to learn as
+            front end web developer, not just learing through pure html, css,
+            and javascript, I found out there are frameworks, REST API, and so
+            much more. Instead being overwhelmn I try to take baby step, one at
+            a time and I looking forward to it.
           </p>
         </div>
       </div>
@@ -206,7 +220,8 @@
                   <div class="timeline-heading">
                     <h3 class="timeline-title">Zettabyte PTE Ltd</h3>
                     <span class="company"
-                      >Fulltime <br> 2021 - Present</span
+                      >Fulltime <br />
+                      2021 - Present</span
                     >
                   </div>
                   <div class="timeline-body">
@@ -222,7 +237,8 @@
                   <div class="timeline-heading">
                     <h3 class="timeline-title">PLN UP3 Bandengan</h3>
                     <span class="company"
-                      >Internship <br> 2018 - 2018</span
+                      >Internship <br />
+                      2018 - 2018</span
                     >
                   </div>
                   <div class="timeline-body">
@@ -241,7 +257,8 @@
                   <div class="timeline-heading">
                     <h3 class="timeline-title">S1 Teknik Informatika</h3>
                     <span class="company"
-                      >Institut Teknologi PLN <br> 2015 - 2020</span
+                      >Institut Teknologi PLN <br />
+                      2015 - 2020</span
                     >
                   </div>
                   <div class="timeline-body">
@@ -257,7 +274,8 @@
                   <div class="timeline-heading">
                     <h3 class="timeline-title">SMA</h3>
                     <span class="company"
-                      >SMA Negeri 5 Kota Jambi <br> 2012 - 2015</span
+                      >SMA Negeri 5 Kota Jambi <br />
+                      2012 - 2015</span
                     >
                   </div>
                   <div class="timeline-body">
@@ -273,7 +291,8 @@
                   <div class="timeline-heading">
                     <h3 class="timeline-title">SMP</h3>
                     <span class="company"
-                      >SMP Xaverius 2 Kota Jambi <br> 2009 - 2012</span
+                      >SMP Xaverius 2 Kota Jambi <br />
+                      2009 - 2012</span
                     >
                   </div>
                   <div class="timeline-body">
@@ -289,7 +308,8 @@
                   <div class="timeline-heading">
                     <h3 class="timeline-title">SD</h3>
                     <span class="company"
-                      >SD Negeri 47 Kota Jambi <br> 2003 - 2009</span
+                      >SD Negeri 47 Kota Jambi <br />
+                      2003 - 2009</span
                     >
                   </div>
                   <div class="timeline-body">
@@ -323,16 +343,16 @@
                 [project]="item"
                 [ngClass]="
                   !isMobile
-                  ? project.length <= 2
-                    ? 'md:col-6'
-                    : 'md:col-4'
-                  : 'col-12'
+                    ? project.length <= 2
+                      ? 'md:col-6'
+                      : 'md:col-4'
+                    : 'col-12'
                 "
               ></app-dashboard-card-item>
             </ng-container>
           </div>
         </ng-container>
-        <mat-spinner *ngIf="isLoading" style="margin: auto;"></mat-spinner>
+        <mat-spinner *ngIf="isLoading" style="margin: auto"></mat-spinner>
       </div>
     </div>
   </section>

@@ -1,4 +1,3 @@
-
 /*Header*/
 .home-active {
   background-color: #f6f6f6;
@@ -28,7 +27,6 @@
   width: 100%;
   z-index: 1;
   @media screen and (min-width: 320px) and (max-width: 599px) {
-
     z-index: 2;
   }
 }
