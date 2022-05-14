@@ -46,7 +46,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/JoshWckd/browser",
+            "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -157,9 +157,15 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/JoshWckd/server",
+            "outputPath": "dist/server",
             "main": "server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.server.json",
+            "namedChunks": true,
+            "bundleDependencies": true,
+            "externalDependencies": [
+              "@firebase/firestore",
+              "@mdi/angular-material"
+            ]
           },
           "configurations": {
             "production": {
