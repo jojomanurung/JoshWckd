@@ -4,11 +4,19 @@
   "overrides": [
     {
       "files": ["*.ts"],
+      "env": {
+        "node": true,
+        "es6": true
+      },
       "parserOptions": {
         "project": [
           "tsconfig.json"
           // "e2e/tsconfig.json"
         ],
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+					"experimentalObjectRestSpread": true
+				},
         "createDefaultProgram": true
       },
       "extends": [
