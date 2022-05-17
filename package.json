@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
-    "dev:ssr": "ng run JoshWckd:serve-ssr",
+    "dev:ssr": "ng run JoshWckd:serve-ssr:staging",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --prod && ng run JoshWckd:server:production",
     "deploy:ssr": "ng deploy",

@@ -79,10 +79,11 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "progress": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "2mb",
                   "maximumError": "2mb"
                 },
                 {
@@ -95,17 +96,16 @@
             "staging": {
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "verbose": true,
               "progress": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "2mb",
                   "maximumError": "2mb"
                 },
                 {
@@ -123,7 +123,7 @@
             "browserTarget": "JoshWckd:build"
           },
           "configurations": {
-            "staging": {
+            "production": {
               "browserTarget": "JoshWckd:build:staging"
             }
           }
@@ -180,6 +180,11 @@
               ],
               "sourceMap": false,
               "optimization": true
+            },
+            "staging": {
+              "outputHashing": "media",
+              "sourceMap": true,
+              "optimization": true
             }
           }
         },
@@ -193,6 +198,10 @@
             "production": {
               "browserTarget": "JoshWckd:build:production",
               "serverTarget": "JoshWckd:server:production"
+            },
+            "staging": {
+              "browserTarget": "JoshWckd:build:staging",
+              "serverTarget": "JoshWckd:server:staging"
             }
           }
         },
