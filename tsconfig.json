@@ -19,6 +19,10 @@
 		"lib": ["es2018", "dom"],
 		"resolveJsonModule": true,
     "skipLibCheck": true,
+    "paths": {
+      "@service/*": ["src/app/service/*"],
+      "@shared/*": ["src/app/shared/*"],
+    }
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,

@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import * as tf from '@tensorflow/tfjs';
-import { LoadingService } from 'src/app/service/loading/loading.service';
+import { LoadingService } from '@service/loading/loading.service';
 import { SubSink } from 'subsink';
+import * as tf from '@tensorflow/tfjs';
 
 @Component({
   selector: 'app-cnn-cancer',

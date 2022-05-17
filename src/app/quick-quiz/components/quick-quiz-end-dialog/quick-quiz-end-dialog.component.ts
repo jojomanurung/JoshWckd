@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { QuickQuizService } from '@service/quick-quiz/quick-quiz.service';
 import * as moment from 'moment';
-import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service';
 
 @Component({
   templateUrl: './quick-quiz-end-dialog.component.html',

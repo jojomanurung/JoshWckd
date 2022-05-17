@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Event, NavigationEnd, Router } from '@angular/router';
-import { NavService } from './service/nav/nav.service';
+import { NavService } from '@service/nav/nav.service';
 
 @Component({
   selector: 'app-root',

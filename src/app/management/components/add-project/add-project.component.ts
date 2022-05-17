@@ -7,12 +7,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { AngularFireUploadTask } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ManagementService } from '@service/management/management.service';
+import { UploadService } from '@service/upload/upload.service';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { ManagementService } from 'src/app/service/management/management.service';
-import { UploadService } from 'src/app/service/upload/upload.service';
 import { SubSink } from 'subsink';
 
 @Component({

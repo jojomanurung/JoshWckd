@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingService } from '@service/loading/loading.service';
+import { NavService } from '@service/nav/nav.service';
+import { QuickQuizService } from '@service/quick-quiz/quick-quiz.service';
 import * as moment from 'moment';
-import { LoadingService } from 'src/app/service/loading/loading.service';
-import { NavService } from 'src/app/service/nav/nav.service';
-import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service';
 import { SubSink } from 'subsink';
 
 @Component({

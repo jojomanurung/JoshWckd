@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavService } from 'src/app/service/nav/nav.service';
 import { SubSink } from 'subsink';
-import { MenuItem } from 'src/app/shared/interface/nav-item/nav-item';
 import { BehaviorSubject } from 'rxjs';
+import { MenuItem } from '@shared/interface/nav-item/nav-item';
+import { NavService } from '@service/nav/nav.service';
 
 @Component({
   selector: 'app-top-navbar',

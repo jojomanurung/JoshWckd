@@ -7,8 +7,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { NavItem } from 'src/app/shared/interface/nav-item/nav-item';
-import { NavService } from 'src/app/service/nav/nav.service';
+import { NavItem } from '@shared/interface/nav-item/nav-item';
+import { NavService } from '@service/nav/nav.service';
 
 @Component({
   selector: 'app-menu-list-item',

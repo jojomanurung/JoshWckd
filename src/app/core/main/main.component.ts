@@ -2,11 +2,11 @@ import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { filter, tap } from 'rxjs/operators';
-import { MenuItem } from 'src/app/shared/interface/nav-item/nav-item';
-import { NavService } from 'src/app/service/nav/nav.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { environment } from 'src/environments/environment';
 import { SubSink } from 'subsink';
+import { MenuItem } from '@shared/interface/nav-item/nav-item';
+import { NavService } from '@service/nav/nav.service';
 
 @Component({
   selector: 'app-main',
