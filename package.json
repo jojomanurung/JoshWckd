@@ -9,8 +9,8 @@
     "dev:ssr": "ng run JoshWckd:serve-ssr",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --prod && ng run JoshWckd:server:production",
-    "prod:ssr": "npm run build:ssr && npm run functions:build",
-    "functions:build": "cd functions && npm run build && cd ..",
+    "deploy:ssr": "ng deploy",
+    "functions:build": "firebase deploy --only functions",
     "prerender": "ng run JoshWckd:prerender"
   },
   "private": true,

@@ -7,6 +7,7 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+import * as moment from 'moment';
 
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xhr2');
@@ -15,12 +16,17 @@ import { existsSync } from 'fs';
 export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const indexHtml = existsSync(join(distFolder, 'index.original.html'))
+    ? 'index.original.html'
+    : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-  server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
-  }));
+  server.engine(
+    'html',
+    ngExpressEngine({
+      bootstrap: AppServerModule,
+    })
+  );
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
@@ -28,13 +34,49 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('*.*', express.static(distFolder, {
-    maxAge: '1y'
-  }));
+  server.get(
+    '*.*',
+    express.static(distFolder, {
+      maxAge: '1y',
+    })
+  );
 
   // All regular routes use the Universal engine
+  server.route('*').get((req, res) => {
+    res.render(indexHtml, {
+      req,
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
+    });
+  });
+
+  return server;
+}
+
+// Since firebase function create it's own endpoints. We need to create different
+// function and export it to call from function index.ts. To test use `firebase serve`
+export function serverDate(): express.Express {
+  const server = express();
+
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    if (req.method === 'PUT') {
+      res.status(403).send('Forbidden!');
+      return;
+    }
+    // [START readQueryParam]
+    let format = req.query.format;
+    // [END readQueryParam]
+    // Reading date format from request body query parameter
+    if (!format) {
+      // [START readBodyParam]
+      format = req.body.format;
+      // [END readBodyParam]
+    }
+
+    // [START sendResponse]
+    const formattedDate = moment().format(`${format}`);
+    console.log('Sending Formatted date:', formattedDate);
+    res.status(200).send(formattedDate);
+    // [END sendResponse]
   });
 
   return server;
@@ -45,9 +87,9 @@ function run(): void {
 
   // Start up the Node server
   const server = app();
-  // server.listen(port, () => {
-  //   console.log(`Node Express server listening on http://localhost:${port}`);
-  // });
+  server.listen(port, () => {
+    console.log(`Node Express server listening on http://localhost:${port}`);
+  });
 }
 
 // Webpack will replace 'require' with '__webpack_require__'
@@ -55,7 +97,7 @@ function run(): void {
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
-const moduleFilename = mainModule && mainModule.filename || '';
+const moduleFilename = (mainModule && mainModule.filename) || '';
 if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }

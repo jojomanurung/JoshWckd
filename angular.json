@@ -146,11 +146,13 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {
-            "browserTarget": "JoshWckd:build"
+            "browserTarget": "JoshWckd:build",
+            "serverTarget": "JoshWckd:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "JoshWckd:build:production"
+              "browserTarget": "JoshWckd:build:production",
+              "serverTarget": "JoshWckd:server:production"
             }
           }
         },
