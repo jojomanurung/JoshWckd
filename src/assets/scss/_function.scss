@@ -1,0 +1,66 @@
+@function _validate-theme($theme) {
+  @if map-get($theme, color) {
+    $color: map-get($theme, color);
+    @if not map-get($color, primary) {
+      @error 'Theme does not define a valid "primary" palette.';
+    } @else if not map-get($color, accent) {
+      @error 'Theme does not define a valid "accent" palette.';
+    } @else if not map-get($color, warn) {
+      @error 'Theme does not define a valid "warn" palette.';
+    }
+  }
+  @return $theme;
+}
+
+@function _create-color-config(
+  $primary,
+  $accent,
+  $warn: null,
+  $foreground,
+  $background
+) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: if($warn != null, $warn, mat-palette($mat-red)),
+    is-dark: true,
+    foreground: $foreground,
+    background: $background
+  );
+}
+
+// For backwards compatibility with angular material theme
+@function _create-backwards-compatibility-theme($theme) {
+  @if not map-get($theme, color) {
+    @return $theme;
+  }
+  $color: map-get($theme, color);
+  @return map-merge($theme, $color);
+}
+
+@function construct-theme($primary, $foreground, $background) {
+  // This function creates a container object for the individual component theme mixins. Consumers
+  // can construct such an object by calling this function, or by building the object manually.
+
+  $result: $primary;
+  @if map-get($primary, color) {
+    $color-settings: map-get($primary, color);
+    $primary: map-get($color-settings, primary);
+    $accent: map-get($color-settings, accent);
+    $warn: map-get($color-settings, warn);
+    $result: map-merge(
+      $result,
+      (
+        color:
+          _create-color-config(
+            $primary,
+            $accent,
+            $warn,
+            $foreground,
+            $background
+          ),
+      )
+    );
+  }
+  @return _create-backwards-compatibility-theme(_validate-theme($result));
+}
