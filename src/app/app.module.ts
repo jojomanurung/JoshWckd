@@ -45,7 +45,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 })
 export class AppModule {
   constructor(overlayContainer: OverlayContainer, iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
-    overlayContainer.getContainerElement().classList.add('wckd-dark');
+    overlayContainer.getContainerElement().classList.add('one-dark-theme');
     iconRegistry.addSvgIconSet(
       domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
     );

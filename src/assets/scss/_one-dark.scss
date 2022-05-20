@@ -1,0 +1,77 @@
+$one-dark-color: (
+  background: #282c34,
+  foreground: #ffffff,
+  first-color: #e06c75,
+  second-color: #61afef,
+  third-color: #98c379,
+  contrast: (
+    background: #50555e,
+    foreground: #ffffff,
+    first-color: #ffffff,
+    second-color: #ffffff,
+    third-color: #ffffff,
+  ),
+  darker: (
+    background: #00000d,
+    foreground: #cccccc,
+    first-color: #aa3c4a,
+    second-color: #1f80bc,
+    third-color: #68924c,
+  ),
+);
+
+// This color is from angular material _theming api
+$light-dividers: rgba(white, 0.12);
+$light-disabled-text: rgba(white, 0.5);
+$light-secondary-text: rgba(white, 0.7);
+$light-focused: rgba(white, 0.12);
+
+// This is from angular material _theming api
+$one-dark-theme-foreground: (
+  base: map-get($one-dark-color, foreground),
+  // Only changes this!!
+  divider: $light-dividers,
+  dividers: $light-dividers,
+  disabled: $light-disabled-text,
+  disabled-button: rgba(white, 0.3),
+  disabled-text: $light-disabled-text,
+  elevation: black,
+  hint-text: $light-disabled-text,
+  secondary-text: $light-secondary-text,
+  icon: white,
+  icons: white,
+  text: white,
+  slider-min: white,
+  slider-off: rgba(white, 0.3),
+  slider-off-active: rgba(white, 0.3),
+);
+
+$one-dark-theme-background: (
+  status-bar: map-get($one-dark-color, darker, background),
+  app-bar: map-get($one-dark-color, darker, background),
+  background: map-get($one-dark-color, background),
+  hover: rgba(white, 0.04),
+  card: map-get($one-dark-color, background),
+  dialog: map-get($one-dark-color, background),
+  disabled-button: rgba(white, 0.12),
+  raised-button: map-get($one-dark-color, contrast, background),
+  focused-button: $light-focused,
+  selected-button: map-get($one-dark-color, darker, background),
+  selected-disabled-button: map-get($one-dark-color, contrast, background),
+  disabled-button-toggle: black,
+  unselected-chip: map-get($one-dark-color, contrast, background),
+  disabled-list-option: black,
+  tooltip: map-get($one-dark-color, contrast, background),
+);
+
+$one-dark-theme: construct-theme(
+  (
+    color: (
+      primary: mat-palette($one-dark-color, first-color),
+      accent: mat-palette($one-dark-color, second-color),
+      warn: mat-palette($one-dark-color, third-color),
+    ),
+  ),
+  $one-dark-theme-foreground,
+  $one-dark-theme-background
+);

@@ -1,31 +1,38 @@
 @import "~@angular/material/theming";
-
+@import "function";
 @include mat-core();
+@import "one-dark";
+@import "monokai";
 
-$dark-primary: mat-palette($mat-indigo);
-$dark-accent: mat-palette($mat-green, 600, 400, 700);
-$dark-theme: mat-dark-theme(
-  (
-    color: (
-      primary: $dark-primary,
-      accent: $dark-accent,
-    ),
-  )
-);
+@mixin color-palette($color-palette) {
+  $foreground: map-get($color-palette, foreground);
+  $background: map-get($color-palette, background);
+  $primary: map-get($color-palette, first-color);
+  $accent: map-get($color-palette, second-color);
+  $warn: map-get($color-palette, third-color);
+  $contrast: map-get($color-palette, contrast);
 
-@mixin color-palette($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $foreground: map-get($theme, foreground);
-  $background: map-get($theme, background);
+  // contrast is an object so we need to get what inside it
+  $contrast-primary: map-get($contrast, first-color);
+  $contrast-accent: map-get($contrast, second-color);
+  $contrast-warn: map-get($contrast, third-color);
 
-  --primary-color: #{mat-color($primary)};
-  --accent-color: #{mat-color($accent)};
-  --foreground-color: #{mat-color($foreground, base)};
-  --background-color: #{mat-color($background, background)};
+  --background-color: #{$background};
+  --foreground-color: #{$foreground};
+  --primary-color: #{$primary};
+  --accent-color: #{$accent};
+  --warn-color: #{$warn};
+  --primary-text-color: #{$contrast-primary};
+  --accent-text-color: #{$contrast-accent};
+  --warn-text-color: #{$contrast-warn};
 }
 
-.wckd-dark {
-  @include angular-material-color($dark-theme);
-  @include color-palette($dark-theme);
+.one-dark-theme {
+  @include angular-material-color($one-dark-theme);
+  @include color-palette($one-dark-color);
+}
+
+.monokai-theme {
+  @include angular-material-color($monokai-theme);
+  @include color-palette($monokai-color);
 }
