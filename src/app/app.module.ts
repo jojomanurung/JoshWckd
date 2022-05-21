@@ -29,7 +29,7 @@ import { MatIconRegistry } from '@angular/material/icon';
     MenuListItemComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: `${environment.appVersion}` }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
