@@ -5,11 +5,11 @@ import { MenuItem } from '@shared/interface/nav-item/nav-item';
 import { NavService } from '@service/nav/nav.service';
 
 @Component({
-  selector: 'app-top-navbar',
-  templateUrl: './top-navbar.component.html',
-  styleUrls: ['./top-navbar.component.scss'],
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss'],
 })
-export class TopNavbarComponent implements OnInit, OnDestroy {
+export class ToolbarComponent implements OnInit, OnDestroy {
   public pageTitle = new BehaviorSubject<string>('');
   private subs = new SubSink();
   menuItems = MenuItem;

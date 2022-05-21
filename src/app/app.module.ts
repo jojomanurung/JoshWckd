@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './core/main/main.component';
-import { TopNavbarComponent } from './core/top-navbar/top-navbar.component';
-import { MenuListItemComponent } from './core/menu-list-item/menu-list-item.component';
+import { ToolbarComponent } from './core/toolbar/toolbar.component';
+import { MenuItemComponent } from './core/menu-item/menu-item.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
@@ -25,8 +25,8 @@ import { MatIconRegistry } from '@angular/material/icon';
   declarations: [
     AppComponent,
     MainComponent,
-    TopNavbarComponent,
-    MenuListItemComponent,
+    ToolbarComponent,
+    MenuItemComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: `${environment.appVersion}` }),

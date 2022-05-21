@@ -20,10 +20,10 @@
       </div>
       <ng-scrollbar class="menu" pointerEventsMethod="scrollbar">
         <mat-nav-list>
-          <app-menu-list-item
+          <app-menu-item
             *ngFor="let item of navItems"
             [item]="item"
-          ></app-menu-list-item>
+          ></app-menu-item>
         </mat-nav-list>
       </ng-scrollbar>
       <div class="version-info">
@@ -34,7 +34,7 @@
   <mat-sidenav-content>
     <loading></loading>
     <nav>
-      <app-top-navbar></app-top-navbar>
+      <app-toolbar></app-toolbar>
     </nav>
     <ng-scrollbar class="main">
       <router-outlet></router-outlet>

@@ -11,9 +11,9 @@ import { NavItem } from '@shared/interface/nav-item/nav-item';
 import { NavService } from '@service/nav/nav.service';
 
 @Component({
-  selector: 'app-menu-list-item',
-  templateUrl: './menu-list-item.component.html',
-  styleUrls: ['./menu-list-item.component.scss'],
+  selector: 'app-menu-item',
+  templateUrl: './menu-item.component.html',
+  styleUrls: ['./menu-item.component.scss'],
   animations: [
     trigger('indicatorRotate', [
       state('collapsed', style({ transform: 'rotate(0deg)' })),
@@ -25,7 +25,7 @@ import { NavService } from '@service/nav/nav.service';
     ]),
   ],
 })
-export class MenuListItemComponent implements OnInit {
+export class MenuItemComponent implements OnInit {
   expanded = false;
   isMobile = false;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
