@@ -41,6 +41,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { DecodeHtmlPipe } from './pipe/decode-html.pipe';
 import { VisibilityObserverDirective } from './directives/visibility-observer.directive';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { ThemePickerComponent } from './components/theme-picker/theme-picker.component';
 
 const Material: any = [
   MatAutocompleteModule,
@@ -80,10 +81,11 @@ const Material: any = [
 ];
 
 @NgModule({
-  declarations: [LoadingComponent, DecodeHtmlPipe, VisibilityObserverDirective],
+  declarations: [LoadingComponent, DecodeHtmlPipe, VisibilityObserverDirective, ThemePickerComponent],
   imports: [CommonModule, ...Material, FormsModule, ReactiveFormsModule, NgScrollbarModule,],
   exports: [
     LoadingComponent,
+    ThemePickerComponent,
     ...Material,
     FormsModule,
     ReactiveFormsModule,
