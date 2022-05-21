@@ -10,7 +10,7 @@ $dark-focused: rgba(black, 0.12);
 $light-primary-text: map-get($md-background, contrast, 500);
 $light-secondary-text: map-get($md-background, contrast, 500);
 $light-disabled-text: rgba(white, 0.5);
-$light-dividers: rgba(white, 0.12);
+$light-dividers: rgba(map-get($md-background, 300), 0.12);
 $light-focused: rgba(white, 0.12);
 
 // Foreground palette for dark themes. Also can be used for non white background theme

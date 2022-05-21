@@ -11,4 +11,5 @@
   --foreground-color: #{mat-color($foreground, base)};
   --background-color: #{mat-color($background, background)};
   --primary-text-color: #{map-get($foreground, text)};
+  --divider: #{map-get($foreground, divider)};
 }
