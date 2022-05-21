@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { NavService } from '@service/nav/nav.service';
@@ -13,11 +14,13 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private layoutObserver: BreakpointObserver,
-    private navService: NavService
+    private navService: NavService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit(): void {
     this.breakPointObserver();
+    this.loadStyle('one-dark');
   }
 
   breakPointObserver() {
@@ -33,5 +36,23 @@ export class AppComponent implements OnInit {
       .subscribe((result) => {
         this.navService.setIsMobile(result.matches);
       });
+  }
+
+  loadStyle(styleName: string) {
+    const head = this.document.getElementsByTagName('head')[0];
+
+    let themeLink = this.document.getElementById(
+      'themeAsset'
+    ) as HTMLLinkElement;
+    if (themeLink) {
+      themeLink.href = `${styleName}.css`;
+    } else {
+      const style = this.document.createElement('link');
+      style.id = 'themeAsset';
+      style.rel = 'stylesheet';
+      style.href = `${styleName}.css`;
+
+      head.appendChild(style);
+    }
   }
 }

@@ -17,13 +17,14 @@
   $accent,
   $warn: null,
   $foreground,
-  $background
+  $background,
+  $is-dark
 ) {
   @return (
     primary: $primary,
     accent: $accent,
     warn: if($warn != null, $warn, mat-palette($mat-red)),
-    is-dark: true,
+    is-dark: $is-dark,
     foreground: $foreground,
     background: $background
   );
@@ -38,7 +39,7 @@
   @return map-merge($theme, $color);
 }
 
-@function construct-theme($primary, $foreground, $background) {
+@function construct-theme($primary, $foreground, $background, $is-dark) {
   // This function creates a container object for the individual component theme mixins. Consumers
   // can construct such an object by calling this function, or by building the object manually.
 
@@ -57,7 +58,8 @@
             $accent,
             $warn,
             $foreground,
-            $background
+            $background,
+            $is-dark
           ),
       )
     );

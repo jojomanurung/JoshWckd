@@ -62,9 +62,18 @@
               }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/primeflex/primeflex.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/assets/scss/themes/one-dark/_one-dark.scss",
+                "inject": false,
+                "bundleName": "one-dark"
+              },
+              {
+                "input": "src/assets/scss/themes/monokai/_monokai.scss",
+                "inject": false,
+                "bundleName": "monokai"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/scss"]
