@@ -31,7 +31,7 @@ import { MatIconRegistry } from '@angular/material/icon';
     NavbarComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: `${environment.appVersion}` }),
+    BrowserModule.withServerTransition({ appId: "wckdApp" }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
