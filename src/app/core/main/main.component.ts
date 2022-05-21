@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { filter, tap } from 'rxjs/operators';
@@ -13,7 +19,7 @@ import { NavService } from '@service/nav/nav.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements AfterViewInit, OnDestroy {
+export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSidenav) appDrawer!: MatSidenav;
   @ViewChild(NgScrollbar) scrollRef!: NgScrollbar;
   navItems = MenuItem;
@@ -22,7 +28,9 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   version = environment.appVersion;
   private subs = new SubSink();
 
-  constructor(public navService: NavService, private router: Router) {
+  constructor(public navService: NavService, private router: Router) {}
+
+  ngOnInit(): void {
     this.subs.sink = this.router.events
       .pipe(
         filter((e): e is NavigationEnd => e instanceof NavigationEnd),
@@ -36,7 +44,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     );
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.navService.appDrawer = this.appDrawer;
   }
 
