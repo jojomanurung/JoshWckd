@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './core/main/main.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
 import { ToolbarComponent } from './core/toolbar/toolbar.component';
 import { MenuItemComponent } from './core/menu-item/menu-item.component';
 
@@ -27,6 +28,7 @@ import { MatIconRegistry } from '@angular/material/icon';
     MainComponent,
     ToolbarComponent,
     MenuItemComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: `${environment.appVersion}` }),
