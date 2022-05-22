@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar"  @blockInitRenderAnimation>
   <div class="logo-header">
     <div class="logo-detail">
       <img [src]="logo" class="logo-icon" />
@@ -8,7 +8,11 @@
       <!-- TODO : Create Hamburger Button Navbar -->
     </div>
   </div>
-  <ng-scrollbar class="menu" pointerEventsMethod="scrollbar">
+  <ng-scrollbar
+    class="menu"
+    [autoHeightDisabled]="true"
+    [pointerEventsMethod]="'scrollbar'"
+  >
     <div class="menu-group">
       <div class="group-header-label" (click)="expanded = !expanded">
         <h3 class="col p-0 group-title">Projects</h3>
