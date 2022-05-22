@@ -2,16 +2,16 @@
 
 // These two are used for foreground text.
 // Get color from md-background for text
-$dark-primary-text: map-get($md-background, contrast, 500);
-$dark-secondary-text: map-get($md-background, contrast, 500);
+$dark-primary-text: rgba(map-get($md-background, contrast, 500),  0.87);
+$dark-secondary-text: rgba(map-get($md-background, contrast, 500), 0.54);
 $dark-disabled-text: rgba(black, 0.38);
 $dark-dividers: rgba(black, 0.12);
 $dark-focused: rgba(black, 0.12);
 $light-primary-text: map-get($md-background, contrast, 500);
-$light-secondary-text: map-get($md-background, contrast, 500);
-$light-disabled-text: rgba(white, 0.5);
+$light-secondary-text: rgba(map-get($md-background, contrast, 500), 0.7);
+$light-disabled-text: rgba(map-get($md-background, contrast, 500), 0.5);
 $light-dividers: rgba(map-get($md-background, 300), 0.12);
-$light-focused: rgba(white, 0.12);
+$light-focused: rgba(map-get($md-background, 100), 0.12);
 
 // Foreground palette for dark themes. Also can be used for non white background theme
 $foreground-dark-theme: (
@@ -35,16 +35,16 @@ $foreground-dark-theme: (
 // Background palette for dark themes. Also can be used for non white background theme
 $background-dark-theme: (
   status-bar: map-get($md-background, 900),
-  app-bar: map-get($md-background, 900),
-  background: map-get($md-background, 500),
+  app-bar: map-get($md-background, 700),
+  background: map-get($md-background, 700),
   hover: rgba(white, 0.04),
-  card: map-get($md-background, 800),
-  dialog: map-get($md-background, 800),
+  card: map-get($md-background, 500),
+  dialog: map-get($md-background, 500),
   disabled-button: rgba(white, 0.12),
   raised-button: map-get($md-background, 800),
   focused-button: $light-focused,
   selected-button: map-get($md-background, 900),
-  selected-disabled-button: map-get($md-background, 800),
+  selected-disabled-button: map-get($md-background, 700),
   disabled-button-toggle: black,
   unselected-chip: map-get($md-background, 700),
   disabled-list-option: black,
