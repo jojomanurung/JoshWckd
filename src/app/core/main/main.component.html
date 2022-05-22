@@ -4,7 +4,11 @@
   <app-toolbar></app-toolbar>
 </header>
 <main>
-  <ng-scrollbar class="main">
+  <ng-scrollbar
+    class="main"
+    [autoHeightDisabled]="true"
+    [pointerEventsMethod]="'scrollbar'"
+  >
     <router-outlet></router-outlet>
   </ng-scrollbar>
 </main>
