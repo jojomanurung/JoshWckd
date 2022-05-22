@@ -39,8 +39,9 @@
 
 .menu {
   grid-area: menu;
-  --scrollbar-size: 5px;
-  --scrollbar-hover-size: 6px;
+  --scrollbar-padding:2px;
+  --scrollbar-thumb-color: var(--wckd-scrollbar-color);
+  --scrollbar-thumb-hover-color: var(--wckd-scrollbar-hover-color);
 
   @media screen and (min-width: 320px) and (max-width: 599px) {
     --scrollbar-size: 0;

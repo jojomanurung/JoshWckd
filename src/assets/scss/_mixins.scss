@@ -16,6 +16,8 @@
   --app-toolbar-background: #{mat-color($background, app-bar)};
   --hover: #{mat-color($background, hover)};
   --divider: #{map-get($foreground, divider)};
+  --wckd-scrollbar-color: #{rgba(mat-color($primary), 0.25)};
+  --wckd-scrollbar-hover-color: #{rgba(mat-color($primary), 0.5)};
 }
 
 @mixin primary-palette($color) {
