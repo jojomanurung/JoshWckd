@@ -1,17 +1,31 @@
 <nav class="navbar">
-  <div class="logo_header py-3 h-5rem">
-    <div class="logo_detail">
-      <img [src]="logo" class="logo_icon" />
-      <h2 class="logo_name m-0">JoshWckd</h2>
+  <div class="logo-header">
+    <div class="logo-detail">
+      <img [src]="logo" class="logo-icon" />
+      <h3 class="logo-name m-0">JoshWckd</h3>
+    </div>
+    <div class="hamburger">
+      <!-- TODO : Create Hamburger Button Navbar -->
     </div>
   </div>
   <ng-scrollbar class="menu" pointerEventsMethod="scrollbar">
-    <mat-nav-list disableRipple="true">
-      <app-menu-item
-        *ngFor="let item of menuItems"
-        [item]="item"
-      ></app-menu-item>
-    </mat-nav-list>
+    <div class="menu-group">
+      <div class="group-header-label" (click)="expanded = !expanded">
+        <h3 class="col p-0 group-title">Projects</h3>
+        <mat-icon
+          class="group-toggle"
+          [ngClass]="expanded ? 'expanded' : 'collapsed'"
+        >
+          expand_more
+        </mat-icon>
+      </div>
+      <div class="group-nav-links" @showChild *ngIf="expanded">
+        <app-menu-item
+          *ngFor="let item of menuItems"
+          [item]="item"
+        ></app-menu-item>
+      </div>
+    </div>
   </ng-scrollbar>
   <div class="version-info">
     <span>Version : {{ version }}</span>

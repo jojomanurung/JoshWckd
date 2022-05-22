@@ -2,7 +2,7 @@
 
 // These two are used for foreground text.
 // Get color from md-background for text
-$dark-primary-text: rgba(map-get($md-background, contrast, 500),  0.87);
+$dark-primary-text: rgba(map-get($md-background, contrast, 500), 0.87);
 $dark-secondary-text: rgba(map-get($md-background, contrast, 500), 0.54);
 $dark-disabled-text: rgba(black, 0.38);
 $dark-dividers: rgba(black, 0.12);
