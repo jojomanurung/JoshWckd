@@ -10,9 +10,9 @@ $is-dark: true; // Define the theme to be dark scheme
 $one-dark-theme: construct-theme(
   (
     color: (
-      primary: mat-palette($md-primary, 500),
-      accent: mat-palette($md-secondary, 500),
-      warn: mat-palette($md-warn, 500),
+      primary: mat-palette($md-primary, 400),
+      accent: mat-palette($md-secondary, 400),
+      warn: mat-palette($md-warn, 400),
     ),
   ),
   $foreground-dark-theme,
@@ -23,4 +23,7 @@ $one-dark-theme: construct-theme(
 @include angular-material-theme($one-dark-theme);
 .one-dark-theme {
   @include color-palette($one-dark-theme);
+  @include primary-palette($md-primary);
+  @include secondary-palette($md-secondary);
+  @include warn-palette($md-warn);
 }
