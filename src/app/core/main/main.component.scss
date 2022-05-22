@@ -14,6 +14,7 @@ app-navbar {
   @media only screen and (max-width: 768px) {
     position: absolute;
   }
+  background-color: var(--app-navbar-background);
 }
 
 
@@ -35,7 +36,6 @@ main {
 }
 
 .main {
-  height: 100%;
   --scrollbar-size: 7px;
   --scrollbar-hover-size: 9px;
 
