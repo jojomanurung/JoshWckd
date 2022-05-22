@@ -25,12 +25,18 @@ import { NavService } from '@service/nav/nav.service';
     ]),
     trigger('showChild', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('225ms cubic-bezier(0.4,0.0,0.2,1)', style({ opacity: 1 })),
+        style({ transform: 'translateY(-5px)', opacity: 0 }),
+        animate(
+          '225ms cubic-bezier(0.4,0.0,0.2,1)',
+          style({ transform: 'translateY(0)', opacity: 1 })
+        ),
       ]),
       transition(':leave', [
-        style({ opacity: 1 }),
-        animate('225ms cubic-bezier(0.4,0.0,0.2,1)', style({ opacity: 0 })),
+        style({ transform: 'translateY(0)', opacity: 1 }),
+        animate(
+          '225ms cubic-bezier(0.4,0.0,0.2,1)',
+          style({ transform: 'translateY(-5px)', opacity: 0 })
+        ),
       ]),
     ]),
   ],
@@ -79,9 +85,5 @@ export class MenuItemComponent implements OnInit {
         }
       }
     });
-  }
-
-  onClick() {
-    this.expanded = !this.expanded;
   }
 }

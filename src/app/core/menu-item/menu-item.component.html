@@ -1,36 +1,42 @@
 <a
-  mat-list-item
   *ngIf="!item?.disabled && item?.route"
-  [disableRipple]="true"
-  [ngStyle]="{ 'padding-left': depth * 12 + 'px' }"
+  [ngStyle]="{ 'padding-left': depth * 12 + 24 + 'px' }"
   [routerLink]="item?.route"
   [routerLinkActive]="['active', 'expanded']"
   #rla="routerLinkActive"
-  (click)="onClick()"
+  (click)="expanded = !expanded"
   class="menu-item"
 >
   <mat-icon class="routeIcon">{{ item?.icon }}</mat-icon>
   <span class="pl-2 pr-4">{{ item?.title }}</span>
-  <div class="col text-right" *ngIf="item?.children && item?.children?.length">
-    <span class="flex"></span>
-    <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+  <div
+    class="col p-0 text-right"
+    *ngIf="item?.children && item?.children?.length"
+  >
+    <mat-icon
+      class="sub-menu-toggle"
+      [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"
+    >
       expand_more
     </mat-icon>
   </div>
 </a>
 <a
-  mat-list-item
   *ngIf="!item?.disabled && !item?.route"
-  [disableRipple]="true"
-  [ngStyle]="{ 'padding-left': depth * 12 + 'px' }"
-  (click)="onClick()"
+  [ngStyle]="{ 'padding-left': depth * 12 + 24 + 'px' }"
+  (click)="expanded = !expanded"
   class="menu-item"
 >
   <mat-icon class="routeIcon">{{ item?.icon }}</mat-icon>
   <span class="pl-2 pr-4">{{ item?.title }}</span>
-  <div class="col text-right" *ngIf="item?.children && item?.children?.length">
-    <span class="flex"></span>
-    <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+  <div
+    class="col p-0 text-right"
+    *ngIf="item?.children && item?.children?.length"
+  >
+    <mat-icon
+      class="sub-menu-toggle"
+      [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"
+    >
       expand_more
     </mat-icon>
   </div>
