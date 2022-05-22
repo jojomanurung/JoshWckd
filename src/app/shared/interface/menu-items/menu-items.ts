@@ -1,12 +1,12 @@
-export interface NavItem {
+export interface MenuItem {
   title: string;
   disabled?: boolean;
   icon: string;
   route?: string;
-  children?: NavItem[];
+  children?: MenuItem[];
 }
 
-export const MenuItem: NavItem[] = [
+export const MenuItems: MenuItem[] = [
   {
     title: 'Kanban',
     disabled: false,

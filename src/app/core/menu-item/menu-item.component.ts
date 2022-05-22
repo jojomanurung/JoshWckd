@@ -7,7 +7,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { NavItem } from '@shared/interface/nav-item/nav-item';
+import { MenuItem } from '@shared/interface/menu-items/menu-items';
 import { NavService } from '@service/nav/nav.service';
 
 @Component({
@@ -45,7 +45,7 @@ export class MenuItemComponent implements OnInit {
   expanded = false;
   isMobile = false;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-  @Input() item!: NavItem;
+  @Input() item!: MenuItem;
   @Input() depth!: number;
 
   constructor(public navService: NavService, public router: Router) {
@@ -74,8 +74,8 @@ export class MenuItemComponent implements OnInit {
   }
 
   // ******* Recursive method to check the child of menu items until route match with url ******* //
-  menuItems(element: NavItem[], url: string) {
-    element.forEach((child: NavItem) => {
+  menuItems(element: MenuItem[], url: string) {
+    element.forEach((child: MenuItem) => {
       if (child.route && url && url.indexOf(`/${child.route}`) === 0) {
         this.expanded = url.indexOf(`/${child.route}`) === 0;
         this.ariaExpanded = this.expanded;

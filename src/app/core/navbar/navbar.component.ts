@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, HostBinding, Input } from '@angular/core';
-import { MenuItem } from '@shared/interface/nav-item/nav-item';
+import { MenuItems } from '@shared/interface/menu-items/menu-items';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -29,7 +29,7 @@ import { environment } from 'src/environments/environment';
 export class NavbarComponent implements AfterViewInit {
   @HostBinding('@showChild') animate = false;
   @Input() isMobile!: boolean;
-  menuItems = MenuItem;
+  menuItems = MenuItems;
   logo = '../../assets/images/logo.png';
   version = environment.appVersion;
   expanded = true;
