@@ -1,5 +1,6 @@
 import {
   animate,
+  keyframes,
   state,
   style,
   transition,
@@ -31,16 +32,29 @@ import { environment } from 'src/environments/environment';
         ),
       ]),
     ]),
-    trigger('slideInOut', [
-      state(
-        'out',
-        style({ transform: 'translateX(-100px)', opacity: 0, display: 'none' })
-      ),
-      state(
-        'in',
-        style({ transform: 'translateX(0)', opacity: 1, display: 'flex' })
-      ),
-      transition('in <=> out', animate('225ms cubic-bezier(0.4,0.0,0.2,1)')),
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100px)', opacity: 0, display: 'none' }),
+        animate(
+          '350ms cubic-bezier(0.4,0.0,0.2,1)', keyframes ([
+            style({ transform: 'translateX(-50px)', opacity: 0.2,}),
+            style({ transform: 'translateX(0px)', opacity: 0.5, }),
+            style({ transform: 'translateX(30px)', opacity: 0.7, }),
+            style({ transform: 'translateX(0px)', opacity: 1, display: 'flex' }),
+          ]),
+        ),
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateX(0)', opacity: 1, display: 'flex' }),
+        animate(
+          '350ms cubic-bezier(0.4,0.0,0.2,1)', keyframes ([
+            style({ transform: 'translateX(30px)', opacity: 0.7, }),
+            style({ transform: 'translateX(0px)', opacity: 0.5, }),
+            style({ transform: 'translateX(-50px)', opacity: 0.2, }),
+            style({ transform: 'translateX(-100px)', opacity: 0, display: 'none' })
+          ])
+        ),
+      ]),
     ]),
   ],
 })

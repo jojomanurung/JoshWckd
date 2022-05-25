@@ -21,7 +21,8 @@
   </div>
   <div
     class="hamburger is-collapsed"
-    [@slideInOut]="isNavCollapsed ? 'in' : 'out'"
+    @fadeInOut
+    *ngIf="isNavCollapsed"
   >
     <button
       class="nav-button"
@@ -41,7 +42,8 @@
       <div
         class="group-header-label"
         (click)="expanded = !expanded"
-        [@slideInOut]="!isNavCollapsed ? 'in' : 'out'"
+        @fadeInOut
+        *ngIf="!isNavCollapsed"
       >
         <h3 class="col p-0 group-title">Projects</h3>
         <mat-icon
