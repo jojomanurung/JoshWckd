@@ -2,6 +2,7 @@
   display: grid;
   grid:
     "logo" min-content
+    "hamburger-is-collapse" min-content
     "menu"
     "version" min-content;
   height: 100vh;
@@ -9,37 +10,62 @@
   width: 256px;
 }
 
-.navbar .logo-header {
+.navbar .header-group {
   grid-area: logo;
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  box-shadow: 0px -1px 0px var(--divider) inset;
-  padding: 16px 0 18px 0;
-}
-
-.navbar .logo-header .logo-detail {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 20px;
-}
-
-.navbar .logo-header .logo-detail .logo-icon {
-  width: 100%;
-  height: 30px;
-  margin-right: 16px;
-}
-
-.navbar .logo-header .logo-detail .logo-name {
   font-size: 1.5rem;
-  text-align: center;
-  cursor: default;
+  box-shadow: 0px -1px 0px var(--divider) inset;
+  padding: 20px 25px 20px 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .brand-detail {
+    display: flex;
+    align-items: center;
+
+    .brand-icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 16px;
+    }
+    .brand-name {
+      font-size: 1.5rem;
+      text-align: center;
+      cursor: default;
+    }
+  }
+  .hamburger .nav-button:hover {
+    color: var(--warn-color) !important;
+  }
+}
+
+// ******* Start Navbar is Collapsed ********* //
+.navbar.is-collapsed {
+  width: 64px;
+}
+
+.navbar.is-collapsed .header-group {
+  padding: 20px 0px 20px 15px;
+
+  .brand-detail .brand-icon {
+    margin-right: 0;
+  }
+}
+// ******* End Navbar is Collapsed ********** //
+
+.navbar .hamburger.is-collapsed {
+  grid-area: hamburger-is-collapse;
+  padding: 20px 0px 20px 15px;
+
+  .nav-button:hover {
+    color: var(--primary-color) !important;
+  }
 }
 
 .menu {
   grid-area: menu;
-  --scrollbar-padding:2px;
+  --scrollbar-padding: 2px;
   --scrollbar-thumb-color: var(--wckd-scrollbar-color);
   --scrollbar-thumb-hover-color: var(--wckd-scrollbar-hover-color);
 
@@ -62,7 +88,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 24px 20px 24px;
+    padding: 20px 25px 20px 22px;
     transition: background-color 0.15s ease;
     &:hover {
       background-color: var(--hover) !important;
@@ -101,4 +127,10 @@
 .version-info span {
   font-size: 12px;
   font-weight: 400;
+}
+
+.nav-button {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }

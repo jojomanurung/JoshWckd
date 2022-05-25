@@ -1,6 +1,6 @@
 <a
   *ngIf="!item?.disabled && item?.route"
-  [ngStyle]="{ 'padding-left': depth * 22 + 24 + 'px' }"
+  [ngStyle]="{ 'padding-left': depth * 22 + 21 + 'px' }"
   [routerLink]="item?.route"
   [routerLinkActive]="['active', 'expanded']"
   #rla="routerLinkActive"
@@ -23,7 +23,7 @@
 </a>
 <a
   *ngIf="!item?.disabled && !item?.route"
-  [ngStyle]="{ 'padding-left': depth * 22 + 24 + 'px' }"
+  [ngStyle]="{ 'padding-left': depth * 22 + 21 + 'px' }"
   (click)="expanded = !expanded"
   class="menu-item"
 >
