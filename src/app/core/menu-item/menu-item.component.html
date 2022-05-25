@@ -1,20 +1,24 @@
 <a
   *ngIf="!item?.disabled && item?.route"
   [ngStyle]="{ 'padding-left': depth * 22 + 21 + 'px' }"
+  [ngClass]="[isNavCollapsed ? 'is-collapsed' : '', depth ? 'sub-' + depth : '']"
   [routerLink]="item?.route"
   [routerLinkActive]="['active', 'expanded']"
-  #rla="routerLinkActive"
   (click)="expanded = !expanded"
   class="menu-item"
+  matTooltip="{{ item?.title }}"
+  matTooltipPosition="after"
+  matTooltipDisabled="{{!isNavCollapsed}}"
 >
-  <mat-icon class="routeIcon">{{ item?.icon }}</mat-icon>
-  <span class="pl-2 pr-4">{{ item?.title }}</span>
+  <mat-icon class="route-icon">{{ item?.icon }}</mat-icon>
+  <span class="col py-0 pl-2 pr-4 route-title" @fadeInOut *ngIf="!isNavCollapsed">{{ item?.title }}</span>
   <div
-    class="col p-0 text-right"
-    *ngIf="item?.children && item?.children?.length"
+    class="text-right sub-menu-toggle"
+    *ngIf="item?.children && item?.children?.length && !isNavCollapsed"
+    @fadeInOut
   >
     <mat-icon
-      class="sub-menu-toggle"
+      class="sub-menu-toggle-icon"
       [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"
     >
       expand_more
@@ -24,17 +28,22 @@
 <a
   *ngIf="!item?.disabled && !item?.route"
   [ngStyle]="{ 'padding-left': depth * 22 + 21 + 'px' }"
+  [ngClass]="[isNavCollapsed ? 'is-collapsed' : '', depth ? 'sub-' + depth : '']"
   (click)="expanded = !expanded"
   class="menu-item"
+  matTooltip="{{ item?.title }}"
+  matTooltipPosition="after"
+  matTooltipDisabled="{{!isNavCollapsed}}"
 >
-  <mat-icon class="routeIcon">{{ item?.icon }}</mat-icon>
-  <span class="pl-2 pr-4">{{ item?.title }}</span>
+  <mat-icon class="route-icon">{{ item?.icon }}</mat-icon>
+  <span class="col py-0 pl-2 pr-4 route-title" @fadeInOut *ngIf="!isNavCollapsed">{{ item?.title }}</span>
   <div
-    class="col p-0 text-right"
-    *ngIf="item?.children && item?.children?.length"
+    class="text-right sub-menu-toggle"
+    *ngIf="item?.children && item?.children?.length && !isNavCollapsed"
+    @fadeInOut
   >
     <mat-icon
-      class="sub-menu-toggle"
+      class="sub-menu-toggle-icon"
       [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"
     >
       expand_more
@@ -45,6 +54,7 @@
   <app-menu-item
     *ngFor="let child of item.children"
     [item]="child"
+    [isNavCollapsed]="isNavCollapsed"
     [depth]="depth + 1"
   >
   </app-menu-item>

@@ -37,7 +37,7 @@
     [autoHeightDisabled]="true"
     [pointerEventsMethod]="'scrollbar'"
   >
-    <div class="menu-group">
+    <div class="menu-group" [ngClass]="isNavCollapsed ? 'is-collapsed' : ''">
       <div
         class="group-header-label"
         (click)="expanded = !expanded"
@@ -55,6 +55,7 @@
         <app-menu-item
           *ngFor="let item of menuItems"
           [item]="item"
+          [isNavCollapsed]="isNavCollapsed"
         ></app-menu-item>
       </div>
     </div>

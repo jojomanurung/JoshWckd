@@ -48,7 +48,7 @@ $background-dark-theme: (
   disabled-button-toggle: black,
   unselected-chip: map-get($md-background, 700),
   disabled-list-option: black,
-  tooltip: map-get($md-background, 700),
+  tooltip: map-get($md-background, 400),
 );
 
 // Foreground palette for light themes.
