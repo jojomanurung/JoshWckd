@@ -12,9 +12,8 @@ app-navbar {
   position: sticky;
   top: 0;
   @media only screen and (max-width: 768px) {
-    position: absolute;
+    z-index: 1000;
   }
-  background-color: var(--app-navbar-background);
 }
 
 header {

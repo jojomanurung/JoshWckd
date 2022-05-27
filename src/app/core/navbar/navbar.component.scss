@@ -6,8 +6,9 @@
     "menu"
     "version" min-content;
   height: 100vh;
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 256px;
+  background-color: var(--app-navbar-background);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar .header-group {
@@ -61,6 +62,22 @@
 
   .nav-button:hover {
     color: var(--primary-color) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    box-shadow: 0px 4px 4px 0px rgb(60 64 67 / 30%),
+      0px 8px 12px 6px rgb(60 64 67 / 15%);
+    position: fixed;
+    transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .navbar.is-collapsed {
+    min-width: 64px;
+    box-shadow: none;
+    transform: translate3d(-256px, 0, 0);
+    transition: transform .3s cubic-bezier(0.4, 0, 1, 1);
   }
 }
 
@@ -124,7 +141,7 @@
 
 .menu-group.is-collapsed {
   .group-nav-links {
-    padding-top: 8px
+    padding-top: 8px;
   }
 }
 
