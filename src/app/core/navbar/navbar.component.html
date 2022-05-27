@@ -13,7 +13,7 @@
         class="nav-button"
         mat-icon-button
         disableRipple="true"
-        (click)="isNavCollapsed = !isNavCollapsed"
+        (click)="navService.toggleNav()"
       >
         <mat-icon class="hamburger-icon" svgIcon="window-close"></mat-icon>
       </button>
@@ -28,7 +28,7 @@
       class="nav-button"
       mat-icon-button
       disableRipple="true"
-      (click)="isNavCollapsed = !isNavCollapsed"
+      (click)="navService.toggleNav()"
     >
       <mat-icon class="hamburger-icon" svgIcon="play"></mat-icon>
     </button>
@@ -58,6 +58,7 @@
           *ngFor="let item of menuItems"
           [item]="item"
           [isNavCollapsed]="isNavCollapsed"
+          [isMobile]="isMobile"
         ></app-menu-item>
       </div>
     </div>

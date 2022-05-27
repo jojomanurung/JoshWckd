@@ -55,6 +55,7 @@
     *ngFor="let child of item.children"
     [item]="child"
     [isNavCollapsed]="isNavCollapsed"
+    [isMobile]="isMobile"
     [depth]="depth + 1"
   >
   </app-menu-item>

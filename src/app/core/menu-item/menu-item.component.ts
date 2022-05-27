@@ -60,9 +60,9 @@ import { SubSink } from 'subsink';
 })
 export class MenuItemComponent implements OnInit, OnDestroy {
   expanded = false;
-  isMobile = false;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item!: MenuItem;
+  @Input() isMobile!: boolean;
   @Input() depth!: number;
   @Input() isNavCollapsed!: boolean;
   private subs = new SubSink();
@@ -73,11 +73,6 @@ export class MenuItemComponent implements OnInit, OnDestroy {
     if (this.depth === undefined) {
       this.depth = 0;
     }
-
-    this.subs.sink = this.navService.isMobile.subscribe(
-      (isMobile) => (this.isMobile = isMobile)
-    );
-
     this.observeCurrentUrl();
   }
 
