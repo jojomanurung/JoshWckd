@@ -3,7 +3,13 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class NavService {
-  private appDrawerSubject = new BehaviorSubject<boolean>(false);
+
+  public Layout = {
+    MobilePortrait: '(max-width: 599.98px) and (orientation: portrait)',
+    MobileLandscape: '(max-width: 915px) and (orientation: landscape)'
+  }
+
+  private appDrawerSubject = new BehaviorSubject<boolean>(true);
   public appDrawer = this.appDrawerSubject.asObservable();
 
   private currentUrlSubject = new BehaviorSubject<string>('');

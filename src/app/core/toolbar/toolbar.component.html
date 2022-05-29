@@ -1,4 +1,12 @@
 <mat-toolbar class="word-wrp">
+  <button
+    mat-icon-button
+    disableRipple="true"
+    *ngIf="isMobile"
+    (click)="navService.toggleNav()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
   <h5 class="pl-3" style="cursor: default">
     {{ pageTitle | async }}
   </h5>

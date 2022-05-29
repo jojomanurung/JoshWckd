@@ -105,6 +105,12 @@ export class MenuItemComponent implements OnInit, OnDestroy {
     });
   }
 
+  onRouteClick(hasRoute: boolean) {
+    if (this.isMobile && hasRoute) {
+      this.navService.closeNav();
+    }
+    this.expanded = !this.expanded;
+  }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

@@ -1,7 +1,10 @@
 <loading></loading>
-<app-navbar [isMobile]="isMobile"></app-navbar>
+<app-navbar
+  [ngClass]="{ 'is-mobile': isMobile }"
+  [isMobile]="isMobile"
+></app-navbar>
 <header>
-  <app-toolbar></app-toolbar>
+  <app-toolbar [isMobile]="isMobile"></app-toolbar>
 </header>
 <main>
   <ng-scrollbar

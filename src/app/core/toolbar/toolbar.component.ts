@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SubSink } from 'subsink';
 import { BehaviorSubject } from 'rxjs';
 import { MenuItems } from '@shared/interface/menu-items/menu-items';
@@ -10,6 +10,7 @@ import { NavService } from '@service/nav/nav.service';
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
+  @Input() isMobile!: boolean;
   public pageTitle = new BehaviorSubject<string>('');
   private subs = new SubSink();
   menuItems = MenuItems;

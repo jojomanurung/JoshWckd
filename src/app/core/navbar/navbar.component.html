@@ -1,7 +1,16 @@
+<div
+  class="mobile-overlay"
+  *ngIf="isMobile"
+  [ngClass]="{ 'is-collapsed': isNavCollapsed }"
+  (click)="navService.toggleNav()"
+></div>
 <nav
   class="navbar"
   @blockInitRenderAnimation
-  [ngClass]="isNavCollapsed ? 'is-collapsed' : ''"
+  [ngClass]="[
+    isNavCollapsed ? 'is-collapsed' : '',
+    isMobile ? 'is-mobile' : ''
+  ]"
 >
   <div class="header-group">
     <div class="brand-detail col p-0">
@@ -21,8 +30,7 @@
   </div>
   <div
     class="hamburger is-collapsed"
-    @fadeInOut
-    *ngIf="isNavCollapsed"
+    [@fadeInOut]="isNavCollapsed ? 'enter' : 'leave'"
   >
     <button
       class="nav-button"
@@ -38,12 +46,11 @@
     [autoHeightDisabled]="true"
     [pointerEventsMethod]="'scrollbar'"
   >
-    <div class="menu-group" [ngClass]="isNavCollapsed ? 'is-collapsed' : ''">
+    <div class="menu-group" [ngClass]="{ 'is-collapsed': isNavCollapsed }">
       <div
         class="group-header-label"
+        [@fadeInOut]="isNavCollapsed ? 'leave' : 'enter'"
         (click)="expanded = !expanded"
-        @fadeInOut
-        *ngIf="!isNavCollapsed"
       >
         <h3 class="col p-0 group-title">Projects</h3>
         <mat-icon

@@ -35,38 +35,12 @@ import { SubSink } from 'subsink';
       ]),
     ]),
     trigger('fadeInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100px)', opacity: 0, display: 'none' }),
-        animate(
-          '400ms cubic-bezier(0.4,0.0,0.2,1)',
-          keyframes([
-            style({ transform: 'translateX(-50px)', opacity: 0.2 }),
-            style({ transform: 'translateX(0px)', opacity: 0.5 }),
-            style({ transform: 'translateX(30px)', opacity: 0.7 }),
-            style({
-              transform: 'translateX(0px)',
-              opacity: 1,
-              display: 'flex',
-            }),
-          ])
-        ),
-      ]),
-      transition(':leave', [
-        style({ transform: 'translateX(0)', opacity: 1, display: 'flex' }),
-        animate(
-          '400ms cubic-bezier(0.4,0.0,0.2,1)',
-          keyframes([
-            style({ transform: 'translateX(30px)', opacity: 0.7 }),
-            style({ transform: 'translateX(0px)', opacity: 0.5 }),
-            style({ transform: 'translateX(-50px)', opacity: 0.2 }),
-            style({
-              transform: 'translateX(-100px)',
-              opacity: 0,
-              display: 'none',
-            }),
-          ])
-        ),
-      ]),
+      state('enter', style({ transform: 'translateX(0)', opacity: 1, display: 'flex' })),
+      state('leave', style({ transform: 'translateX(-5px)', opacity: 0, display: 'none' })),
+      transition(
+        'enter <=> leave',
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+      )
     ]),
   ],
 })
@@ -86,9 +60,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   listenNavBar() {
-    this.subs.sink = this.navService.appDrawer.subscribe(
-      (isCollapsed) => (this.isNavCollapsed = isCollapsed)
-      );
+    this.subs.sink = this.navService.appDrawer.subscribe((isCollapsed) => {
+      this.isNavCollapsed = isCollapsed;
+    });
   }
 
   ngOnDestroy(): void {
