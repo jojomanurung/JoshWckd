@@ -3,7 +3,7 @@
   grid:
     "nav header" min-content
     "nav module-host" 1fr / min-content 1fr;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 app-navbar {
@@ -30,7 +30,7 @@ header {
 main {
   grid-area: module-host;
   min-width: 0;
-  position: relative;
+  // position: relative;
   overflow: auto;
 }
 
@@ -42,8 +42,7 @@ main {
 
   ::ng-deep {
     .ng-scroll-content {
-      display: block !important;
-      padding: 0 2rem;
+      padding: 0 1rem;
     }
   }
 }
