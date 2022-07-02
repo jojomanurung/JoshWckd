@@ -21,6 +21,7 @@ import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatIconRegistry } from '@angular/material/icon';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,10 @@ import { MatIconRegistry } from '@angular/material/icon';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "wckdApp" }),
+    NgScrollbarModule.withConfig({
+      track: 'all',
+      pointerEventsMethod: 'scrollbar',
+    }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
