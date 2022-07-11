@@ -1,1 +1,1 @@
-web : node dist/server/main.js
+web: deploy:ssr
