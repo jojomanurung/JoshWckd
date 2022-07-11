@@ -8,12 +8,12 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Subject } from 'rxjs';
-import { delay, filter, takeUntil } from 'rxjs/operators';
 import {
-  viewIntersectionObserver,
   IntersectionStatus,
-} from '../interface/visibility-observer/visibility-observer';
+  viewIntersectionObserver,
+} from '@shared/interface/visibility-observer/visibility-observer';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[visibilityObserver]',

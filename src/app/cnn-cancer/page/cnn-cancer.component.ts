@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import * as tf from '@tensorflow/tfjs';
-import { LoadingService } from 'src/app/service/loading/loading.service';
+import { LoadingService } from '@service/loading/loading.service';
 import { SubSink } from 'subsink';
+import * as tf from '@tensorflow/tfjs';
 
 @Component({
   selector: 'app-cnn-cancer',
@@ -58,7 +58,7 @@ export class CnnCancerComponent implements OnInit, OnDestroy {
     const image = tf.tidy(() => {
       let img = this.img.nativeElement;
       img = tf.browser.fromPixels(img)
-                      .resizeNearestNeighbor([224,224])
+                      .resizeBilinear([224,224])
                       .toFloat()
                       .expandDims(0);
       return img;

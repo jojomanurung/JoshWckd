@@ -27,17 +27,16 @@ export class QuickQuizService {
     return sessionToken;
   }
 
-  getCategory(): Observable<any> {
+  getCategory() {
     return this.httpClient
-      .get('https://opentdb.com/api_category.php', { responseType: 'json' })
+      .get('https://opentdb.com/api_category.php')
       .pipe(map((data: any) => data.trivia_categories));
   }
 
-  getToken(): Observable<any> {
+  getToken() {
     return this.httpClient.get(
-      'https://opentdb.com/api_token.php?command=request',
-      { responseType: 'json' }
-    );
+      'https://opentdb.com/api_token.php?command=request'
+    ).pipe(map((data: any) => data.token));
   }
 
   setQuizSettings(data: any) {

@@ -54,14 +54,25 @@
             "aot": true,
             "assets": [
               { "glob": "**/*", "input": "src/assets", "output": "/assets/" },
-              { "glob": "favicon.ico", "input": "src/", "output": "/" },
-              { "glob": "mdi.svg", "input": "./node_modules/@mdi/angular-material", "output": "/assets/" }
+              { "glob": "favicon.ico", "input": "src/", "output": "/" }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/primeflex/primeflex.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/assets/scss/themes/one-dark/_one-dark.scss",
+                "inject": false,
+                "bundleName": "one-dark"
+              },
+              {
+                "input": "src/assets/scss/themes/monokai/_monokai.scss",
+                "inject": false,
+                "bundleName": "monokai"
+              }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/scss"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -137,10 +148,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         },
         "deploy": {
@@ -210,9 +218,7 @@
           "options": {
             "browserTarget": "JoshWckd:build:production",
             "serverTarget": "JoshWckd:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { LoadingService } from 'src/app/service/loading/loading.service';
-import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
+import { ManagementService } from '@service/management/management.service';
+import { LoadingService } from '@service/loading/loading.service';
 import * as _ from 'lodash-es';
 
 @Component({

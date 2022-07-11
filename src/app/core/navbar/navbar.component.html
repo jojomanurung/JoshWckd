@@ -1,0 +1,77 @@
+<div
+  class="mobile-overlay"
+  *ngIf="isMobile"
+  [ngClass]="{ 'is-collapsed': isNavCollapsed }"
+  (click)="navService.toggleNav()"
+></div>
+<nav
+  class="navbar"
+  @blockInitRenderAnimation
+  [ngClass]="[
+    isNavCollapsed ? 'is-collapsed' : '',
+    isMobile ? 'is-mobile' : ''
+  ]"
+>
+  <div class="header-group">
+    <div class="brand-detail col p-0">
+      <img [src]="logo" class="brand-icon" />
+      <h3 class="brand-name m-0" *ngIf="!isNavCollapsed">JoshWckd</h3>
+    </div>
+    <div class="hamburger" *ngIf="!isNavCollapsed">
+      <button
+        class="nav-button"
+        mat-icon-button
+        disableRipple="true"
+        (click)="navService.toggleNav()"
+      >
+        <mat-icon class="hamburger-icon" svgIcon="window-close"></mat-icon>
+      </button>
+    </div>
+  </div>
+  <div
+    class="hamburger is-collapsed"
+    [@fadeInOut]="isNavCollapsed ? 'enter' : 'leave'"
+  >
+    <button
+      class="nav-button"
+      mat-icon-button
+      disableRipple="true"
+      (click)="navService.toggleNav()"
+    >
+      <mat-icon class="hamburger-icon">play_arrow</mat-icon>
+    </button>
+  </div>
+  <ng-scrollbar
+    class="menu"
+    [autoHeightDisabled]="true"
+    [pointerEventsMethod]="'scrollbar'"
+    [track]="'vertical'"
+  >
+    <div class="menu-group" [ngClass]="{ 'is-collapsed': isNavCollapsed }">
+      <div
+        class="group-header-label"
+        [@fadeInOut]="isNavCollapsed ? 'leave' : 'enter'"
+        (click)="expanded = !expanded"
+      >
+        <h3 class="col p-0 group-title">Projects</h3>
+        <mat-icon
+          class="group-toggle"
+          [ngClass]="expanded ? 'expanded' : 'collapsed'"
+        >
+          expand_more
+        </mat-icon>
+      </div>
+      <div class="group-nav-links" @showChild *ngIf="expanded">
+        <app-menu-item
+          *ngFor="let item of menuItems"
+          [item]="item"
+          [isNavCollapsed]="isNavCollapsed"
+          [isMobile]="isMobile"
+        ></app-menu-item>
+      </div>
+    </div>
+  </ng-scrollbar>
+  <div class="version-info" *ngIf="!isNavCollapsed">
+    <span>Version : {{ version }}</span>
+  </div>
+</nav>

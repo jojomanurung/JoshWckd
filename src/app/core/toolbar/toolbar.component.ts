@@ -1,18 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavService } from 'src/app/service/nav/nav.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SubSink } from 'subsink';
-import { MenuItem } from 'src/app/shared/interface/nav-item/nav-item';
 import { BehaviorSubject } from 'rxjs';
+import { MenuItems } from '@shared/interface/menu-items/menu-items';
+import { NavService } from '@service/nav/nav.service';
 
 @Component({
-  selector: 'app-top-navbar',
-  templateUrl: './top-navbar.component.html',
-  styleUrls: ['./top-navbar.component.scss'],
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss'],
 })
-export class TopNavbarComponent implements OnInit, OnDestroy {
+export class ToolbarComponent implements OnInit, OnDestroy {
+  @Input() isMobile!: boolean;
   public pageTitle = new BehaviorSubject<string>('');
   private subs = new SubSink();
-  menuItems = MenuItem;
+  menuItems = MenuItems;
 
   constructor(public navService: NavService) {}
 

@@ -1,16 +1,12 @@
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  Task,
-  TaskDialogResult,
-} from 'src/app/shared/interface/task-item/task-item';
-import { KanbanService } from 'src/app/service/kanban/kanban.service';
-import { NavService } from 'src/app/service/nav/nav.service';
 import { SubSink } from 'subsink';
 import { TaskDialogComponent } from '../components/task-dialog/task-dialog.component';
+import { LoadingService } from '@service/loading/loading.service';
+import { Task, TaskDialogResult } from '@shared/interface/task-item/task-item';
+import { KanbanService } from '@service/kanban/kanban.service';
 import * as _ from 'lodash-es';
-import { LoadingService } from 'src/app/service/loading/loading.service';
 
 @Component({
   selector: 'app-kanban',
@@ -25,13 +21,10 @@ export class KanbanComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
 
   constructor(
-    private navService: NavService,
     private dialog: MatDialog,
     private kanbanService: KanbanService,
     private loadingService: LoadingService
-  ) {
-    this.navService.setPageTitle('Kanban');
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getKanbanData();

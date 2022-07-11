@@ -6,8 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './core/main/main.component';
-import { TopNavbarComponent } from './core/top-navbar/top-navbar.component';
-import { MenuListItemComponent } from './core/menu-list-item/menu-list-item.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { ToolbarComponent } from './core/toolbar/toolbar.component';
+import { MenuItemComponent } from './core/menu-item/menu-item.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
@@ -20,16 +21,22 @@ import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatIconRegistry } from '@angular/material/icon';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    TopNavbarComponent,
-    MenuListItemComponent,
+    ToolbarComponent,
+    MenuItemComponent,
+    NavbarComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: "wckdApp" }),
+    NgScrollbarModule.withConfig({
+      track: 'all',
+      pointerEventsMethod: 'scrollbar',
+    }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -45,7 +52,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 })
 export class AppModule {
   constructor(overlayContainer: OverlayContainer, iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
-    overlayContainer.getContainerElement().classList.add('wckd-dark');
+    overlayContainer.getContainerElement().classList.add('one-dark-theme');
     iconRegistry.addSvgIconSet(
       domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
     );

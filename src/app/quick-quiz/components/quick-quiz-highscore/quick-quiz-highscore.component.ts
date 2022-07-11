@@ -7,10 +7,10 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import * as _ from 'lodash-es';
-import { QuickQuizService } from 'src/app/service/quick-quiz/quick-quiz.service';
-import { Score } from 'src/app/shared/interface/quick-quiz/quick-quiz';
 import { SubSink } from 'subsink';
+import * as _ from 'lodash-es';
+import { QuickQuizService } from '@service/quick-quiz/quick-quiz.service';
+import { Score } from '@shared/interface/quick-quiz/quick-quiz';
 
 @Component({
   selector: 'app-quick-quiz-highscore',

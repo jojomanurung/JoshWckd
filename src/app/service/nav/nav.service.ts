@@ -3,7 +3,14 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class NavService {
-  public appDrawer: any;
+
+  public Layout = {
+    MobilePortrait: '(max-width: 599.98px) and (orientation: portrait)',
+    MobileLandscape: '(max-width: 915px) and (orientation: landscape)'
+  }
+
+  private appDrawerSubject = new BehaviorSubject<boolean>(true);
+  public appDrawer = this.appDrawerSubject.asObservable();
 
   private currentUrlSubject = new BehaviorSubject<string>('');
   public currentUrl = this.currentUrlSubject.asObservable();
@@ -16,16 +23,17 @@ export class NavService {
 
   constructor() {}
 
-  public closeNav() {
-    this.appDrawer.close();
+  closeNav() {
+    this.appDrawerSubject.next(true);
   }
 
-  public openNav() {
-    this.appDrawer.open();
+  openNav() {
+    this.appDrawerSubject.next(false);
   }
 
-  public toggleNav() {
-    this.appDrawer.toggle();
+  toggleNav() {
+    const status = this.appDrawerSubject.getValue();
+    this.appDrawerSubject.next(!status);
   }
 
   setCurrentUrl(url: string) {

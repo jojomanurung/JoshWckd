@@ -1,43 +1,17 @@
-<mat-sidenav-container autosize="false">
-  <mat-sidenav
-    [mode]="isMobile ? 'over' : 'side'"
-    [opened]="!isMobile"
-    position="start"
+<loading></loading>
+<app-navbar
+  [ngClass]="{ 'is-mobile': isMobile }"
+  [isMobile]="isMobile"
+></app-navbar>
+<header>
+  <app-toolbar [isMobile]="isMobile"></app-toolbar>
+</header>
+<main>
+  <ng-scrollbar
+    class="main"
+    [autoHeightDisabled]="true"
+    [pointerEventsMethod]="'scrollbar'"
   >
-    <div class="sidenav_content">
-      <div class="logo_header py-3 h-5rem">
-        <div class="logo_detail">
-          <img [src]="logo" class="logo_icon" />
-          <h2 class="logo_name m-0">JoshWckd</h2>
-        </div>
-        <!-- <button
-          mat-icon-button
-          *ngIf="isMobile"
-          (click)="navService.closeNav()"
-        >
-          <mat-icon>close</mat-icon>
-        </button> -->
-      </div>
-      <ng-scrollbar class="menu" pointerEventsMethod="scrollbar">
-        <mat-nav-list>
-          <app-menu-list-item
-            *ngFor="let item of navItems"
-            [item]="item"
-          ></app-menu-list-item>
-        </mat-nav-list>
-      </ng-scrollbar>
-      <div class="version-info">
-        <span>Version : {{ version }}</span>
-      </div>
-    </div>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <loading></loading>
-    <nav>
-      <app-top-navbar></app-top-navbar>
-    </nav>
-    <ng-scrollbar class="main">
-      <router-outlet></router-outlet>
-    </ng-scrollbar>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <router-outlet></router-outlet>
+  </ng-scrollbar>
+</main>

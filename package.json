@@ -9,7 +9,7 @@
     "dev:ssr": "ng run JoshWckd:serve-ssr:staging",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --prod && ng run JoshWckd:server:production",
-    "deploy:ssr": "ng deploy",
+    "deploy:ssr": "npm run build:ssr && npm run serve:ssr",
     "functions:build": "firebase deploy --only functions",
     "prerender": "ng run JoshWckd:prerender"
   },
@@ -27,7 +27,6 @@
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/platform-server": "~11.2.13",
     "@angular/router": "~11.2.13",
-    "@mdi/angular-material": "^6.6.96",
     "@nguniversal/express-engine": "^11.2.1",
     "@tensorflow/tfjs": "^3.16.0",
     "express": "^4.15.2",

@@ -1,0 +1,172 @@
+.navbar {
+  display: grid;
+  grid:
+    "logo" min-content
+    "hamburger-is-collapse" min-content
+    "menu"
+    "version" min-content;
+  height: 100vh;
+  width: 256px;
+  background-color: var(--app-navbar-background);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar .header-group {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0px -1px 0px var(--divider) inset;
+  padding: 17px 25px 17px 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .brand-detail {
+    display: flex;
+    align-items: center;
+
+    .brand-icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 16px;
+    }
+    .brand-name {
+      font-size: 1.5rem;
+      text-align: center;
+      cursor: default;
+    }
+  }
+  .hamburger .nav-button:hover {
+    color: var(--warn-color) !important;
+  }
+}
+
+// ******* Start Navbar is Collapsed ********* //
+.navbar.is-collapsed {
+  width: 64px;
+}
+
+.navbar.is-collapsed .header-group {
+  padding: 17px 0px 17px 15px;
+
+  .brand-detail .brand-icon {
+    margin-right: 0;
+  }
+}
+// ******* End Navbar is Collapsed ********** //
+
+.navbar .hamburger.is-collapsed {
+  grid-area: hamburger-is-collapse;
+  padding: 20px 0px 20px 15px;
+  box-shadow: 0px -1px 0px var(--divider) inset;
+
+  .nav-button:hover {
+    color: var(--primary-color) !important;
+  }
+}
+
+.navbar.is-mobile {
+  box-shadow: 0px 4px 4px 0px rgb(60 64 67 / 30%),
+    0px 8px 12px 6px rgb(60 64 67 / 15%);
+  position: fixed;
+  transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+  &.is-collapsed {
+    box-shadow: none;
+    transform: translate3d(-256px, 0, 0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
+  }
+}
+
+.menu {
+  grid-area: menu;
+  --scrollbar-padding: 2px;
+  --scrollbar-thumb-color: var(--wckd-scrollbar-color);
+  --scrollbar-thumb-hover-color: var(--wckd-scrollbar-hover-color);
+}
+
+.menu-group {
+  border: 0;
+  display: block;
+  letter-spacing: 0.25px;
+  max-width: 100%;
+  position: relative;
+  text-align: left;
+  box-shadow: 0px -1px 0px var(--divider) inset;
+
+  .group-header-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 25px 20px 22px;
+    transition: background-color 0.15s ease;
+
+    .group-title {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 20px;
+      margin-bottom: 2px;
+    }
+
+    .group-toggle {
+      font-size: 20px;
+      opacity: 0;
+      height: 20px;
+      width: 20px;
+      margin: 5px;
+      transform: rotate(0deg);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      &.expanded {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &:hover {
+      background-color: var(--hover) !important;
+      .group-toggle {
+        opacity: 1;
+      }
+    }
+  }
+
+  .group-nav-links {
+    padding-bottom: 8px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.mobile-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  opacity: 1;
+  transition: display 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.is-collapsed {
+    display: none;
+    opacity: 0;
+  }
+}
+
+// .menu-group.is-collapsed {
+//   .group-nav-links {
+//     padding-top: 8px;
+//   }
+// }
+
+.version-info {
+  grid-area: version;
+  text-align: center;
+}
+.version-info span {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.nav-button {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}

@@ -7,11 +7,11 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ManagementService } from 'src/app/service/management/management.service';
 import { SubSink } from 'subsink';
-import * as _ from 'lodash-es';
-import { NavService } from 'src/app/service/nav/nav.service';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { NavService } from '@service/nav/nav.service';
+import { ManagementService } from '@service/management/management.service';
+import * as _ from 'lodash-es';
 
 @Component({
   selector: 'app-dashboard-main',
