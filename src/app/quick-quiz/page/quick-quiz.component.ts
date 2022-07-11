@@ -76,7 +76,7 @@ export class QuickQuizComponent implements OnInit, OnDestroy {
       const expires = moment().utc().add(2, 'h').format('DD/MM/YYYY HH:mm');
       const sessionObject = {
         expiresAt: expires,
-        token: resp.token,
+        token: resp,
       };
       sessionStorage.setItem('quizSession', JSON.stringify(sessionObject));
     });

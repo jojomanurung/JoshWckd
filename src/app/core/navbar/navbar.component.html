@@ -38,13 +38,14 @@
       disableRipple="true"
       (click)="navService.toggleNav()"
     >
-      <mat-icon class="hamburger-icon" svgIcon="play"></mat-icon>
+      <mat-icon class="hamburger-icon">play_arrow</mat-icon>
     </button>
   </div>
   <ng-scrollbar
     class="menu"
     [autoHeightDisabled]="true"
     [pointerEventsMethod]="'scrollbar'"
+    [track]="'vertical'"
   >
     <div class="menu-group" [ngClass]="{ 'is-collapsed': isNavCollapsed }">
       <div

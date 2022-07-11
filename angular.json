@@ -54,12 +54,7 @@
             "aot": true,
             "assets": [
               { "glob": "**/*", "input": "src/assets", "output": "/assets/" },
-              { "glob": "favicon.ico", "input": "src/", "output": "/" },
-              {
-                "glob": "mdi.svg",
-                "input": "./node_modules/@mdi/angular-material",
-                "output": "/assets/"
-              }
+              { "glob": "favicon.ico", "input": "src/", "output": "/" }
             ],
             "styles": [
               "./node_modules/primeflex/primeflex.css",
