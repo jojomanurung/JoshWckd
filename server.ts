@@ -33,31 +33,7 @@ export function app(): express.Express {
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
-  server.get(
-    '*.*',
-    express.static(distFolder, {
-      maxAge: '1y',
-    })
-  );
-
-  // All regular routes use the Universal engine
-  server.route('*').get((req, res) => {
-    res.render(indexHtml, {
-      req,
-      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
-    });
-  });
-
-  return server;
-}
-
-// Since firebase function create it's own endpoints. We need to create different
-// function and export it to call from function index.ts. To test use `firebase serve`
-export function serverDate(): express.Express {
-  const server = express();
-
-  server.get('*', (req, res) => {
+  server.get('/api/date', (req, res) => {
     if (req.method === 'PUT') {
       res.status(403).send('Forbidden!');
       return;
@@ -77,6 +53,22 @@ export function serverDate(): express.Express {
     console.log('Sending Formatted date:', formattedDate);
     res.status(200).send(formattedDate);
     // [END sendResponse]
+  });
+
+  // Serve static files from /browser
+  server.get(
+    '*.*',
+    express.static(distFolder, {
+      maxAge: '1y',
+    })
+  );
+
+  // All regular routes use the Universal engine
+  server.get('*', (req, res) => {
+    res.render(indexHtml, {
+      req,
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
+    });
   });
 
   return server;

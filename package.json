@@ -8,12 +8,12 @@
     "lint": "ng lint",
     "dev:ssr": "ng run JoshWckd:serve-ssr:staging",
     "serve:ssr": "node dist/server/main.js",
-    "build:ssr": "ng build --prod && ng run JoshWckd:server:production",
     "prerender": "ng run JoshWckd:prerender",
-    "start:heroku": "node dist/server"
+    "server": "ng run JoshWckd:server:production"
   },
   "engines": {
-    "node": "14"
+    "node": "14.17.6",
+    "npm": "6.14.13"
   },
   "private": true,
   "dependencies": {
