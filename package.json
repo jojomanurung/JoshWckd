@@ -4,14 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod && ng run JoshWckd:server:production",
     "lint": "ng lint",
     "dev:ssr": "ng run JoshWckd:serve-ssr:staging",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --prod && ng run JoshWckd:server:production",
     "prerender": "ng run JoshWckd:prerender",
-    "start:heroku": "node dist/server",
-    "postinstall": "npm run build:ssr"
+    "start:heroku": "node dist/server"
   },
   "engines": {
     "node": "14"
