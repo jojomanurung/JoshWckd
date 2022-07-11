@@ -9,9 +9,12 @@
     "dev:ssr": "ng run JoshWckd:serve-ssr:staging",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --prod && ng run JoshWckd:server:production",
-    "deploy:ssr": "npm run build:ssr && npm run serve:ssr",
-    "functions:build": "firebase deploy --only functions",
-    "prerender": "ng run JoshWckd:prerender"
+    "prerender": "ng run JoshWckd:prerender",
+    "start:heroku": "node dist/server",
+    "postinstall": "npm run build:ssr"
+  },
+  "engines": {
+    "node": "14"
   },
   "private": true,
   "dependencies": {
