@@ -18,11 +18,6 @@ const main: Routes = [
     loadChildren: () =>
       import('./quick-quiz/quick-quiz.module').then((m) => m.QuickQuizModule),
   },
-  {
-    path: 'cnn-cancer',
-    loadChildren: () =>
-    import('./cnn-cancer/cnn-cancer.module').then(m => m.CnnCancerModule)
-  },
 ];
 
 const routes: Routes = [
