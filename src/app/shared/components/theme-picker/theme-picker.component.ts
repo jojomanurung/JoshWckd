@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavService } from '@service/nav/nav.service';
 
 @Component({
   selector: 'app-theme-picker',
@@ -20,31 +20,11 @@ export class ThemePickerComponent implements OnInit {
     },
   ];
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(private navService: NavService) {}
 
-  ngOnInit(): void {
-    const currTheme = localStorage.getItem('theme');
-    this.loadStyle(currTheme ? currTheme : 'one-dark');
-  }
+  ngOnInit(): void {}
 
   loadStyle(styleName: string) {
-    // save selected theme to local storage
-    localStorage.setItem('theme', styleName);
-
-    const head = this.document.getElementsByTagName('head')[0];
-
-    let themeLink = this.document.getElementById(
-      'themeAsset'
-    ) as HTMLLinkElement;
-    if (themeLink) {
-      themeLink.href = `${styleName}.css`;
-    } else {
-      const style = this.document.createElement('link');
-      style.id = 'themeAsset';
-      style.rel = 'stylesheet';
-      style.href = `${styleName}.css`;
-
-      head.appendChild(style);
-    }
+    this.navService.currTheme = styleName;
   }
 }
