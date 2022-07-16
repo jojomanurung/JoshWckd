@@ -20,12 +20,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUrl();
     this.breakPointObserver();
+    this.loadStyle();
   }
 
   getCurrentUrl() {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.navService.setCurrentUrl(event.urlAfterRedirects);
+        console.log(event.urlAfterRedirects)
       }
     });
   }
@@ -37,5 +39,34 @@ export class AppComponent implements OnInit {
       .subscribe((result) => {
         this.navService.setIsMobile(result.matches);
       });
+  }
+
+  loadStyle() {
+    this.navService.theme.subscribe((styleName) => {
+      console.log(styleName);
+      let theme: string;
+      if (!styleName) {
+        localStorage.setItem('theme', 'one-dark');
+        theme = 'one-dark';
+      } else {
+        theme = styleName;
+      }
+
+      const head = this.document.getElementsByTagName('head')[0];
+
+      let themeLink = this.document.getElementById(
+        'themeAsset'
+      ) as HTMLLinkElement;
+      if (themeLink) {
+        themeLink.href = `${theme}.css`;
+      } else {
+        const style = this.document.createElement('link');
+        style.id = 'themeAsset';
+        style.rel = 'stylesheet';
+        style.href = `${theme}.css`;
+
+        head.appendChild(style);
+      }
+    })
   }
 }
