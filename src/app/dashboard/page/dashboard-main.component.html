@@ -1,55 +1,58 @@
 <nav class="navbar-default fixed top-0" [ngClass]="visibility">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header-button navbar-right mr-3" *ngIf="isMobile">
-    <button
-      mat-icon-button
-      color="primary"
-      type="button"
-      class="navbar-toggle collapsed"
-      (click)="navbarOpen = !navbarOpen"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
+  <div class="grid grid-nogutter">
+    <app-theme-picker class="col-fixed" [ngClass]="!isMobile ? 'pt-1 ml-5' : 'navbar-header-button ml-3'"></app-theme-picker>
+    <div class="col">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header-button navbar-right mr-3" *ngIf="isMobile">
+        <button
+          mat-icon-button
+          color="primary"
+          type="button"
+          class="navbar-toggle collapsed"
+          (click)="navbarOpen = !navbarOpen"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div *ngIf="!isMobile" class="navbar-normal">
+        <ul class="nav navbar-nav navbar-right py-3 mr-5">
+          <li>
+            <a
+              class="px-3"
+              [style.color]="visibility === 'home-active' ? '#f74d65' : null"
+              (click)="smoothScroll(home)"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="px-3"
+              [style.color]="visibility === 'about-active' ? '#f74d65' : null"
+              (click)="smoothScroll(about)"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              class="px-3"
+              [style.color]="visibility === 'resume-active' ? '#f74d65' : null"
+              (click)="smoothScroll(resume)"
+              >My Resume</a
+            >
+          </li>
+          <li>
+            <a
+              class="px-3"
+              [style.color]="visibility === 'work-active' ? '#f74d65' : null"
+              (click)="smoothScroll(work)"
+              >Work</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div *ngIf="!isMobile" class="navbar-normal">
-    <ul class="nav navbar-nav navbar-right py-3 mr-5">
-      <li>
-        <a
-          class="px-3"
-          [style.color]="visibility === 'home-active' ? '#f74d65' : null"
-          (click)="smoothScroll(home)"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a
-          class="px-3"
-          [style.color]="visibility === 'about-active' ? '#f74d65' : null"
-          (click)="smoothScroll(about)"
-          >About</a
-        >
-      </li>
-      <li>
-        <a
-          class="px-3"
-          [style.color]="visibility === 'resume-active' ? '#f74d65' : null"
-          (click)="smoothScroll(resume)"
-          >My Resume</a
-        >
-      </li>
-      <li>
-        <a
-          class="px-3"
-          [style.color]="visibility === 'work-active' ? '#f74d65' : null"
-          (click)="smoothScroll(work)"
-          >Work</a
-        >
-      </li>
-    </ul>
-  </div>
-  <!-- /.navbar-collapse -->
-  <!-- /.container -->
 </nav>
 <nav
   class="navbar-mobile"
