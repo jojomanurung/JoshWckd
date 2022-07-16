@@ -10,7 +10,6 @@ import { NavService } from '@service/nav/nav.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   constructor(
     private router: Router,
     private layoutObserver: BreakpointObserver,
@@ -21,7 +20,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUrl();
     this.breakPointObserver();
-    this.loadStyle('one-dark');
   }
 
   getCurrentUrl() {
@@ -35,30 +33,9 @@ export class AppComponent implements OnInit {
   breakPointObserver() {
     const Layout = this.navService.Layout;
     this.layoutObserver
-      .observe([
-        Layout.MobilePortrait,
-        Layout.MobileLandscape
-      ])
+      .observe([Layout.MobilePortrait, Layout.MobileLandscape])
       .subscribe((result) => {
         this.navService.setIsMobile(result.matches);
       });
-  }
-
-  loadStyle(styleName: string) {
-    const head = this.document.getElementsByTagName('head')[0];
-
-    let themeLink = this.document.getElementById(
-      'themeAsset'
-    ) as HTMLLinkElement;
-    if (themeLink) {
-      themeLink.href = `${styleName}.css`;
-    } else {
-      const style = this.document.createElement('link');
-      style.id = 'themeAsset';
-      style.rel = 'stylesheet';
-      style.href = `${styleName}.css`;
-
-      head.appendChild(style);
-    }
   }
 }
