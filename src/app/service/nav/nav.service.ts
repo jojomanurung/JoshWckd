@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class NavService {
-
   public Layout = {
     MobilePortrait: '(max-width: 599.98px) and (orientation: portrait)',
-    MobileLandscape: '(max-width: 915px) and (orientation: landscape)'
-  }
+    MobileLandscape: '(max-width: 915px) and (orientation: landscape)',
+  };
 
   private appDrawerSubject = new BehaviorSubject<boolean>(true);
   public appDrawer = this.appDrawerSubject.asObservable();

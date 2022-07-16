@@ -1,1 +1,13 @@
-<p>theme-picker works!</p>
+<button class="button-theme" disableRipple="true" mat-icon-button [matMenuTriggerFor]="appMenu">
+  <mat-icon svgIcon="palette-swatch-variant"></mat-icon>
+</button>
+<mat-menu #appMenu="matMenu">
+  <ng-template matMenuContent>
+    <button mat-menu-item *ngFor="let theme of themeList" (click)="loadStyle(theme.value)">
+      <div class="grid grid-nogutter align-items-center">
+        <div class="color-preview" [ngStyle]="{'background-color': theme.color_preview}"></div>
+        <span class="theme-name">{{theme.name}}</span>
+      </div>
+    </button>
+  </ng-template>
+</mat-menu>

@@ -20,12 +20,6 @@ export const MenuItems: MenuItem[] = [
     route: 'quick-quiz',
   },
   {
-    title: 'CNN Cancer',
-    disabled: false,
-    icon: 'insights',
-    route: 'cnn-cancer',
-  },
-  {
     title: 'Settings',
     disabled: false,
     icon: 'settings',

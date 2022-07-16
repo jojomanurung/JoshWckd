@@ -1,0 +1,18 @@
+<mat-toolbar class="word-wrp">
+  <div class="col flex align-items-center p-0">
+    <button
+      mat-icon-button
+      disableRipple="true"
+      (click)="navService.toggleNav()"
+      [@indicatorRotate]="isNavCollapsed ? 'collapsed' : 'expanded'"
+    >
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <h5 class="pl-3" style="cursor: default">
+      {{ pageTitle | async }}
+    </h5>
+  </div>
+  <div class="col-fixed p-0">
+    <app-theme-picker></app-theme-picker>
+  </div>
+</mat-toolbar>

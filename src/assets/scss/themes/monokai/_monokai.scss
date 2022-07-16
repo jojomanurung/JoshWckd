@@ -21,7 +21,7 @@ $monokai-theme: construct-theme(
 );
 
 @include angular-material-theme($monokai-theme);
-.monokai-theme {
+.custom-theme {
   @include color-palette($monokai-theme);
   @include primary-palette($md-primary);
   @include secondary-palette($md-secondary);

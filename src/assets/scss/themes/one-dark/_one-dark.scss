@@ -21,7 +21,7 @@ $one-dark-theme: construct-theme(
 );
 
 @include angular-material-theme($one-dark-theme);
-.one-dark-theme {
+.custom-theme {
   @include color-palette($one-dark-theme);
   @include primary-palette($md-primary);
   @include secondary-palette($md-secondary);

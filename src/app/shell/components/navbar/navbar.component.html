@@ -1,0 +1,47 @@
+<div
+  class="mobile-overlay"
+  *ngIf="isMobile"
+  [ngClass]="{ 'is-collapsed': isNavCollapsed }"
+  (click)="navService.toggleNav()"
+></div>
+<nav
+  class="navbar"
+  @blockInitRenderAnimation
+  [ngClass]="[
+    isNavCollapsed ? 'is-collapsed' : '',
+    isMobile ? 'is-mobile' : ''
+  ]"
+>
+  <div class="header-group">
+    <div class="brand-detail col p-0">
+      <a routerLink="/">
+        <img [src]="logo" class="brand-icon" />
+        <h3 class="brand-name m-0" *ngIf="!isNavCollapsed">JoshWckd</h3>
+      </a>
+    </div>
+  </div>
+  <ng-scrollbar
+    class="menu"
+    [autoHeightDisabled]="true"
+    [pointerEventsMethod]="'scrollbar'"
+    [track]="'vertical'"
+  >
+    <div class="menu-group" [ngClass]="{ 'is-collapsed': isNavCollapsed }">
+      <div class="group-nav-links">
+        <app-menu-item
+          *ngFor="let item of menuItems"
+          [item]="item"
+          [isNavCollapsed]="isNavCollapsed"
+          [isMobile]="isMobile"
+        ></app-menu-item>
+      </div>
+    </div>
+  </ng-scrollbar>
+  <div
+    class="version-info"
+    [@fadeInOut]="isNavCollapsed ? 'leave' : 'enter'"
+    [ngClass]="isNavCollapsed ? 'is-collapsed' : ''"
+  >
+    <span>Version : {{ version }}</span>
+  </div>
+</nav>

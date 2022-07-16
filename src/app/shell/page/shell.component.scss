@@ -1,0 +1,52 @@
+:host {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "nav toolbar"
+    "nav main";
+}
+
+app-navbar {
+  grid-area: nav;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  &.is-mobile {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+app-toolbar {
+  grid-area: toolbar;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+main {
+  grid-area: main;
+  min-width: 0;
+  overflow: auto;
+}
+
+.main {
+  --scrollbar-size: 7px;
+  --scrollbar-hover-size: 9px;
+  --scrollbar-thumb-color: var(--wckd-scrollbar-color);
+  --scrollbar-thumb-hover-color: var(--wckd-scrollbar-hover-color);
+
+  &.is-mobile {
+    --scrollbar-size: 0px;
+    --scrollbar-hover-size: 0px;
+  }
+
+  ::ng-deep {
+    .ng-scroll-content {
+      display: block !important;
+      padding: 0 1rem;
+    }
+  }
+}

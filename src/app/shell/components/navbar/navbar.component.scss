@@ -1,0 +1,125 @@
+.navbar {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  gap: 0px 0px;
+  grid-template-areas:
+    "logo"
+    "menu"
+    "version";
+  height: 100vh;
+  width: 256px;
+  background-color: var(--app-navbar-background);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar .header-group {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0px -1px 0px var(--divider) inset;
+  padding: 17px 25px 17px 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .brand-detail {
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      display: flex;
+      color: inherit;
+    }
+
+    .brand-icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 16px;
+    }
+    .brand-name {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+}
+
+// ******* Start Navbar is Collapsed ********* //
+.navbar.is-collapsed {
+  width: 64px;
+}
+
+.navbar.is-collapsed .header-group {
+  padding: 17px 0px 17px 15px;
+
+  .brand-detail .brand-icon {
+    margin-right: 0;
+  }
+}
+// ******* End Navbar is Collapsed ********** //
+
+.navbar.is-mobile {
+  box-shadow: 0px 4px 4px 0px rgb(60 64 67 / 30%),
+    0px 8px 12px 6px rgb(60 64 67 / 15%);
+  position: fixed;
+  transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+  &.is-collapsed {
+    box-shadow: none;
+    transform: translate3d(-256px, 0, 0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1);
+  }
+}
+
+.menu {
+  grid-area: menu;
+  --scrollbar-padding: 2px;
+  --scrollbar-thumb-color: var(--wckd-scrollbar-color);
+  --scrollbar-thumb-hover-color: var(--wckd-scrollbar-hover-color);
+}
+
+.menu-group {
+  border: 0;
+  display: block;
+  letter-spacing: 0.25px;
+  max-width: 100%;
+  position: relative;
+  text-align: left;
+  box-shadow: 0px -1px 0px var(--divider) inset;
+
+  .group-nav-links {
+    padding-bottom: 8px;
+  }
+}
+
+.mobile-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  opacity: 1;
+  transition: display 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.is-collapsed {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.version-info {
+  grid-area: version;
+  text-align: center;
+}
+.version-info span {
+  font-size: 12px;
+  font-weight: 400;
+  flex: 1;
+}
+
+.nav-button {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
