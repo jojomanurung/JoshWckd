@@ -3,23 +3,39 @@ import { SubSink } from 'subsink';
 import { BehaviorSubject } from 'rxjs';
 import { MenuItems } from '@shared/interface/menu-items/menu-items';
 import { NavService } from '@service/nav/nav.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
+  animations: [
+    trigger('indicatorRotate', [
+      state('collapsed', style({ transform: 'rotate(0deg)' })),
+      state('expanded', style({ transform: 'rotate(180deg)' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+      ),
+    ]),
+  ]
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   @Input() isMobile!: boolean;
   public pageTitle = new BehaviorSubject<string>('');
   private subs = new SubSink();
   menuItems = MenuItems;
+  isNavCollapsed = false;
 
   constructor(public navService: NavService) {}
 
   ngOnInit(): void {
     this.pageTitleService();
     this.currentPageTitle();
+
+    this.subs.sink = this.navService.appDrawer.subscribe((isCollapsed) => {
+      this.isNavCollapsed = isCollapsed;
+    });
   }
 
   pageTitleService() {

@@ -1,9 +1,11 @@
 :host {
   display: grid;
-  grid:
-    "nav header" min-content
-    "nav module-host" 1fr / min-content 1fr;
-  min-height: 100%;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "nav toolbar"
+    "nav main";
 }
 
 app-navbar {
@@ -12,25 +14,21 @@ app-navbar {
   position: sticky;
   top: 0;
   &.is-mobile {
-    position: absolute;
-    z-index: 1000;
+    position: relative;
+    z-index: 2;
   }
 }
 
-header {
-  display: grid;
-  grid-area: header;
-  grid-template-areas: "app-toolbar";
-  grid-template-rows: min-content min-content;
+app-toolbar {
+  grid-area: toolbar;
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 0;
 }
 
 main {
-  grid-area: module-host;
+  grid-area: main;
   min-width: 0;
-  // position: relative;
   overflow: auto;
 }
 
@@ -39,6 +37,11 @@ main {
   --scrollbar-hover-size: 9px;
   --scrollbar-thumb-color: var(--wckd-scrollbar-color);
   --scrollbar-thumb-hover-color: var(--wckd-scrollbar-hover-color);
+
+  &.is-mobile {
+    --scrollbar-size: 0px;
+    --scrollbar-hover-size: 0px;
+  }
 
   ::ng-deep {
     .ng-scroll-content {

@@ -3,12 +3,11 @@
   [ngClass]="{ 'is-mobile': isMobile }"
   [isMobile]="isMobile"
 ></app-navbar>
-<header>
-  <app-toolbar [isMobile]="isMobile"></app-toolbar>
-</header>
+<app-toolbar [isMobile]="isMobile"></app-toolbar>
 <main>
   <ng-scrollbar
     class="main"
+    [ngClass]="isMobile ? 'is-mobile' : ''"
     [autoHeightDisabled]="true"
     [pointerEventsMethod]="'scrollbar'"
   >

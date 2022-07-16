@@ -42,17 +42,17 @@ import { SubSink } from 'subsink';
     ]),
     trigger('fadeInOut', [
       transition(':enter', [
-        style({ transform: 'translateX(-5px)', opacity: 0 }),
+        style({ transform: 'translateX(-15px)', opacity: 0 }),
         animate(
-          '225ms cubic-bezier(0.4,0.0,0.2,1)',
+          '500ms cubic-bezier(0.4,0.0,0.2,1)',
           style({ transform: 'translateX(0)', opacity: 1 })
         ),
       ]),
       transition(':leave', [
         style({ transform: 'translateX(0)', opacity: 1 }),
         animate(
-          '225ms cubic-bezier(0.4,0.0,0.2,1)',
-          style({ transform: 'translateX(-5px)', opacity: 0 })
+          '500ms cubic-bezier(0.4,0.0,0.2,1)',
+          style({ transform: 'translateX(-15px)', opacity: 0 })
         ),
       ]),
     ]),

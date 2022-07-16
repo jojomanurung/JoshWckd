@@ -1,21 +1,21 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { NavService } from '@service/nav/nav.service';
 import { NgScrollbar } from 'ngx-scrollbar';
 import { filter, tap } from 'rxjs/operators';
 import { SubSink } from 'subsink';
-import { NavService } from '@service/nav/nav.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-shell',
+  templateUrl: './shell.component.html',
+  styleUrls: ['./shell.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class ShellComponent implements OnInit, OnDestroy {
   @ViewChild(NgScrollbar) scrollRef!: NgScrollbar;
   isMobile!: boolean;
   private subs = new SubSink();
 
-  constructor(public navService: NavService, private router: Router) {}
+  constructor(public navService: NavService, private router: Router) { }
 
   ngOnInit(): void {
     this.subs.sink = this.router.events
@@ -34,4 +34,5 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
+
 }

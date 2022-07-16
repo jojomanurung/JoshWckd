@@ -5,10 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './core/main/main.component';
-import { NavbarComponent } from './core/navbar/navbar.component';
-import { ToolbarComponent } from './core/toolbar/toolbar.component';
-import { MenuItemComponent } from './core/menu-item/menu-item.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { SharedModule } from './shared/shared.module';
@@ -17,26 +13,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { NavService } from './service/nav/nav.service';
 import { environment } from 'src/environments/environment';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatIconRegistry } from '@angular/material/icon';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    ToolbarComponent,
-    MenuItemComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "wckdApp" }),
-    NgScrollbarModule.withConfig({
-      track: 'all',
-      pointerEventsMethod: 'scrollbar',
-    }),
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -47,7 +33,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [NavService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
