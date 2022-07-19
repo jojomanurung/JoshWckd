@@ -12,6 +12,7 @@
   --background-color: #{mat-color($background, background)};
   --primary-text-color: #{map-get($foreground, text)};
   --secondary-text-color: #{map-get($foreground, secondary-text)};
+  --disabled-text-color: #{map-get($foreground, disabled-text)};
   --app-navbar-background: #{mat-color($background, status-bar)};
   --app-toolbar-background: #{mat-color($background, app-bar)};
   --hover: #{mat-color($background, hover)};

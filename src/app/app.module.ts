@@ -40,7 +40,11 @@ export class AppModule {
   constructor(overlayContainer: OverlayContainer, iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     overlayContainer.getContainerElement().classList.add('one-dark-theme');
     iconRegistry.addSvgIconSet(
-      domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
+      domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/mdi.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'google_logo',
+      domSanitizer.bypassSecurityTrustResourceUrl('./assets/icons/google_g_logo.svg')
     );
   }
 }
