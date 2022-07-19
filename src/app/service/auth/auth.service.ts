@@ -41,14 +41,17 @@ export class AuthService {
   async emailSignUp(email: string, password: string) {
     const credential = await this.afAuth.createUserWithEmailAndPassword(email, password);
     const user = credential.user;
-    if (user) return this.updateUserData(user);
+    if (user) {
+      this.updateUserData(user);
+      this.sendEmailVerification(user);
+    }
   }
 
-  async sendEmailVerification() {
-    const credential = await this.afAuth.authState.toPromise();
+  async sendEmailVerification(user: firebase.User) {
     const returnUrl = { url: 'https://www.joshwckd.herokuapp.com/kanban' };
-    const emailVerification = credential?.sendEmailVerification(returnUrl);
-    await emailVerification;
+    // TODO : FIX email return url
+    const emailVerification = user?.sendEmailVerification();
+    return emailVerification;
   }
 
   async emailSignIn(email: string, password: string) {
@@ -73,11 +76,18 @@ export class AuthService {
     const data: User = {
       uid: user.uid,
       email: user.email,
+      emailVerified: user.emailVerified,
+      isAnonymous: user.isAnonymous,
       displayName: user.displayName,
       photoURL: user.photoURL,
       phoneNumber: user.phoneNumber,
       providerId: user.providerId,
-      permission: user.permission,
+      permission: {
+        create: true,
+        read: true,
+        update: true,
+        delete: true
+      },
     };
 
     return userRef.set(data, { merge: true });
