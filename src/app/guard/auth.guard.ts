@@ -24,8 +24,8 @@ export class AuthGuard implements CanActivate {
 
     if (!loggedIn) {
       return this.router.createUrlTree(['session']);
-    } else if (loggedIn && !isEmailVerified) {
-      throw new Error('Please Verify Your Email');
+    // } else if (loggedIn && !isEmailVerified) { // Need to Comment for checking email verified as Firebase can't redirect to other site except from firebase hosting
+    //   throw new Error('Please Verify Your Email');
     } else {
       return loggedIn;
     }

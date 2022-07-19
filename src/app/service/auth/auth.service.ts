@@ -43,7 +43,8 @@ export class AuthService {
     const user = credential.user;
     if (user) {
       this.updateUserData(user);
-      this.sendEmailVerification(user);
+      // Need to Comment for checking email verified as Firebase can't redirect to other site except from firebase hosting
+      // this.sendEmailVerification(user);
     }
   }
 
