@@ -14,5 +14,21 @@
   </div>
   <div class="col-fixed p-0">
     <app-theme-picker></app-theme-picker>
+    <button mat-icon-button disableRipple="true" [matMenuTriggerFor]="userMenu" class="button-user">
+      <ng-container *ngIf="user?.photoURL else default">
+        <img [src]="user?.photoURL" alt="profile-picture" class="profile-pic">
+      </ng-container>
+      <ng-template #default>
+        <img [src]="defaultAvatar" alt="profile-pic" class="profile-pic">
+      </ng-template>
+    </button>
   </div>
 </mat-toolbar>
+<mat-menu #userMenu="matMenu">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="logOut()">
+      <mat-icon svgIcon="logout"></mat-icon>
+      Logout
+    </button>
+  </ng-template>
+</mat-menu>

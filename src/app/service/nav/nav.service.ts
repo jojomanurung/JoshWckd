@@ -22,6 +22,8 @@ export class NavService {
   private isMobileSubject = new BehaviorSubject<boolean>(false);
   public isMobile = this.isMobileSubject.asObservable();
 
+  private themeSubject = new BehaviorSubject<string>(this.currTheme);
+  public theme = this.themeSubject.asObservable();
   constructor() {}
 
   closeNav() {
@@ -49,5 +51,14 @@ export class NavService {
     if (value) {
       this.pageTitleSubject.next(value);
     }
+  }
+
+  set currTheme(value: string) {
+    localStorage.setItem('theme', value);
+    this.themeSubject.next(value);
+  }
+
+  get currTheme() {
+    return localStorage.getItem('theme') as string;
   }
 }

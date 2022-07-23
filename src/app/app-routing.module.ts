@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,6 +12,12 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./shell/shell.module').then((m) => m.ShellModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'session',
+    loadChildren: () =>
+      import('./sessions/sessions.module').then((m) => m.SessionsModule),
   },
   {
     path: '**',
@@ -20,9 +27,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-})],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

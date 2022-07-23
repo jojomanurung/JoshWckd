@@ -10,6 +10,10 @@
   line-height: 1px;
 }
 
+.button-theme {
+  color: var(--warn-color);
+}
+
 .button-theme:hover {
   color: var(--primary-color);
 }
