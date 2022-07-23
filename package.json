@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run serve:ssr",
     "build": "ng build --prod && ng run JoshWckd:server:production",
     "lint": "ng lint",
     "dev:ssr": "ng run JoshWckd:serve-ssr:staging",
@@ -30,7 +30,6 @@
     "@angular/platform-server": "~11.2.13",
     "@angular/router": "~11.2.13",
     "@nguniversal/express-engine": "^11.2.1",
-    "@tensorflow/tfjs": "^3.16.0",
     "express": "^4.15.2",
     "firebase": "^7.0 || ^8.0",
     "lodash-es": "^4.17.21",
