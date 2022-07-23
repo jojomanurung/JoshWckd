@@ -6,7 +6,7 @@ import { LoadingService } from '@service/loading/loading.service';
 
 @Component({
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
   signForm = new FormGroup({
@@ -14,10 +14,13 @@ export class SignupComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private loadingService: LoadingService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async signUp() {
     if (this.signForm.invalid) {
@@ -37,5 +40,4 @@ export class SignupComponent implements OnInit {
     await this.authService.googleSignIn();
     this.loadingService.loadingOff();
   }
-
 }

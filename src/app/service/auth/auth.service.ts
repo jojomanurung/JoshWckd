@@ -39,11 +39,15 @@ export class AuthService {
   }
 
   async emailSignUp(email: string, password: string) {
-    const credential = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    const credential = await this.afAuth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
     const user = credential.user;
     if (user) {
       this.updateUserData(user);
-      // Need to Comment for checking email verified as Firebase can't redirect to other site except from firebase hosting
+      // Need to Comment for checking email verified as Firebase can't redirect
+      // to other site except from firebase hosting
       // this.sendEmailVerification(user);
     }
   }
@@ -56,7 +60,10 @@ export class AuthService {
   }
 
   async emailSignIn(email: string, password: string) {
-    const credential = await this.afAuth.signInWithEmailAndPassword(email, password);
+    const credential = await this.afAuth.signInWithEmailAndPassword(
+      email,
+      password
+    );
     const user = credential.user;
     if (user) return this.updateUserData(user);
   }
@@ -87,7 +94,7 @@ export class AuthService {
         create: true,
         read: true,
         update: true,
-        delete: true
+        delete: true,
       },
     };
 

@@ -3,7 +3,15 @@ import { SubSink } from 'subsink';
 import { BehaviorSubject } from 'rxjs';
 import { MenuItems } from '@shared/interface/menu-items/menu-items';
 import { NavService } from '@service/nav/nav.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { AuthService } from '@service/auth/auth.service';
+import { User } from '@shared/interface/user/user';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,7 +26,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
       ),
     ]),
-  ]
+  ],
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
   @Input() isMobile!: boolean;
@@ -26,12 +34,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   private subs = new SubSink();
   menuItems = MenuItems;
   isNavCollapsed = false;
+  defaultAvatar = '../../../../assets/images/avatar.png';
+  user!: User;
 
-  constructor(public navService: NavService) {}
+  constructor(
+    public navService: NavService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.pageTitleService();
     this.currentPageTitle();
+    this.getUser();
 
     this.subs.sink = this.navService.appDrawer.subscribe((isCollapsed) => {
       this.isNavCollapsed = isCollapsed;
@@ -73,6 +87,19 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  async getUser() {
+    this.subs.sink = this.authService.user$.subscribe((resp) => {
+      if (resp) {
+        this.user = resp;
+        console.log('this.user', this.user);
+      }
+    });
+  }
+
+  async logOut() {
+    await this.authService.signOut();
   }
 
   ngOnDestroy(): void {

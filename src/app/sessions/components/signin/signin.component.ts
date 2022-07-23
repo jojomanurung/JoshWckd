@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@service/auth/auth.service';
 import { LoadingService } from '@service/loading/loading.service';
 
@@ -13,10 +13,18 @@ export class SigninComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+  nextUrl!: string | null;
 
-  constructor(private authService: AuthService, private loadingService: LoadingService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private loadingService: LoadingService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.nextUrl = this.route.snapshot.queryParamMap.get('next');
+  }
 
   async signIn() {
     if (this.signForm.invalid) {
@@ -28,12 +36,21 @@ export class SigninComponent implements OnInit {
     const password = this.signForm.get('password')?.value;
     await this.authService.emailSignIn(email, password);
     this.loadingService.loadingOff();
-    this.router.navigate(['/kanban']);
+    if (this.nextUrl) {
+      this.router.navigate([this.nextUrl]);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   async googleSignIn() {
     this.loadingService.loadingOn();
     await this.authService.googleSignIn();
     this.loadingService.loadingOff();
+    if (this.nextUrl) {
+      this.router.navigate([this.nextUrl]);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

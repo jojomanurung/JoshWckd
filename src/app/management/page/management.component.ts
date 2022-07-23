@@ -33,6 +33,7 @@ export class ManagementComponent implements OnInit, OnDestroy {
           this.tablesData = [];
           this.loadingService.loadingOff();
         } else {
+          console.log(resp);
           this.tablesData = _.cloneDeep(resp);
           this.loadingService.loadingOff();
         }
